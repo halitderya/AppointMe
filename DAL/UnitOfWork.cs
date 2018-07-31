@@ -18,14 +18,12 @@ namespace ICPartners.DAL
         {
             _context = context;
             appointmentRepository = new AppointmentRepository(_context);
-            taskRepository = new TaskRepository(_context);
             resourceRepository = new ResourceRepository(_context);
             CustomerRepository = new CustomerRepository(_context);
             jobRepository = new JobRepository(_context);
         }
         public IAppointmentRepository appointmentRepository { get; private set; }
 
-        public ITaskRepository taskRepository { get; private set; }
 
         public IResourceRepository resourceRepository { get; private set; }
 

@@ -116,13 +116,11 @@
     <Compile Include="Repositories\Abstract\IJobRepository.cs" />
     <Compile Include="Repositories\Abstract\IRepository.cs" />
     <Compile Include="Repositories\Abstract\IResourceRepository.cs" />
-    <Compile Include="Repositories\Abstract\ITaskRepository.cs" />
     <Compile Include="Repositories\Concrete\AppointmentRepository.cs" />
     <Compile Include="Repositories\Concrete\CustomerRepository.cs" />
     <Compile Include="Repositories\Concrete\JobRepository.cs" />
     <Compile Include="Repositories\Concrete\Repository.cs" />
     <Compile Include="Repositories\Concrete\ResourceRepository.cs" />
-    <Compile Include="Repositories\Concrete\TaskRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -27,7 +27,6 @@ namespace ICPartners.DevxUI
     {
         Button[] MainButtonSerie;
         CheckBox[] TaskButtonSerie;
-        List<Domains.Task> SelectedTasks;
 
         UnitOfWork unitOfWork = new UnitOfWork(new ICPartnersContext());
         public CustomAppointmentWindow1()
@@ -87,18 +86,16 @@ namespace ICPartners.DevxUI
         }
         void GenerateSubButtons()
         {
-            List<Domains.Task> tasklist = unitOfWork.taskRepository.GetAll().ToList();
 
-            TaskButtonSerie = new CheckBox[tasklist.Count()];
-
+            TaskButtonSerie = new CheckBox[4];
 
 
-            for (int i = 0; i < tasklist.Count(); i++)
+
+            for (int i = 0; i < 4; i++)
             {
 
                 TaskButtonSerie[i] = new CheckBox
                 {
-                    Content = tasklist[i].TaskName,
                     Name = "taskcb"+i.ToString(),
                     VerticalAlignment = VerticalAlignment.Stretch,
                     Margin = new Thickness(2, 0, 2, 0),
@@ -119,23 +116,12 @@ namespace ICPartners.DevxUI
         {
             Button button = sender as Button;
 
-            IEnumerable<Domains.Task> tasklar;
 
             var sayi = unitOfWork.jobRepository.JobTaskCount(Convert.ToInt16(button.Uid));
 
-            tasklar = unitOfWork.jobRepository.GetTasksByJobID(Convert.ToInt16(button.Uid));
             
             
-            foreach (var item in tasklar)
-            {
-                //var tasktoadd = unitOfWork.taskRepository.GetAll().Where(x => x.TaskID == Convert.ToInt16(item.Uid));
-                //SelectedTasks.Add(unitOfWork.taskRepository.GetByID(Convert.ToInt16(item.Uid)));
-                SelectedTasks.Add(item);
-
-
-
-            }
-
+            
 
 
 

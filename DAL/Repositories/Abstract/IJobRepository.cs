@@ -12,7 +12,7 @@ namespace ICPartners.DAL.Repositories.Abstract
     {
         int JobTaskCount(int JobID);
 
-        IEnumerable<Domains.Task> GetTasksByJobID(int JobID);
+        //IEnumerable<Domains.Task> GetTasksByJobID(int JobID);
 
     }
 }

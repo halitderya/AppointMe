@@ -15,24 +15,28 @@ namespace ICPartners.DAL.Repositories.Concrete
 
         }
 
-        public int JobTaskCount(int JobID)
-        {
+        //public int JobTaskCount(int JobID)
+        //{
            
-           return  Context.Jobs.Include("Tasks").FirstOrDefault(c => c.JobId == JobID).Tasks.Count();
+        //   return  Context.Jobs.Include("Tasks").FirstOrDefault(c => c.JobId == JobID).Tasks.Count();
 
 
 
-        }
+        //}
 
         
 
-        public IEnumerable<Domains.Task> GetTasksByJobID(int JobID)
-        {
-            return Context.Jobs.Include("Tasks").FirstOrDefault(c => c.JobId == JobID).Tasks;
-        }
+        //public IEnumerable<Domains.Task> GetTasksByJobID(int JobID)
+        //{
+        //    return Context.Jobs.Include("Tasks").FirstOrDefault(c => c.JobId == JobID).Tasks;
+        //}
 
         public ICPartnersContext Context { get { return _context as ICPartnersContext; } }
 
 
+        public int JobTaskCount(int JobID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -25,7 +25,6 @@ namespace ICPartners.DAL
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Job> Jobs { get; set; }
-        public DbSet<ICPartners.Domains.Task> Tasks { get; set; }
 
         public override int SaveChanges()
         {

@@ -10,7 +10,6 @@ namespace ICPartners.DAL
     interface IUnitOfWork:IDisposable
     {
         IAppointmentRepository appointmentRepository { get; }
-        ITaskRepository taskRepository { get; }
         IResourceRepository resourceRepository { get; }
 
         IJobRepository jobRepository { get; }
