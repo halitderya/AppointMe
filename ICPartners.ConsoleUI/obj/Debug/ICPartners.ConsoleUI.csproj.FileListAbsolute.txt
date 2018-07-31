@@ -1,0 +1,17 @@
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\bin\Debug\ICPartners.ConsoleUI.exe.config
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\bin\Debug\ICPartners.ConsoleUI.exe
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\bin\Debug\ICPartners.ConsoleUI.pdb
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\bin\Debug\EntityFramework.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\bin\Debug\ICPartners.DAL.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\bin\Debug\ICPartners.Domains.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\bin\Debug\ICPartners.DAL.pdb
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\bin\Debug\ICPartners.DAL.dll.config
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\bin\Debug\ICPartners.Domains.pdb
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\bin\Debug\EntityFramework.xml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\obj\Debug\ICPartners.ConsoleUI.csprojAssemblyReference.cache
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\obj\Debug\ICPartners.ConsoleUI.csproj.CoreCompileInputs.cache
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\obj\Debug\ICPartners.ConsoleUI.csproj.CopyComplete
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\obj\Debug\ICPartners.ConsoleUI.exe
+C:\Users\Halit\source\repos\ICPartners\ICPartners.ConsoleUI\obj\Debug\ICPartners.ConsoleUI.pdb

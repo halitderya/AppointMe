@@ -1,0 +1,100 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ICPartners.Domains
+{
+    public class Appointment
+    {
+        #region body
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+        public int AppointmentID { get; set; }
+        public short? AppointmentStatus { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public double? ChargedAmount { get; set; }
+
+        #endregion
+
+        #region log
+        private DateTime _currentdate = DateTime.Now;
+        public DateTime CreateDate {
+
+            get
+
+            {
+                return _currentdate;
+            }
+            set
+            {
+                if(AppointmentID == 0)
+                {
+                    _currentdate = value;
+                }
+            }
+
+
+        }
+        public DateTime UpdateDate
+        {
+
+
+            get
+
+            {
+                return _currentdate;
+            }
+            set
+            {
+                if (AppointmentID == 0)
+                {
+                    _currentdate = value;
+                }
+            }
+
+        }
+
+        public DateTime DeleteDate
+        {
+
+
+            get
+
+            {
+                return _currentdate;
+            }
+            set
+            {
+                if (AppointmentID == 0)
+                {
+                    _currentdate = value;
+                }
+            }
+        }
+        public string UpdatedBy { get; set; }
+        #endregion
+
+        #region relation
+
+
+       
+        public virtual Customer Customer { get; set; }
+
+        [ForeignKey("Job")]
+        public int JobRefId { get; set; }
+        public virtual Job Job { get; set; }
+
+
+
+        [ForeignKey("Resource")]
+        public int ResourceRefID { get; set; }
+        public virtual Resource Resource { get; set; }
+
+        #endregion
+    }
+}
