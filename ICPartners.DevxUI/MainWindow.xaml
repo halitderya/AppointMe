@@ -1,25 +1,56 @@
-﻿<dx:ThemedWindow xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+﻿<dx:ThemedWindow xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
         xmlns:local="clr-namespace:ICPartners.DevxUI"
         xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-        xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduling" 
-        x:Class="ICPartners.DevxUI.MainWindow"
-        Title="MainWindow" Height="350" Width="525"
+        xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduling"
         xmlns:ViewModels="clr-namespace:ICPartners.DevxUI.ViewModels" 
-        DataContext="{dxmvvm:ViewModelSource Type=ViewModels:AppointmentViewModel}"
+        xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL" 
+        xmlns:System="clr-namespace:System;assembly=mscorlib" 
+        x:Class="ICPartners.DevxUI.MainWindow"
+        Title="MainWindow" Height="350" Width="525" 
+        DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:AppointmentViewModel}}"
 MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
     >
+
+
+    <dx:ThemedWindow.Resources>
+        <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource" ContextType="{x:Type DAL:ICPartnersContext}" Path="Jobs">
+            <dx:DesignDataManager.DesignData>
+                <dx:DesignDataSettings RowCount="5"/>
+            </dx:DesignDataManager.DesignData>
+        </dx:EntitySimpleDataSource>
+        <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource1" ContextType="{x:Type DAL:ICPartnersContext}" Path="Resources">
+            <dx:DesignDataManager.DesignData>
+                <dx:DesignDataSettings RowCount="5"/>
+            </dx:DesignDataManager.DesignData>
+        </dx:EntitySimpleDataSource>
+        <dx:EntityServerModeDataSource x:Key="EntityServerModeDataSource" ContextType="{x:Type DAL:ICPartnersContext}" DefaultSorting="JobName ASC" KeyExpression="JobId" Path="Jobs">
+            <dx:DesignDataManager.DesignData>
+                <dx:DesignDataSettings RowCount="5"/>
+            </dx:DesignDataManager.DesignData>
+        </dx:EntityServerModeDataSource>
+        <dx:UnboundDataSource x:Key="UnboundDataSource" Count="0">
+            <dx:DesignDataManager.DesignData>
+                <dx:DesignDataSettings RowCount="5"/>
+            </dx:DesignDataManager.DesignData>
+        </dx:UnboundDataSource>
+        <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource2" ContextType="{x:Type DAL:ICPartnersContext}" Path="Jobs">
+            <dx:DesignDataManager.DesignData>
+                <dx:DesignDataSettings RowCount="5"/>
+            </dx:DesignDataManager.DesignData>
+        </dx:EntitySimpleDataSource>
+    </dx:ThemedWindow.Resources>
 
 
     <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TabStripPlacement="Left"  >
         <TabItem >
             <TabItem.Header>
                 <StackPanel Width="60px" Height="auto">
-                    <Image Source="Source/month-512.png" Width="auto" Height="auto" ></Image>
-                    <TextBlock FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Appointments" ></TextBlock>
+                    <Image Source="Source/month-512.png" Width="auto" Height="auto" />
+                    <TextBlock FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Appointments" />
 
                 </StackPanel>
             </TabItem.Header>
@@ -56,9 +87,7 @@ MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
 
                         >
 
-                                    <dxsch:CustomFieldMapping Mapping="JobRefId" Name="jobdropdown"  >
-                                        
-                                    </dxsch:CustomFieldMapping>
+                                    <dxsch:CustomFieldMapping Mapping="JobRefId" Name="jobdropdown"  />
                                 </dxsch:AppointmentMappings>
                             </dxsch:DataSource.AppointmentMappings>
 
@@ -93,14 +122,144 @@ MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
         <TabItem >
             <TabItem.Header>
                 <StackPanel Width="60px" Height="auto">
-                    <Image Source="Source/if_User_Customers_1218712.png" Width="auto" Height="auto" ></Image>
-                    <TextBlock FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Customers" ></TextBlock>
+                    <Image Source="Source/if_User_Customers_1218712.png" Width="auto" Height="auto" />
+                    <TextBlock FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Customers" />
                 </StackPanel>
+
             </TabItem.Header>
-            <TextBlock>Customers Here</TextBlock>
+
+            <dxg:GridControl x:Name="CustomerTable">
+                <dxg:GridControl.View>
+                    <dxg:TableView AutoWidth="False" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" />
+                </dxg:GridControl.View>
+
+
+
+            </dxg:GridControl>
+            
+            
+            
+            
         </TabItem>
 
+        <TabItem >
+            <TabItem.Header>
+                <StackPanel Width="60px" Height="auto">
+                    <Image Source="Source/if_rubber-duck_416395.png" Width="auto" Height="auto" />
+                    <TextBlock FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Administration" />
+                </StackPanel>
+            </TabItem.Header>
+            <TabControl>
+                <TabItem >
+                    <TabItem.Header>
+                        <StackPanel >
+                            <TextBlock FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Jobs" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="8*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            
+                            
+                            <ColumnDefinition Width="6*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="SaveButton" Grid.Row="2" IsEnabled="False" Grid.Column="2" Click="Save_Clicked" FontSize="20">
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.Resources>
+                                     <Style TargetType="TextBlock" >
+                                    <Setter Property="Margin" Value="5" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                                </Grid.Resources>
+                               
+                                <Image Source="Source/if_Complete_Symbol_381607.png" Margin="2" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Image>
+                                <TextBlock Grid.Column="1" >Save</TextBlock>
+                          
+                            
+                            
+                            </Grid>
+                            
+                            </Button>
+                        <Button x:Name="RevertButton" Grid.Row="2" IsEnabled="False" Grid.Column="1" Click="Revert_Clicked" FontSize="20">
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.Resources>
+                                    <Style TargetType="TextBlock" >
+                                        <Setter Property="Margin" Value="5" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </Grid.Resources>
 
+                                <Image Source="Source/if_Block_381636.png" Margin="2" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Image>
+                                <TextBlock Grid.Column="1" >Revert</TextBlock>
+
+
+
+                            </Grid>
+
+                        </Button>
+                        <dxg:GridControl x:Name="TableViewJob"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold"   >
+                      
+                              <dxg:GridControl.View>
+                            <dxg:TableView AutoWidth="False" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" />
+
+                        </dxg:GridControl.View>
+                        <dxg:GridColumn FieldName="JobId" IsSmart="True" Width="2*" Visible="False" EditFormVisible="False" ReadOnly="True"/>
+                        <dxg:GridColumn FieldName="JobName" IsSmart="True" Width="4*"/>
+                        <dxg:GridColumn FieldName="JobDescription" IsSmart="True" Width="3*"/>
+                        <dxg:GridColumn FieldName="JobPrice" IsSmart="True" Width="2*"/>
+                        <dxg:GridColumn FieldName="JobMode" IsSmart="True" Width="3*"/>
+                        <dxg:GridColumn FieldName="JobTimeSpan" IsSmart="True" Width="2*"/>
+                        <dxg:GridColumn FieldName="DefaultAssignee" Visible="False" Width="3*">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:ComboBoxEditSettings IsTextEditable="False" ShowNullTextForEmptyValue="True" NullText="Leave Blank For Default" NullValue="0" DisplayMember="ResourceName" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource1}}" ValueMember="ResourceID" NullValueButtonPlacement="EditBox">
+                                    <dxe:ComboBoxEditSettings.StyleSettings>
+                                        <dxe:RadioTokenComboBoxStyleSettings/>
+                                    </dxe:ComboBoxEditSettings.StyleSettings>
+                                    <dxe:ComboBoxEditSettings.Items>
+
+                                    </dxe:ComboBoxEditSettings.Items>
+                                </dxe:ComboBoxEditSettings>
+
+
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+
+
+                    </dxg:GridControl>
+                    </Grid>
+                  
+
+                </TabItem>
+                <TabItem Header="Connected Jobs" IsEnabled="False">
+                    
+                    
+                    
+                    
+                    
+                    
+                </TabItem>
+                
+                
+                
+                
+            </TabControl>
+
+
+
+        </TabItem>
 
 
 

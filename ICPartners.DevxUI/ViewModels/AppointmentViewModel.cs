@@ -13,12 +13,13 @@ namespace ICPartners.DevxUI.ViewModels
     #region declarations
     public class AppointmentViewModel
     {
-        
+
+      
         public virtual ObservableCollection<Resource> Resources { get; set; }
         public virtual ObservableCollection<Appointment> Appointments { get; set; }
+        public virtual ObservableCollection<Job> Jobs { get; set; }
 
 
-       
 
         ICPartnersContext IcPartnersContext;
         #endregion
@@ -49,14 +50,18 @@ namespace ICPartners.DevxUI.ViewModels
 
 
         #region #filldata
-        protected AppointmentViewModel()
+        public AppointmentViewModel()
         {
             IcPartnersContext = new ICPartnersContext();
+
             IcPartnersContext.Resources.Load();
             Resources = IcPartnersContext.Resources.Local;
+
             IcPartnersContext.Appointments.Load();
             Appointments = IcPartnersContext.Appointments.Local;
- 
+
+            IcPartnersContext.Jobs.Load();
+            Jobs = IcPartnersContext.Jobs.Local;
 
         }
         #endregion #filldata

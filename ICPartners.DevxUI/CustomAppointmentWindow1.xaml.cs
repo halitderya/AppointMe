@@ -132,5 +132,25 @@ namespace ICPartners.DevxUI
 
 
         }
+
+        private void barItemSaveAndClose_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        {
+            var fe = e.Source;
+        }
+
+        private void barItemSaveAndClose_TouchDown(object sender, TouchEventArgs e)
+        {
+
+        }
+
+        private void barItemSaveAndClose_TouchEnter(object sender, TouchEventArgs e)
+        {
+
+        }
+
+        private void window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
     }
 }

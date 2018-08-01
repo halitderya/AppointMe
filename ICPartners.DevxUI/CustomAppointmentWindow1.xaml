@@ -12,7 +12,7 @@
                     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
                     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
                     Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Window}}"
-                    x:Name="window" Loaded="window_Loaded">
+                    x:Name="window" Loaded="window_Loaded" Closing="window_Closing">
     
     <dxmvvm:Interaction.Behaviors>
         <dxmvvm:CurrentWindowService ClosingCommand="{Binding WindowClosingCommand}"/>
@@ -30,7 +30,7 @@
             <dxr:RibbonDefaultPageCategory Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Categories_Default}}">
                 <dxr:RibbonPage Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Pages_Appointment}}">
                     <dxr:RibbonPageGroup Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Groups_Actions}}">
-                        <dxb:BarButtonItem x:Name="barItemSaveAndClose" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Actions_SaveAndClose}}"/>
+                        <dxb:BarButtonItem x:Name="barItemSaveAndClose" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Actions_SaveAndClose}}" TouchDown="barItemSaveAndClose_TouchDown" TouchEnter="barItemSaveAndClose_TouchEnter" />
                         <dxb:BarButtonItem x:Name="barItemDelete" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Actions_Delete}}"/>
                     </dxr:RibbonPageGroup>
                     <dxr:RibbonPageGroup Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Groups_Options}}">
@@ -39,8 +39,6 @@
                         <dxb:BarEditItem x:Name="barItemResources" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Options_Resources}}"/>
                         <dxb:BarEditItem x:Name="barItemResource" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Options_Resource}}"/>
                         <dxb:BarEditItem x:Name="barItemReminder" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Options_Reminder}}"/>
-                        <dxb:BarCheckItem x:Name="barItemRecurrence" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Options_Recurrence}}"/>
-                        <dxb:BarCheckItem x:Name="barItemTimeZones" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Options_TimeZones}}"/>
                     </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
             </dxr:RibbonDefaultPageCategory>
@@ -51,23 +49,19 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*"/>
 
-                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="6*"/>
 
                     <RowDefinition Height="2*"/>
 
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="2*"/>
 
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
-
-                    <RowDefinition Height="3*"/>
+      
               
                 </Grid.RowDefinitions>
               
-                <Label Grid.Row="0" Content="Main Service"></Label>
-                <Label Grid.Row="2" Content="Sub Tasks"></Label>
-                <Label Grid.Row="4" Content="Extras"></Label>
+                <Label Grid.Row="0" Content="Service"></Label>
+                <Label Grid.Row="2" Content="Customer"></Label>
                 <StackPanel x:Name="spmainservice"  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Orientation="Horizontal" />
 
                 <StackPanel x:Name="spsubservices"  Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" Orientation="Horizontal" />

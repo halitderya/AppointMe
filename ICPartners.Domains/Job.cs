@@ -16,6 +16,12 @@ namespace ICPartners.Domains
 
 
         public double JobPrice { get; set; }
+
+        public short JobMode { get; set; }
+        public TimeSpan JobTimeSpan { get; set; }
+
+        public int DefaultAssignee { get; set; }
+
         public ICollection<Appointment> Appointments { get; set; }
 
     }

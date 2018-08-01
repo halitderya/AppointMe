@@ -127,3 +127,17 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.De
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.pdb
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\CustomAppointmentWindow1.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\CustomAppointmentWindow1.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\Telerik.Windows.Controls.Data.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\Telerik.Windows.Controls.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\Telerik.Windows.Controls.Input.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\Telerik.Windows.Data.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\Telerik.Windows.Controls.xml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\Telerik.Windows.Controls.Data.xml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\Telerik.Windows.Controls.Input.xml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\Telerik.Windows.Data.xml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\de\Telerik.Windows.Controls.resources.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\es\Telerik.Windows.Controls.resources.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\fr\Telerik.Windows.Controls.resources.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\it\Telerik.Windows.Controls.resources.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\nl\Telerik.Windows.Controls.resources.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\tr\Telerik.Windows.Controls.resources.dll
