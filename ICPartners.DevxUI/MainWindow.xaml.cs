@@ -23,8 +23,7 @@ namespace ICPartners.DevxUI
 
             InitializeComponent();
             context= new DAL.ICPartnersContext();
-            context.Jobs.Load();
-            TableViewJob.ItemsSource = context.Jobs.Local;
+          
             context.Customers.Load();
             CustomerTable.ItemsSource = context.Customers.Local;
 
@@ -37,16 +36,7 @@ namespace ICPartners.DevxUI
 
 
 
-            MessageBoxResult result = MessageBox.Show("Are you sure delete this appointment?", "Delete an appointment", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
-            {
-
-            }
-            else
-            {
-                e.Cancel = true;
-
-            }
+           
              
 
 
@@ -61,25 +51,12 @@ namespace ICPartners.DevxUI
 
         private void Save_Clicked(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                i = context.SaveChanges();
-                MessageBox.Show(i.ToString() + " Record(s) updated.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                SaveButton.IsEnabled = false;
-                RevertButton.IsEnabled = false;
-            }
-            catch
-            {
-
-                MessageBox.Show("Update Failed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+           
         }
 
         private void Revert_Clicked(object sender, RoutedEventArgs e)
         {
-            TableViewJob.ItemsSource = null;
-            TableViewJob.ItemsSource = context.Jobs.Local;
-            TableViewJob.RefreshData();
+            
         }
 
 
@@ -87,8 +64,7 @@ namespace ICPartners.DevxUI
         private void TableView_CellValueChanged(object sender, CellValueChangedEventArgs e)
         {
 
-             SaveButton.IsEnabled = true;
-             RevertButton.IsEnabled = true;
+           
 
 
         }

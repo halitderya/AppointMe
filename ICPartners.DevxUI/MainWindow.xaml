@@ -11,6 +11,7 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib" 
         x:Class="ICPartners.DevxUI.MainWindow"
         Title="MainWindow" Height="350" Width="525" 
+        xmlns:UserControls="clr-namespace:ICPartners.DevxUI.UserControls"
         DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:AppointmentViewModel}}"
 MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
     >
@@ -136,10 +137,10 @@ MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
 
 
             </dxg:GridControl>
-            
-            
-            
-            
+
+
+
+
         </TabItem>
 
         <TabItem >
@@ -157,104 +158,27 @@ MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
                         </StackPanel>
                     </TabItem.Header>
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="8*"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
+                        <UserControls:UcJob>
                             
-                            
-                            <ColumnDefinition Width="6*"/>
-                            <ColumnDefinition Width="3*"/>
-                            <ColumnDefinition Width="3*"/>
-                        </Grid.ColumnDefinitions>
-                        <Button x:Name="SaveButton" Grid.Row="2" IsEnabled="False" Grid.Column="2" Click="Save_Clicked" FontSize="20">
-                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="10*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.Resources>
-                                     <Style TargetType="TextBlock" >
-                                    <Setter Property="Margin" Value="5" />
-                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                </Style>
-                                </Grid.Resources>
-                               
-                                <Image Source="Source/if_Complete_Symbol_381607.png" Margin="2" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Image>
-                                <TextBlock Grid.Column="1" >Save</TextBlock>
-                          
-                            
-                            
-                            </Grid>
-                            
-                            </Button>
-                        <Button x:Name="RevertButton" Grid.Row="2" IsEnabled="False" Grid.Column="1" Click="Revert_Clicked" FontSize="20">
-                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="10*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.Resources>
-                                    <Style TargetType="TextBlock" >
-                                        <Setter Property="Margin" Value="5" />
-                                        <Setter Property="VerticalAlignment" Value="Center" />
-                                    </Style>
-                                </Grid.Resources>
-
-                                <Image Source="Source/if_Block_381636.png" Margin="2" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Image>
-                                <TextBlock Grid.Column="1" >Revert</TextBlock>
-
-
-
-                            </Grid>
-
-                        </Button>
-                        <dxg:GridControl x:Name="TableViewJob"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold"   >
-                      
-                              <dxg:GridControl.View>
-                            <dxg:TableView AutoWidth="False" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" />
-
-                        </dxg:GridControl.View>
-                        <dxg:GridColumn FieldName="JobId" IsSmart="True" Width="2*" Visible="False" EditFormVisible="False" ReadOnly="True"/>
-                        <dxg:GridColumn FieldName="JobName" IsSmart="True" Width="4*"/>
-                        <dxg:GridColumn FieldName="JobDescription" IsSmart="True" Width="3*"/>
-                        <dxg:GridColumn FieldName="JobPrice" IsSmart="True" Width="2*"/>
-                        <dxg:GridColumn FieldName="JobMode" IsSmart="True" Width="3*"/>
-                        <dxg:GridColumn FieldName="JobTimeSpan" IsSmart="True" Width="2*"/>
-                        <dxg:GridColumn FieldName="DefaultAssignee" Visible="False" Width="3*">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:ComboBoxEditSettings IsTextEditable="False" ShowNullTextForEmptyValue="True" NullText="Leave Blank For Default" NullValue="0" DisplayMember="ResourceName" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource1}}" ValueMember="ResourceID" NullValueButtonPlacement="EditBox">
-                                    <dxe:ComboBoxEditSettings.StyleSettings>
-                                        <dxe:RadioTokenComboBoxStyleSettings/>
-                                    </dxe:ComboBoxEditSettings.StyleSettings>
-                                    <dxe:ComboBoxEditSettings.Items>
-
-                                    </dxe:ComboBoxEditSettings.Items>
-                                </dxe:ComboBoxEditSettings>
-
-
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-
-
-                    </dxg:GridControl>
+                        </UserControls:UcJob>
+                        
+                        
                     </Grid>
-                  
+
 
                 </TabItem>
                 <TabItem Header="Connected Jobs" IsEnabled="False">
-                    
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
+
                 </TabItem>
-                
-                
-                
-                
+
+
+
+
             </TabControl>
 
 

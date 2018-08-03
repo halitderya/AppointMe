@@ -141,3 +141,7 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\fr\Telerik.Wi
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\it\Telerik.Windows.Controls.resources.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\nl\Telerik.Windows.Controls.resources.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\tr\Telerik.Windows.Controls.resources.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCAppointment.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UcJob.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCAppointment.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UcJob.baml
