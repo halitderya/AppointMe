@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace ICPartners.Domains
 {
@@ -19,7 +20,7 @@ namespace ICPartners.Domains
         public string ResourceEmerphone { get; set; }
         public string EMail { get; set; }
 
-        public byte ResourceImage { get; set; }
+        public byte[] ResourceImage { get; set; }
 
         public string ResourceAddress { get; set; }
         public string ResourcePostcode { get; set; }

@@ -32,3 +32,4 @@ C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.t
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.task_removed2.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.job_restored.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.job_restored2.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.imagecolumntest1.resources

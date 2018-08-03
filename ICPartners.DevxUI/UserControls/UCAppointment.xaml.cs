@@ -22,12 +22,13 @@ namespace ICPartners.DevxUI.UserControls
     {
         public UCAppointment()
         {
+
             InitializeComponent();
         }
 
         private void SchedulerControl_BeforeAppointmentItemDelete(object sender, DevExpress.Xpf.Scheduling.AppointmentItemCancelEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure delete this appointment?", "Delete an appointment", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show("Are you sure delete this appointment?", "Delete an appointment", MessageBoxButton.YesNo,MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
 

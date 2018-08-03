@@ -14,7 +14,7 @@ namespace ICPartners.DevxUI.ViewModels
     public class AppointmentViewModel
     {
 
-      
+
         public virtual ObservableCollection<Resource> Resources { get; set; }
         public virtual ObservableCollection<Appointment> Appointments { get; set; }
         public virtual ObservableCollection<Job> Jobs { get; set; }

@@ -99,8 +99,14 @@
     <Compile Include="UserControls\UCAppointment.xaml.cs">
       <DependentUpon>UCAppointment.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCCustomer.xaml.cs">
+      <DependentUpon>UCCustomer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcJob.xaml.cs">
       <DependentUpon>UcJob.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCResource.xaml.cs">
+      <DependentUpon>UCResource.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AppointmentViewModel.cs" />
     <Page Include="CustomAppointmentWindow.xaml">
@@ -127,7 +133,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\UCCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\UcJob.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UCResource.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

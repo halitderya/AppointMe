@@ -22,11 +22,7 @@ namespace ICPartners.DevxUI
            
 
             InitializeComponent();
-            context= new DAL.ICPartnersContext();
-          
-            context.Customers.Load();
-            CustomerTable.ItemsSource = context.Customers.Local;
-
+           
 
 
         }

@@ -17,21 +17,20 @@ using System.Windows.Shapes;
 namespace ICPartners.DevxUI.UserControls
 {
     /// <summary>
-    /// Interaction logic for UcJob.xaml
+    /// Interaction logic for UCResource.xaml
     /// </summary>
-    public partial class UcJob : UserControl
+    public partial class UCResource : UserControl
     {
-        ICPartners.DAL.ICPartnersContext context;
         int AffectedRows;
-        public UcJob()
+        ICPartners.DAL.ICPartnersContext context;
+
+        public UCResource()
         {
             InitializeComponent();
-
             context = new DAL.ICPartnersContext();
-            context.Jobs.Load();
-            TableViewJob.ItemsSource = context.Jobs.Local;
 
-
+            context.Resources.Load();
+            TableViewResource.ItemsSource = context.Resources.Local;
         }
 
         private void TableView_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
@@ -40,7 +39,13 @@ namespace ICPartners.DevxUI.UserControls
             RevertButton.IsEnabled = true;
         }
 
-        private void Save_Clicked(object sender, RoutedEventArgs e)
+        private void RevertButton_Click(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -54,11 +59,6 @@ namespace ICPartners.DevxUI.UserControls
 
                 MessageBox.Show("Update Failed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private void Revert_Clicked(object sender, RoutedEventArgs e)
-        {
-           
         }
     }
 }

@@ -9,19 +9,62 @@
              xmlns:root="clr-namespace:ICPartners.DevxUI"
                      xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL" 
+                 xmlns:ViewModels="clr-namespace:ICPartners.DevxUI.ViewModels"
 
              xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduling"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:dxschv="http://schemas.devexpress.com/winfx/2008/xaml/scheduling/visual"
+
+              DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:AppointmentViewModel}}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+
+        <DataTemplate x:Key="resourceHeaderContentTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Image
+
+                MaxWidth="120"
+                MaxHeight="120"
+                HorizontalAlignment="Center"
+                DockPanel.Dock="Top"
+                RenderOptions.BitmapScalingMode="NearestNeighbor"
+                Source="{Binding Resource.CustomFields.Photo}"
+                Stretch="Uniform" />
+                <StackPanel Grid.Row="1">
+                    <TextBlock
+
+                    HorizontalAlignment="Center"
+                    FontWeight="Bold"
+                    Text="{Binding Resource.Caption}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <Style TargetType="dxschv:ResourceHeaderControl">
+            <Setter Property="ContentOrientation" Value="Horizontal" />
+            <Setter Property="Background" Value="LightGray"/>
+        </Style>
+
+    </UserControl.Resources>
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition MaxWidth="180" MinWidth="180"/>
+            <ColumnDefinition MaxWidth="180" MinWidth="180" />
         </Grid.ColumnDefinitions>
 
         <dxsch:SchedulerControl x:Name="MainScheduler" HorizontalAlignment="Left" Grid.Column="0"  VerticalAlignment="Top" GroupType="Resource" BeforeAppointmentItemDelete="SchedulerControl_BeforeAppointmentItemDelete" >
 
+           
+            
+            
+            
             <dxsch:SchedulerControl.OptionsWindows>
                 <dxsch:OptionsWindows AppointmentWindowType="{x:Type root:CustomAppointmentWindow}"/>
             </dxsch:SchedulerControl.OptionsWindows>
@@ -34,30 +77,30 @@
 
             </dxmvvm:Interaction.Behaviors>
 
-
+            
 
             <dxsch:SchedulerControl.DataSource>
                 <dxsch:DataSource AppointmentsSource="{Binding Appointments}" ResourcesSource="{Binding Resources}">
                     <dxsch:DataSource.AppointmentMappings>
                         <dxsch:AppointmentMappings 
                         Start="StartDate" 
-                                       End="EndDate" 
+                        End="EndDate" 
                         ResourceId="ResourceRefID"
-                                
-
+                        LabelId="AppointmentStatus"
                         >
-
                             <dxsch:CustomFieldMapping Mapping="JobRefId" Name="jobdropdown"  />
                         </dxsch:AppointmentMappings>
                     </dxsch:DataSource.AppointmentMappings>
 
-
                     <dxsch:DataSource.ResourceMappings>
                         <dxsch:ResourceMappings 
                                     Caption="ResourceName"
-                                    Id="ResourceID">
-
-                            <dxsch:CustomFieldMapping Mapping="ResourceImage" Name="Photo"/>
+                                    
+                                    Id="ResourceID"
+                            >
+                            <dxsch:CustomFieldMapping 
+                            Mapping="ResourceImage" 
+                            Name="Photo"/>
 
                         </dxsch:ResourceMappings>
                     </dxsch:DataSource.ResourceMappings>
@@ -67,7 +110,19 @@
 
                 </dxsch:DataSource>
             </dxsch:SchedulerControl.DataSource>
-            <dxsch:DayView ResourcesPerPage="3" />
+            <dxsch:DayView x:Name="dayView1"
+                            NavigationButtonsVisibility="Never"
+                ResourcesPerPage="5"
+                ShowAllDayArea="False"
+                ShowWorkTimeOnly="True"
+                SnapToCellsMode="Never"
+                TimeScale="00:10:00"
+                           ResourceHeaderContentTemplate="{StaticResource resourceHeaderContentTemplate}"
+                           
+                           
+                           />
+
+
         </dxsch:SchedulerControl>
 
         <dxe:DateNavigator Grid.Column="1" ShowWeekNumbers="False" AllowMultipleRanges="False" >

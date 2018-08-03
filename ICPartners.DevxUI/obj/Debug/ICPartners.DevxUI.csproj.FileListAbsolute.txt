@@ -145,3 +145,7 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UcJob.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCAppointment.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UcJob.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCCustomer.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCCustomer.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCResource.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCResource.baml

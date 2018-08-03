@@ -124,6 +124,10 @@
     <Compile Include="Migrations\201807311624120_job_restored2.Designer.cs">
       <DependentUpon>201807311624120_job_restored2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808031247368_imagecolumntest1.cs" />
+    <Compile Include="Migrations\201808031247368_imagecolumntest1.Designer.cs">
+      <DependentUpon>201808031247368_imagecolumntest1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ICPartnersContext.cs" />
@@ -207,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807311624120_job_restored2.resx">
       <DependentUpon>201807311624120_job_restored2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808031247368_imagecolumntest1.resx">
+      <DependentUpon>201808031247368_imagecolumntest1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
