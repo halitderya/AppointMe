@@ -16,8 +16,8 @@ namespace ICPartners.DAL
 
         public ICPartnersContext():base("ConStr")
         {
-            //this.Configuration.LazyLoadingEnabled = true;
-            //this.Configuration.ProxyCreationEnabled = true;
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<Resource> Resources { get; set; }
@@ -25,6 +25,7 @@ namespace ICPartners.DAL
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Job> Jobs { get; set; }
+        public DbSet<DependentJobs> DependentJobs { get; set; }
 
         public override int SaveChanges()
         {

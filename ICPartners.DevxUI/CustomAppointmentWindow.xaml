@@ -10,7 +10,8 @@
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
-                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL" x:Class="ICPartners.DevxUI.CustomAppointmentWindow"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL"
+    xmlns:usercontrols="clr-namespace:ICPartners.DevxUI.UserControls" x:Class="ICPartners.DevxUI.CustomAppointmentWindow"
                     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                     Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Window}}"
                     x:Name="window" Title="New Window" >
@@ -39,7 +40,7 @@
     </dxmvvm:Interaction.Behaviors>
 
     <DockPanel>
-        <dxr:RibbonControl DockPanel.Dock="Top" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=RibbonControl}}">
+        <dxr:RibbonControl DockPanel.Dock="Top"  Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=RibbonControl}}">
             <dxr:RibbonControl.ToolbarItems>
                 <dxb:BarButtonItem x:Name="toolbar_barItemSave" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Actions_Save}}"/>
                 <dxb:BarButtonItem x:Name="toolbar_barItemPrevious" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Actions_Previous}}"/>
@@ -47,7 +48,7 @@
                 <dxb:BarButtonItem x:Name="toolbar_barItemDelete" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Actions_Delete}}"/>
             </dxr:RibbonControl.ToolbarItems>
             <dxr:RibbonDefaultPageCategory Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Categories_Default}}">
-                <dxr:RibbonPage Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Pages_Appointment}}">
+                <dxr:RibbonPage  Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Pages_Appointment}}">
                     <dxr:RibbonPageGroup Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Groups_Actions}}">
                         <dxb:BarButtonItem x:Name="barItemSaveAndClose" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Actions_SaveAndClose}}"/>
                         <dxb:BarButtonItem x:Name="barItemDelete" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Actions_Delete}}"/>
@@ -70,16 +71,6 @@
         </dxr:RibbonControl>
 
         <dxlc:LayoutControl x:Name="validationContainer" Orientation="Vertical" dxe:ValidationService.IsValidationContainer="True">
-            <dxlc:LayoutItem Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=LayoutItem_Subject}}">
-                <dxe:TextEdit x:Name="editorSubject" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_Subject}}">
-                    <dxmvvm:Interaction.Behaviors>
-                        <dxmvvm:FocusBehavior/>
-                    </dxmvvm:Interaction.Behaviors>
-                </dxe:TextEdit>
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=LayoutItem_Location}}">
-                <dxe:TextEdit x:Name="editorLocation" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_Location}}" />
-            </dxlc:LayoutItem>
             <dxlc:LayoutItem x:Name="layoutStartTime" Width="400" HorizontalAlignment="Left"  Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=LayoutItem_StartTime}}">
                 <DockPanel >
                     <dxe:DateEdit x:Name="editorStartDate" DockPanel.Dock="Left" Width="150" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_StartDate}}"/>
@@ -95,9 +86,9 @@
                 </DockPanel>
             </dxlc:LayoutItem>-->
             <dxlc:LayoutItem Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=LayoutItem_Description}}">
-                <dxe:TextEdit x:Name="editorDescription" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_Description}}">
-                    <Label Content="Label" Height="100" Width="100" />
-                </dxe:TextEdit>
+                <usercontrols:UCJobSelector>
+                    
+                </usercontrols:UCJobSelector>
             </dxlc:LayoutItem>
         </dxlc:LayoutControl>
     </DockPanel>

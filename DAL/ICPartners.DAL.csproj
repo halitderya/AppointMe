@@ -128,16 +128,34 @@
     <Compile Include="Migrations\201808031247368_imagecolumntest1.Designer.cs">
       <DependentUpon>201808031247368_imagecolumntest1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808041131211_dependenttest1.cs" />
+    <Compile Include="Migrations\201808041131211_dependenttest1.Designer.cs">
+      <DependentUpon>201808041131211_dependenttest1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808041212592_dependenttable.cs" />
+    <Compile Include="Migrations\201808041212592_dependenttable.Designer.cs">
+      <DependentUpon>201808041212592_dependenttable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808041257542_dependenttable2.cs" />
+    <Compile Include="Migrations\201808041257542_dependenttable2.Designer.cs">
+      <DependentUpon>201808041257542_dependenttable2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808041402205_dependenttable3.cs" />
+    <Compile Include="Migrations\201808041402205_dependenttable3.Designer.cs">
+      <DependentUpon>201808041402205_dependenttable3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ICPartnersContext.cs" />
     <Compile Include="Repositories\Abstract\IAppointmentRepository.cs" />
     <Compile Include="Repositories\Abstract\ICustomerRepository.cs" />
+    <Compile Include="Repositories\Abstract\IDependentRepository.cs" />
     <Compile Include="Repositories\Abstract\IJobRepository.cs" />
     <Compile Include="Repositories\Abstract\IRepository.cs" />
     <Compile Include="Repositories\Abstract\IResourceRepository.cs" />
     <Compile Include="Repositories\Concrete\AppointmentRepository.cs" />
     <Compile Include="Repositories\Concrete\CustomerRepository.cs" />
+    <Compile Include="Repositories\Concrete\DependentRepository.cs" />
     <Compile Include="Repositories\Concrete\JobRepository.cs" />
     <Compile Include="Repositories\Concrete\Repository.cs" />
     <Compile Include="Repositories\Concrete\ResourceRepository.cs" />
@@ -214,6 +232,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808031247368_imagecolumntest1.resx">
       <DependentUpon>201808031247368_imagecolumntest1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808041131211_dependenttest1.resx">
+      <DependentUpon>201808041131211_dependenttest1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808041212592_dependenttable.resx">
+      <DependentUpon>201808041212592_dependenttable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808041257542_dependenttable2.resx">
+      <DependentUpon>201808041257542_dependenttable2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808041402205_dependenttable3.resx">
+      <DependentUpon>201808041402205_dependenttable3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

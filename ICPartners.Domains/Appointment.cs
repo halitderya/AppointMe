@@ -87,7 +87,7 @@ namespace ICPartners.Domains
 
         [ForeignKey("Job")]
         public int JobRefId { get; set; }
-        public ICollection<Job> Job { get; set; }
+        public Job Job { get; set; }
 
 
 

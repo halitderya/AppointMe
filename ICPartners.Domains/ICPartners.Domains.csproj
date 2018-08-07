@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Appointment.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="DependentJobs.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="Resource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

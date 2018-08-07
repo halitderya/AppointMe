@@ -1,0 +1,21 @@
+﻿<Window xmlns:dxnav="http://schemas.devexpress.com/winfx/2008/xaml/navigation"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"  x:Class="ICPartners.DevxUI.Windows.testwindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ICPartners.DevxUI.Windows"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Title="testwindow" Height="450" Width="800">
+    <Grid>
+
+        <dxlc:TileLayoutControl>
+
+            <dxlc:Tile Content="deneme"/>
+            
+            
+        </dxlc:TileLayoutControl>
+    </Grid>
+    
+
+</Window>

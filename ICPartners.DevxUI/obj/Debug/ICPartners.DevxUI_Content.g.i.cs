@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("source/if_block_381636.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("source/if_complete_symbol_381607.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("source/hamburgermenu/icons8-maintenance-64.png")]
 
 

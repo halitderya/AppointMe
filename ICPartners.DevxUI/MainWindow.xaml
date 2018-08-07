@@ -1,135 +1,54 @@
-﻿<dx:ThemedWindow xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+﻿<Window xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"  
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                  xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                  xmlns:ViewModels="clr-namespace:ICPartners.DevxUI.ViewModels"
                  xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL"
+             WindowState="Normal"
                  x:Class="ICPartners.DevxUI.MainWindow"
         Title="MainWindow" Height="350" Width="525" 
+                 WindowStyle="None"
         xmlns:UserControls="clr-namespace:ICPartners.DevxUI.UserControls"
-        DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:AppointmentViewModel}}"
+                 xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
+                 xmlns:Pages="clr-namespace:ICPartners.DevxUI.Pages"
+                 DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:AppointmentViewModel}}"
 MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
+                 Loaded="ThemedWindow_Loaded" SizeChanged="Window_SizeChanged" 
     >
-
-
-    <!--<dx:ThemedWindow.Resources>
-        <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource" ContextType="{x:Type DAL:ICPartnersContext}" Path="Jobs">
-            <dx:DesignDataManager.DesignData>
-                <dx:DesignDataSettings RowCount="5"/>
-            </dx:DesignDataManager.DesignData>
-        </dx:EntitySimpleDataSource>
-        <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource1" ContextType="{x:Type DAL:ICPartnersContext}" Path="Resources">
-            <dx:DesignDataManager.DesignData>
-                <dx:DesignDataSettings RowCount="5"/>
-            </dx:DesignDataManager.DesignData>
-        </dx:EntitySimpleDataSource>
-        <dx:EntityServerModeDataSource x:Key="EntityServerModeDataSource" ContextType="{x:Type DAL:ICPartnersContext}" DefaultSorting="JobName ASC" KeyExpression="JobId" Path="Jobs">
-            <dx:DesignDataManager.DesignData>
-                <dx:DesignDataSettings RowCount="5"/>
-            </dx:DesignDataManager.DesignData>
-        </dx:EntityServerModeDataSource>
-        <dx:UnboundDataSource x:Key="UnboundDataSource" Count="0">
-            <dx:DesignDataManager.DesignData>
-                <dx:DesignDataSettings RowCount="5"/>
-            </dx:DesignDataManager.DesignData>
-        </dx:UnboundDataSource>
-        <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource2" ContextType="{x:Type DAL:ICPartnersContext}" Path="Jobs">
-            <dx:DesignDataManager.DesignData>
-                <dx:DesignDataSettings RowCount="5"/>
-            </dx:DesignDataManager.DesignData>
-        </dx:EntitySimpleDataSource>
-    </dx:ThemedWindow.Resources>-->
-
-
-    <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TabStripPlacement="Left"  >
-        <TabItem >
-            <TabItem.Header>
-                <StackPanel Width="60px" Height="auto">
-                    <Image Source="Source/month-512.png" Width="auto" Height="auto" />
-                    <TextBlock FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Appointments" />
-
-                </StackPanel>
-            </TabItem.Header>
-            <Grid>
-                <UserControls:UCAppointment>
+    <Grid>
+        <dxwui:HamburgerMenu OpenPaneWidth="200" dx:ThemeManager.ThemeName="VS2017Light"
+                         SelectedItem="{Binding HamburgerMenuSelectedItem, Mode=TwoWay}"
+                         NavigationTarget="{Binding ElementName=service}" IsInitiallyCompact="True"  ViewState="Overlay" >
+                    <dxwui:HamburgerMenu.Content>
+                <dxwui:NavigationFrame  Source="{x:Type UserControls:UCAppointment}" Margin="5,5,5,5">
+                            <dxmvvm:Interaction.Behaviors>
+                                <dxwuin:FrameNavigationService x:Name="service"/>
+                            </dxmvvm:Interaction.Behaviors>
+                        </dxwui:NavigationFrame>
+                    </dxwui:HamburgerMenu.Content>
                     
-                </UserControls:UCAppointment>
-               
-            </Grid>
-
-
-        </TabItem>
-        <TabItem >
-            <TabItem.Header>
-                <StackPanel Width="60px" Height="auto">
-                    <Image Source="Source/if_User_Customers_1218712.png" Width="auto" Height="auto" />
-                    <TextBlock FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Customers" />
-                </StackPanel>
-
-            </TabItem.Header>
-
-            <UserControls:UCCustomer>
-                
-            </UserControls:UCCustomer>
-
-
-
-        </TabItem>
-
-        <TabItem >
-            <TabItem.Header>
-                <StackPanel Width="60px" Height="auto">
-                    <Image Source="Source/if_rubber-duck_416395.png" Width="auto" Height="auto" />
-                    <TextBlock FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Administration" />
-                </StackPanel>
-            </TabItem.Header>
-            <TabControl>
-                <TabItem >
-                    <TabItem.Header>
-                        <StackPanel >
-                            <TextBlock FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Jobs" />
-                        </StackPanel>
-                    </TabItem.Header>
-                    <Grid>
-                        <UserControls:UcJob>
-                            
-                        </UserControls:UcJob>
+                    <dxwui:HamburgerMenuNavigationButton Glyph="Source/HamburgerMenu/scheduler_white.png" Content="Scheduler" NavigationTargetType="{x:Type UserControls:UCAppointment}"/>
+                     <dxwui:HamburgerMenuNavigationButton Glyph="Source/HamburgerMenu/people_white.png" NavigationTargetType="{x:Type UserControls:UCCustomer}" Content="Customers" Placement="Top" />
+            <dxwui:HamburgerMenuItemSeparator/>
+            <dxwui:HamburgerMenuNavigationButton Glyph="Source/HamburgerMenu/task_white.png" Content="Jobs" NavigationTargetType="{x:Type UserControls:UcJob}" />
+            <dxwui:HamburgerMenuNavigationButton Glyph="source/HamburgerMenu/taskchain_white.png" Content="Connected Jobs" NavigationTargetType="{x:Type UserControls:UCDependent}"/>
+            <dxwui:HamburgerMenuNavigationButton Glyph="source/HamburgerMenu/employees_white.png" Content="Employees" NavigationTargetType="{x:Type UserControls:UCResource}"/>
                         
-                        
-                    </Grid>
+            <dxwui:HamburgerMenuItemSeparator/>
+            <dxwui:HamburgerMenuNavigationButton Glyph="source/HamburgerMenu/reports_white.png" Content="Reports"/>
+            <dxwui:HamburgerMenuNavigationButton Glyph="source/HamburgerMenu/maintenance_white.png" Content="Maintenace"/>
 
 
-                </TabItem>
-                <TabItem Header="Connected Jobs" IsEnabled="False">
+            <dxwui:HamburgerMenu.BottomBarItems>
+            
+            <dxwui:HamburgerMenuBottomBarRadioButton Content="Exit" Name="Exit" Click="Exit_Click" Glyph="Source/HamburgerMenu/shutdown.png" ></dxwui:HamburgerMenuBottomBarRadioButton>
+            <dxwui:HamburgerMenuBottomBarRadioButton Content="Maximize" Click="Maximize_Click" Name="Maximize" Glyph="Source/HamburgerMenu/fullscreen.png" ></dxwui:HamburgerMenuBottomBarRadioButton>
+            <dxwui:HamburgerMenuBottomBarRadioButton Content="Minimize" Click="Minimize_Click" Name="Minimize" Glyph="Source/HamburgerMenu/minimize.png"></dxwui:HamburgerMenuBottomBarRadioButton>
+            </dxwui:HamburgerMenu.BottomBarItems>
+                </dxwui:HamburgerMenu>
+    </Grid>
 
-                   
-
-
-
-
-                </TabItem>
-
-
-                <TabItem Header="Resources" IsEnabled="True">
-                    <Grid>
-
-                        <UserControls:UCResource>
-
-                        </UserControls:UCResource>
-
-
-                    </Grid>
-                </TabItem>
-
-            </TabControl>
-
-
-
-        </TabItem>
-
-
-
-    </TabControl>
-
-</dx:ThemedWindow>
+</Window>

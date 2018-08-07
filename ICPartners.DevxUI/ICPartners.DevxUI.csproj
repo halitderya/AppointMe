@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Xpf.Controls.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Core.v18.1" />
     <Reference Include="DevExpress.Data.v18.1" />
     <Reference Include="DevExpress.Printing.v18.1.Core" />
@@ -46,6 +47,7 @@
     <Reference Include="DevExpress.Xpf.Scheduler.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Scheduling.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Themes.Office2016White.v18.1" />
+    <Reference Include="DevExpress.Xpf.Themes.Seven.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -55,6 +57,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -89,12 +92,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Automation\DependentAppointment.cs" />
     <Compile Include="CustomAppointmentWindow.xaml.cs">
       <DependentUpon>CustomAppointmentWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomAppointmentWindow1.xaml.cs">
-      <DependentUpon>CustomAppointmentWindow1.xaml</DependentUpon>
+    <Compile Include="Pages\Resources.xaml.cs">
+      <DependentUpon>Resources.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Preferences\ApplyThemeSettings.cs" />
     <Compile Include="ScheduledTasks\ScheduledTask.cs" />
     <Compile Include="UserControls\UCAppointment.xaml.cs">
       <DependentUpon>UCAppointment.xaml</DependentUpon>
@@ -102,18 +107,23 @@
     <Compile Include="UserControls\UCCustomer.xaml.cs">
       <DependentUpon>UCCustomer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCDependent.xaml.cs">
+      <DependentUpon>UCDependent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcJob.xaml.cs">
       <DependentUpon>UcJob.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCJobSelector.xaml.cs">
+      <DependentUpon>UCJobSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UCResource.xaml.cs">
       <DependentUpon>UCResource.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AppointmentViewModel.cs" />
+    <Compile Include="Windows\testwindow.xaml.cs">
+      <DependentUpon>testwindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="CustomAppointmentWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomAppointmentWindow1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -129,6 +139,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\UCAppointment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,11 +151,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\UCDependent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\UcJob.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\UCJobSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\UCResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\testwindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,15 +215,56 @@
   <ItemGroup>
     <Resource Include="Source\if_User_Customers_1218712.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Windows\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Source\if_rubber-duck_416395.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Source\if_Block_381636.png" />
     <Resource Include="Source\if_Complete_Symbol_381607.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\favorite.png" />
+    <Resource Include="Source\HamburgerMenu\home.png" />
+    <Resource Include="Source\HamburgerMenu\list.png" />
+    <Resource Include="Source\HamburgerMenu\person.png" />
+    <Resource Include="Source\HamburgerMenu\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\shutdown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\fullscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\scheduler.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\scheduler_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\people_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\admin_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\task_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\taskchain_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\employees_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\reports_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\maintenance_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -14,6 +14,8 @@ namespace ICPartners.DAL
 
         IJobRepository jobRepository { get; }
         ICustomerRepository CustomerRepository { get; }
+
+        IDependentRepository DependentRepository { get; }
         int Complete();
     }
 }

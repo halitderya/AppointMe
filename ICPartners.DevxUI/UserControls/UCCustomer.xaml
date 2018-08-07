@@ -9,9 +9,10 @@
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL" x:Class="ICPartners.DevxUI.UserControls.UCCustomer"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-   
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+
             <RowDefinition Height="8*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
@@ -22,7 +23,7 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="SaveButton" Grid.Row="2" IsEnabled="False" Grid.Column="2" FontSize="20" Click="SaveButton_Click">
+        <Button x:Name="SaveButton" Grid.Row="3" IsEnabled="False" Grid.Column="2" FontSize="20" Click="SaveButton_Click">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.Resources>
                     <Style TargetType="{x:Type TextBlock}" >
@@ -44,7 +45,7 @@
             </Grid>
 
         </Button>
-        <Button x:Name="RevertButton" Grid.Row="2" IsEnabled="False" Grid.Column="1"  FontSize="20" Click="RevertButton_Click">
+        <Button x:Name="RevertButton" Grid.Row="3" IsEnabled="False" Grid.Column="1"  FontSize="20" Click="RevertButton_Click">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.Resources>
                     <Style TargetType="{x:Type TextBlock}" >
@@ -66,10 +67,13 @@
             </Grid>
 
         </Button>
-        <dxg:GridControl x:Name="TableViewCustomer"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold"   >
+        <TextBlock Text="Customer Table" FontSize="20"></TextBlock>
+        <dxg:GridControl x:Name="TableViewCustomer"  Grid.ColumnSpan="3" Grid.Row="1" SelectionMode="Cell" FontWeight="Bold"   >
 
             <dxg:GridControl.View>
-                <dxg:TableView AutoWidth="False" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" />
+                <dxg:TableView AutoWidth="False"  NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" >
+                    
+                </dxg:TableView>
 
             </dxg:GridControl.View>
             <dxg:GridColumn FieldName="CustomerID" IsSmart="True"/>
@@ -84,5 +88,7 @@
 
 
         </dxg:GridControl>
+    
     </Grid>
+    
 </UserControl>

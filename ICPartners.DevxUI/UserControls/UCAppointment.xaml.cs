@@ -39,5 +39,22 @@ namespace ICPartners.DevxUI.UserControls
 
             }
         }
+
+        private void MainScheduler_AppointmentsUpdated(object sender, EventArgs e)
+        {
+            
+
+
+        }
+
+        private void MainScheduler_ItemPropertyChanged(object sender, DevExpress.Xpf.Scheduling.ItemPropertyChangedEventArgs e)
+        {
+            
+        }
+
+        private void MainScheduler_InitNewAppointment(object sender, DevExpress.Xpf.Scheduling.AppointmentItemEventArgs e)
+        {
+
+        }
     }
 }
