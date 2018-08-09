@@ -23,5 +23,10 @@ namespace ICPartners.DevxUI.Windows
         {
             InitializeComponent();
         }
+
+        private void Tile_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

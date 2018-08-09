@@ -7,13 +7,35 @@
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
         Title="testwindow" Height="450" Width="800">
-    <Grid>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
-        <dxlc:TileLayoutControl>
+        <dxlc:TileLayoutControl Padding="0" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal">
 
-            <dxlc:Tile Content="deneme"/>
-            
-            
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme" Click="Tile_Click"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+            <dxlc:Tile Size="ExtraSmall" Content="deneme"/>
+
+
         </dxlc:TileLayoutControl>
     </Grid>
     

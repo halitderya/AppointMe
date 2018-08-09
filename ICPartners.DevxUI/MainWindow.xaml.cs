@@ -7,6 +7,7 @@ using System.Data;
 using DevExpress.Data.Linq;
 using ICPartners.Domains;
 using System.Data.Entity;
+using System.Windows.Media.Imaging;
 
 namespace ICPartners.DevxUI
 {
@@ -87,6 +88,7 @@ namespace ICPartners.DevxUI
         private void Maximize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Maximized;
+
         }
 
         private void Minimize_Click(object sender, RoutedEventArgs e)

@@ -11,15 +11,15 @@
                  x:Class="ICPartners.DevxUI.MainWindow"
         Title="MainWindow" Height="350" Width="525" 
                  WindowStyle="None"
+        dx:ThemeManager.ThemeName="VS2017Dark"
         xmlns:UserControls="clr-namespace:ICPartners.DevxUI.UserControls"
                  xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
-                 xmlns:Pages="clr-namespace:ICPartners.DevxUI.Pages"
                  DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:AppointmentViewModel}}"
 MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
                  Loaded="ThemedWindow_Loaded" SizeChanged="Window_SizeChanged" 
     >
     <Grid>
-        <dxwui:HamburgerMenu OpenPaneWidth="200" dx:ThemeManager.ThemeName="VS2017Light"
+        <dxwui:HamburgerMenu OpenPaneWidth="200"
                          SelectedItem="{Binding HamburgerMenuSelectedItem, Mode=TwoWay}"
                          NavigationTarget="{Binding ElementName=service}" IsInitiallyCompact="True"  ViewState="Overlay" >
                     <dxwui:HamburgerMenu.Content>
@@ -45,7 +45,7 @@ MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
             <dxwui:HamburgerMenu.BottomBarItems>
             
             <dxwui:HamburgerMenuBottomBarRadioButton Content="Exit" Name="Exit" Click="Exit_Click" Glyph="Source/HamburgerMenu/shutdown.png" ></dxwui:HamburgerMenuBottomBarRadioButton>
-            <dxwui:HamburgerMenuBottomBarRadioButton Content="Maximize" Click="Maximize_Click" Name="Maximize" Glyph="Source/HamburgerMenu/fullscreen.png" ></dxwui:HamburgerMenuBottomBarRadioButton>
+            <dxwui:HamburgerMenuBottomBarRadioButton Content="Maximize" Click="Maximize_Click" Name="Maximize" Glyph="Source/HamburgerMenu/fullscreen.png"></dxwui:HamburgerMenuBottomBarRadioButton>
             <dxwui:HamburgerMenuBottomBarRadioButton Content="Minimize" Click="Minimize_Click" Name="Minimize" Glyph="Source/HamburgerMenu/minimize.png"></dxwui:HamburgerMenuBottomBarRadioButton>
             </dxwui:HamburgerMenu.BottomBarItems>
                 </dxwui:HamburgerMenu>

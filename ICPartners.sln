@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICPartners.ConsoleUI", "ICP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICPartners.DevxUI", "ICPartners.DevxUI\ICPartners.DevxUI.csproj", "{B1692A68-B6E8-479B-8E68-54A54BBB9778}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICPartners.Logic", "ICPartners.Logic\ICPartners.Logic.csproj", "{DA14E859-C224-49D9-A0A9-C87EF50700A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B1692A68-B6E8-479B-8E68-54A54BBB9778}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1692A68-B6E8-479B-8E68-54A54BBB9778}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1692A68-B6E8-479B-8E68-54A54BBB9778}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA14E859-C224-49D9-A0A9-C87EF50700A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA14E859-C224-49D9-A0A9-C87EF50700A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA14E859-C224-49D9-A0A9-C87EF50700A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA14E859-C224-49D9-A0A9-C87EF50700A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

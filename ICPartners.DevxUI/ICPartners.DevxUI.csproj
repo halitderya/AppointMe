@@ -92,15 +92,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Automation\DependentAppointment.cs" />
     <Compile Include="CustomAppointmentWindow.xaml.cs">
       <DependentUpon>CustomAppointmentWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Resources.xaml.cs">
-      <DependentUpon>Resources.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="UserControls\CustomTile.cs" />
     <Compile Include="Preferences\ApplyThemeSettings.cs" />
-    <Compile Include="ScheduledTasks\ScheduledTask.cs" />
     <Compile Include="UserControls\UCAppointment.xaml.cs">
       <DependentUpon>UCAppointment.xaml</DependentUpon>
     </Compile>
@@ -139,10 +135,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\Resources.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControls\UCAppointment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,16 +200,14 @@
       <Project>{9e902e56-c984-4ec6-b990-2f1724a629f7}</Project>
       <Name>ICPartners.Domains</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ICPartners.Logic\ICPartners.Logic.csproj">
+      <Project>{da14e859-c224-49d9-a0a9-c87ef50700a4}</Project>
+      <Name>ICPartners.Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Source\month-512.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Source\if_User_Customers_1218712.png" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Resource Include="Source\if_rubber-duck_416395.png" />
+    <Folder Include="Garbage\" />
+    <Folder Include="Pages\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Source\if_Block_381636.png" />

@@ -8,6 +8,9 @@ using DevExpress.Mvvm.POCO;
 using System.Windows;
 using System.Linq;
 using System;
+using ICPartners.Logic.Appointment;
+using System.Collections.Generic;
+using ICPartners.DevxUI.UserControls;
 
 namespace ICPartners.DevxUI.ViewModels
 {
@@ -15,8 +18,7 @@ namespace ICPartners.DevxUI.ViewModels
     #region declarations
     public class AppointmentViewModel
     {
-
-
+      
         public virtual ObservableCollection<Resource> Resources { get; set; }
         public virtual ObservableCollection<Appointment> Appointments { get; set; }
         public virtual ObservableCollection<Job> Jobs { get; set; }
@@ -33,72 +35,57 @@ namespace ICPartners.DevxUI.ViewModels
         {
             if (appointment != null)
             {
-            var dede= appointment[0];
 
             }
-
-            if (this.Appointments.FirstOrDefault(x => x.AppointmentID == 0) != null)
+            if (JobSelector.JobtoCreate > 0)
             {
-                Appointment oldAppointment = this.Appointments.FirstOrDefault(x => x.AppointmentID == 0);
 
-                var oldap = from a in Appointments
-                            join d in DependentJobs
-                            on a.JobRefId equals d.MainJob
-                            join j in Jobs on a.JobRefId equals j.JobId
-                            where a.AppointmentID==oldAppointment.AppointmentID
-                            select new
-                            {
+                Appointment NewMainAppointment = this.Appointments.FirstOrDefault(x => x.AppointmentID == 0);
+                this.Appointments.Remove(NewMainAppointment);
 
-                                
-                                d.MainJob,
-                                d.DependentJob,
-                                d.DefaultResource,
-                                a.JobRefId,
-                                a.ResourceRefID
-                                
-                                
-                                
+                NewMainAppointment.JobRefId = JobSelector.JobtoCreate;
+                NewMainAppointment.EndDate = NewMainAppointment.StartDate.Add(Jobs.FirstOrDefault(x => x.JobId == NewMainAppointment.JobRefId).JobTimeSpan);
+                this.Appointments.Add(NewMainAppointment);
+                IcPartnersContext.SaveChanges();
+                JobSelector.JobtoCreate = 0;
 
-                                
-                            };
+                UCAppointment happ = new UCAppointment();
+                happ.MainScheduler.RefreshData();
 
-                if (oldap.Count() > 0)
+
+
+
+                if (JobSelector.DependentJobs.Count != 0)
                 {
-
-                    foreach (var item in oldap.ToList())
+                    foreach (var item in JobSelector.DependentJobs)
                     {
-                        Appointment newAppointment = new Appointment();
-                        newAppointment.JobRefId = item.JobRefId;
-                        newAppointment.StartDate = oldAppointment.EndDate;
-                        newAppointment.EndDate = oldAppointment.EndDate+ Jobs.FirstOrDefault(x=>x.JobId==item.DependentJob).JobTimeSpan;
-                        if(item.DefaultResource!=0)
+                        Appointment app = new Appointment();
+                        app.StartDate = Appointments.LastOrDefault().EndDate;
+                        app.JobRefId = Jobs.FirstOrDefault(x => x.JobId == item.DependentJob).JobId;
+                        app.EndDate = app.StartDate.Add(Jobs.FirstOrDefault(x=>x.JobId==app.JobRefId).JobTimeSpan);
+                        if (item.DefaultResource == 0)
                         {
-                            newAppointment.ResourceRefID = item.DefaultResource;
-
-
+                            app.ResourceRefID = Appointments.LastOrDefault().ResourceRefID;
                         }
                         else
                         {
-                            newAppointment.ResourceRefID = oldAppointment.ResourceRefID;
+                            app.ResourceRefID = item.DefaultResource;
+
                         }
-                        Appointments.Add(newAppointment);
+                        Appointments.Add(app);
+                       
+
                         IcPartnersContext.SaveChanges();
-
-
+                     
                     }
+                    JobSelector.DependentJobs = null;
                 }
-                           
-                    
-                  
-
-
-
-
-
 
             }
 
+            
 
+           
         }
 
 
@@ -106,14 +93,7 @@ namespace ICPartners.DevxUI.ViewModels
         #endregion
 
         #region #InitNewAppointment
-        public void InitNewAppointment(AppointmentItemEventArgs args)
-        {
-
-            args.Appointment.Reminders.Clear();
-
-
-            
-        }
+    
 
         #endregion #InitNewAppointment
 

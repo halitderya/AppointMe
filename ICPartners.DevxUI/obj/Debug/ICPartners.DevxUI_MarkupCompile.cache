@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\App.xaml
-91011946312
+9-1952069148
 
-17-1500309518
-40189887349
-CustomAppointmentWindow.xaml;MainWindow.xaml;Pages\Resources.xaml;UserControls\UCAppointment.xaml;UserControls\UCCustomer.xaml;UserControls\UCDependent.xaml;UserControls\UcJob.xaml;UserControls\UCJobSelector.xaml;UserControls\UCResource.xaml;
+16-40329096
+41-1161318988
+CustomAppointmentWindow.xaml;MainWindow.xaml;UserControls\UCAppointment.xaml;UserControls\UCCustomer.xaml;UserControls\UCDependent.xaml;UserControls\UcJob.xaml;UserControls\UCJobSelector.xaml;UserControls\UCResource.xaml;Windows\testwindow.xaml;
 
 False
 

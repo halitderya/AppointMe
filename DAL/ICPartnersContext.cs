@@ -29,7 +29,6 @@ namespace ICPartners.DAL
 
         public override int SaveChanges()
         {
-            
             return base.SaveChanges();
         }
     }

@@ -59,7 +59,7 @@
             <ColumnDefinition MaxWidth="180" MinWidth="180" />
         </Grid.ColumnDefinitions>
 
-        <dxsch:SchedulerControl x:Name="MainScheduler" InitNewAppointment="MainScheduler_InitNewAppointment" ItemPropertyChanged="MainScheduler_ItemPropertyChanged" AppointmentsUpdated="MainScheduler_AppointmentsUpdated" HorizontalAlignment="Left" Grid.Column="0"  VerticalAlignment="Top" GroupType="Resource" BeforeAppointmentItemDelete="SchedulerControl_BeforeAppointmentItemDelete" >
+        <dxsch:SchedulerControl x:Name="MainScheduler" ItemPropertyChanged="MainScheduler_ItemPropertyChanged"  HorizontalAlignment="Left" Grid.Column="0"  VerticalAlignment="Top" GroupType="Resource" BeforeAppointmentItemDelete="SchedulerControl_BeforeAppointmentItemDelete" >
 
            
             
@@ -71,8 +71,7 @@
 
 
             <dxmvvm:Interaction.Behaviors>
-                <dxmvvm:EventToCommand EventName="AppointmentsUpdated" Command="{Binding AppointmentsUpdatedCommand}" />
-                <dxmvvm:EventToCommand EventName="InitNewAppointment" Command="{Binding InitNewAppointmentCommand}" PassEventArgsToCommand="True" />
+                <dxmvvm:EventToCommand EventName="AppointmentsUpdated" Command="{Binding AppointmentsUpdatedCommand}" PassEventArgsToCommand="False"/>
 
 
             </dxmvvm:Interaction.Behaviors>
@@ -80,7 +79,7 @@
             
 
             <dxsch:SchedulerControl.DataSource>
-                <dxsch:DataSource AppointmentsSource="{Binding Appointments}" ResourcesSource="{Binding Resources}">
+                <dxsch:DataSource AppointmentsSource="{Binding Appointments}" ResourcesSource="{Binding Resources}" DateTimeSavingMode="Appointment">
                     <dxsch:DataSource.AppointmentMappings>
                         <dxsch:AppointmentMappings 
                         Start="StartDate" 

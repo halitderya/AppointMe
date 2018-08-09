@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraScheduler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,6 @@ namespace ICPartners.DevxUI.UserControls
     {
         public UCAppointment()
         {
-
             InitializeComponent();
         }
 
@@ -42,14 +42,13 @@ namespace ICPartners.DevxUI.UserControls
 
         private void MainScheduler_AppointmentsUpdated(object sender, EventArgs e)
         {
+
             
-
-
+            
         }
 
         private void MainScheduler_ItemPropertyChanged(object sender, DevExpress.Xpf.Scheduling.ItemPropertyChangedEventArgs e)
         {
-            
         }
 
         private void MainScheduler_InitNewAppointment(object sender, DevExpress.Xpf.Scheduling.AppointmentItemEventArgs e)
