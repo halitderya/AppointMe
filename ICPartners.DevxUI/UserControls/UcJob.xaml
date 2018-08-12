@@ -6,10 +6,12 @@
              xmlns:local="clr-namespace:ICPartners.DevxUI.UserControls"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL" x:Class="ICPartners.DevxUI.UserControls.UcJob"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL"
+    xmlns:ViewModels="clr-namespace:ICPartners.DevxUI.ViewModels" x:Class="ICPartners.DevxUI.UserControls.UcJob"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+
         <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource" ContextType="{x:Type DAL:ICPartnersContext}" Path="Jobs">
             <dx:DesignDataManager.DesignData>
                 <dx:DesignDataSettings RowCount="5"/>
@@ -73,29 +75,27 @@
             </Grid>
 
         </Button>
-        <dxg:GridControl x:Name="TableViewJob"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}"   >
+        <dxg:GridControl x:Name="TableViewJob"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource} }"   >
 
             <dxg:GridControl.View>
                 <dxg:TableView AutoWidth="False" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" />
 
             </dxg:GridControl.View>
-            <dxg:GridColumn FieldName="JobId" IsSmart="True" Width="2*" Visible="False" EditFormVisible="False" ReadOnly="True"/>
-            <dxg:GridColumn FieldName="JobName" IsSmart="True" Width="4*"/>
-            <dxg:GridColumn FieldName="JobDescription" IsSmart="True" Width="3*"/>
-            <dxg:GridColumn FieldName="JobPrice" IsSmart="True" Width="2*"/>
-            <dxg:GridColumn FieldName="JobMode" IsSmart="True" Width="3*"/>
-            <dxg:GridColumn FieldName="JobTimeSpan" IsSmart="True" Width="2*"/>
-            <dxg:GridColumn FieldName="DefaultAssignee" Visible="False" Width="3*">
+            <dxg:GridColumn FieldName="JobId" IsSmart="True"/>
+            <dxg:GridColumn FieldName="JobName" IsSmart="True"/>
+            <dxg:GridColumn FieldName="JobDescription" IsSmart="True"/>
+            <dxg:GridColumn FieldName="JobPrice" IsSmart="True"/>
+            <dxg:GridColumn FieldName="JobMode" IsSmart="True"/>
+            <dxg:GridColumn FieldName="JobTimeSpan" IsSmart="True"/>
+            <dxg:GridColumn Binding="{Binding Path=Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={ViewModels:HtmlColorCodeToHexConverter}}"
+>
                 <dxg:GridColumn.EditSettings>
-                    <dxe:ComboBoxEditSettings IsTextEditable="False" ShowNullTextForEmptyValue="True" NullText="Leave Blank For Default" NullValue="0" NullValueButtonPlacement="EditBox" ValueMember="JobId" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}" DisplayMember="JobName">
-                        <dxe:ComboBoxEditSettings.StyleSettings>
-                            <dxe:RadioTokenComboBoxStyleSettings/>
-                        </dxe:ComboBoxEditSettings.StyleSettings>
-                    </dxe:ComboBoxEditSettings>
-
-
+                    <dxe:PopupColorEditSettings/>
                 </dxg:GridColumn.EditSettings>
+
             </dxg:GridColumn>
+
+
 
 
         </dxg:GridControl>

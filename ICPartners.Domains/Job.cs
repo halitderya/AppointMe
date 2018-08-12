@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Drawing;
+
 using System.Threading.Tasks;
 
 namespace ICPartners.Domains
@@ -20,7 +23,12 @@ namespace ICPartners.Domains
         public short JobMode { get; set; }
         public TimeSpan JobTimeSpan { get; set; }
 
-        public int DefaultAssignee { get; set; }
+
+
+        public string Color { get; set; }
+
+
+
 
         public ICollection<Appointment> Appointments { get; set; }
 

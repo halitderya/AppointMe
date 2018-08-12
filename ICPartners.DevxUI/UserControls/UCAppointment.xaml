@@ -11,6 +11,7 @@
         xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL" 
                  xmlns:ViewModels="clr-namespace:ICPartners.DevxUI.ViewModels"
 
+
              xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduling"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
              xmlns:dxschv="http://schemas.devexpress.com/winfx/2008/xaml/scheduling/visual"
@@ -21,7 +22,12 @@
 
     <UserControl.Resources>
 
+
+        <ViewModels:ColorConverter x:Key="ColorConverter"/>
+
+
         <DataTemplate x:Key="resourceHeaderContentTemplate">
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -44,8 +50,39 @@
                     Text="{Binding Resource.Caption}" />
                 </StackPanel>
             </Grid>
+
+
+
         </DataTemplate>
-        <Style TargetType="dxschv:ResourceHeaderControl">
+        <DataTemplate x:Key="appointmentContentTemplate">
+            <dxschv:AppointmentContentPanel>
+                <dxschv:AppointmentContentPanel.Background>
+                    <SolidColorBrush Color="{Binding Appointment.CustomFields[JobRefId], Converter={StaticResource ColorConverter}, Mode=OneWay}"/>
+                </dxschv:AppointmentContentPanel.Background>
+                <dxschv:AppointmentContentPanel.IntervalSubject>
+                    <dxschv:AppointmentIntervalSubjectPresenter/>
+                </dxschv:AppointmentContentPanel.IntervalSubject>
+                <dxschv:AppointmentContentPanel.Location>
+                    <dxschv:AppointmentLocationPresenter />
+                </dxschv:AppointmentContentPanel.Location>
+                <dxschv:AppointmentContentPanel.Description>
+                    <StackPanel>
+                        <dxschv:FastTextBlock Text="{Binding Appointment.CustomFields[CustomerRefId], Converter={ViewModels:CustomerNameConverter}}" FontWeight="Normal" Foreground="Black" FontSize="8" WordWrap="True"/>
+
+                        <dxschv:FastTextBlock Text="{Binding Appointment.CustomFields[JobRefId], Converter={ViewModels:JobNameConverter}}" FontWeight="Normal" FontStretch="ExtraCondensed" Foreground="Black" FontSize="8" WordWrap="True"/>
+
+                        <dxschv:AppointmentDescriptionPresenter FontWeight="Normal" Margin="0,1,0,0" WordWrap="True"/>
+
+                    </StackPanel>
+                </dxschv:AppointmentContentPanel.Description>
+                <dxschv:AppointmentContentPanel.Images>
+                    <dxschv:AppointmentImagesPanel/>
+                </dxschv:AppointmentContentPanel.Images>
+            </dxschv:AppointmentContentPanel>
+        </DataTemplate>
+
+
+        <Style TargetType="{x:Type dxschv:ResourceHeaderControl}">
             <Setter Property="ContentOrientation" Value="Horizontal" />
             <Setter Property="Background" Value="LightGray"/>
         </Style>
@@ -61,9 +98,11 @@
 
         <dxsch:SchedulerControl x:Name="MainScheduler" ItemPropertyChanged="MainScheduler_ItemPropertyChanged"  HorizontalAlignment="Left" Grid.Column="0"  VerticalAlignment="Top" GroupType="Resource" BeforeAppointmentItemDelete="SchedulerControl_BeforeAppointmentItemDelete" >
 
-           
-            
-            
+
+
+            <dxsch:SchedulerControl.AppointmentItems>
+                <dxsch:AppointmentItem x:Name="Customers"/>
+            </dxsch:SchedulerControl.AppointmentItems>
             
             <dxsch:SchedulerControl.OptionsWindows>
                 <dxsch:OptionsWindows AppointmentWindowType="{x:Type root:CustomAppointmentWindow}"/>
@@ -79,34 +118,41 @@
             
 
             <dxsch:SchedulerControl.DataSource>
-                <dxsch:DataSource AppointmentsSource="{Binding Appointments}" ResourcesSource="{Binding Resources}" DateTimeSavingMode="Appointment">
+                <dxsch:DataSource AppointmentsSource="{Binding Appointments}" ResourcesSource="{Binding Resources}" AppointmentLabelsSource="{Binding Jobs}" DateTimeSavingMode="Appointment">
+                    <dxsch:DataSource.AppointmentLabelMappings>
+                        <dxsch:AppointmentLabelMappings
+                         Caption="JobName"
+                            Color="Color"
+                            Id="JobId"
+                            
+                         />
+
+
+                    </dxsch:DataSource.AppointmentLabelMappings>
                     <dxsch:DataSource.AppointmentMappings>
                         <dxsch:AppointmentMappings 
                         Start="StartDate" 
                         End="EndDate" 
                         ResourceId="ResourceRefID"
-                        LabelId="AppointmentStatus"
+                        StatusId="AppointmentStatus"
                         >
-                            <dxsch:CustomFieldMapping Mapping="JobRefId" Name="jobdropdown"  />
+                            <dxsch:CustomFieldMapping Mapping="JobRefId" Name="JobRefId"  />
+                            <dxsch:CustomFieldMapping Mapping="CustomerRefId" Name="CustomerRefId"   />
+
+                            <!--<dxsch:CustomFieldMapping Mapping="Customer_CustomerID" Name="customerid"  />-->
                         </dxsch:AppointmentMappings>
                     </dxsch:DataSource.AppointmentMappings>
-
+                   
                     <dxsch:DataSource.ResourceMappings>
                         <dxsch:ResourceMappings 
-                                    Caption="ResourceName"
-                                    
-                                    Id="ResourceID"
-                            >
+                                    Caption="ResourceName" Id="ResourceID">
                             <dxsch:CustomFieldMapping 
                             Mapping="ResourceImage" 
                             Name="Photo"/>
 
                         </dxsch:ResourceMappings>
                     </dxsch:DataSource.ResourceMappings>
-
-
-
-
+                    
                 </dxsch:DataSource>
             </dxsch:SchedulerControl.DataSource>
             <dxsch:DayView x:Name="dayView1"
@@ -115,13 +161,10 @@
                 ShowAllDayArea="False"
                 ShowWorkTimeOnly="True"
                 SnapToCellsMode="Never"
+                            AppointmentContentTemplate="{StaticResource appointmentContentTemplate}"
                 TimeScale="00:10:00"
                            ResourceHeaderContentTemplate="{StaticResource resourceHeaderContentTemplate}"
-                           
-                           
                            />
-
-
         </dxsch:SchedulerControl>
 
         <dxe:DateNavigator Grid.Column="1" ShowWeekNumbers="False" AllowMultipleRanges="False" >
@@ -129,9 +172,6 @@
                 <dxsch:SchedulerDateNavigatorStyleSettings Scheduler="{Binding ElementName=MainScheduler}"/>
             </dxe:DateNavigator.StyleSettings>
         </dxe:DateNavigator>
-
-
-
 
     </Grid>
 </UserControl>

@@ -10,8 +10,10 @@
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
-                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL"
-    xmlns:usercontrols="clr-namespace:ICPartners.DevxUI.UserControls" x:Class="ICPartners.DevxUI.CustomAppointmentWindow"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+                    xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL"
+                    xmlns:usercontrols="clr-namespace:ICPartners.DevxUI.UserControls" 
+                    x:Class="ICPartners.DevxUI.CustomAppointmentWindow"
                     mc:Ignorable="d"
                     Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Window}}"
                     x:Name="window" Title="New Window" Closed="window_Closed" WindowStyle="None" MinWidth="1024" MinHeight="600" >
@@ -86,10 +88,20 @@
                 </DockPanel>
             </dxlc:LayoutItem>-->
             <dxlc:LayoutItem Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=LayoutItem_Description}}">
-                <usercontrols:UCJobSelector>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                
+                
+                <usercontrols:UCJobSelector Grid.Column="0">
                     
                 </usercontrols:UCJobSelector>
-                
+                <usercontrols:UCCustomerSelector Grid.Column="1">
+                        
+                </usercontrols:UCCustomerSelector>
+                </Grid>
             </dxlc:LayoutItem>
 
             

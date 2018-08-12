@@ -103,6 +103,9 @@
     <Compile Include="UserControls\UCCustomer.xaml.cs">
       <DependentUpon>UCCustomer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCCustomerSelector.xaml.cs">
+      <DependentUpon>UCCustomerSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCDependent.xaml.cs">
       <DependentUpon>UCDependent.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,11 @@
       <DependentUpon>UCResource.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AppointmentViewModel.cs" />
+    <Compile Include="ViewModels\ColorConverter.cs" />
+    <Compile Include="ViewModels\CustomerNameConverter.cs" />
+    <Compile Include="ViewModels\DisplayConverter.cs" />
+    <Compile Include="ViewModels\HtmlColorCodeToColorConverter.cs" />
+    <Compile Include="ViewModels\JobNameConverter.cs" />
     <Compile Include="Windows\testwindow.xaml.cs">
       <DependentUpon>testwindow.xaml</DependentUpon>
     </Compile>
@@ -140,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\UCCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UCCustomerSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

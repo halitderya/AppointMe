@@ -60,5 +60,21 @@ namespace ICPartners.DevxUI.UserControls
         {
            
         }
+        public class Converter : IValueConverter
+        {
+            public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+            {
+                var str = value as string;
+                if (string.IsNullOrWhiteSpace(str))
+                {
+                    return null;
+                }
+                return (Color)ColorConverter.ConvertFromString(str);
+            }
+            public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+            {
+                return value == null ? null : value.ToString();
+            }
+        }
     }
 }

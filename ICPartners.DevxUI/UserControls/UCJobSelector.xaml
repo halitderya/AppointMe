@@ -7,7 +7,7 @@
              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
              xmlns:Custom="http://schemas.devexpress.com/winfx/2008/xaml/printingcore/xtraprinting/native/presentation" x:Class="ICPartners.DevxUI.UserControls.UCJobSelector"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Height="auto" Width="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -33,11 +33,11 @@
         <Viewbox Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Stretch">
             <TextBlock Text="Main Services"/>
         </Viewbox>
-        <dxlc:TileLayoutControl Orientation="Horizontal" Grid.ColumnSpan="2" Padding="0" Margin="0" x:Name="spmainservice1"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+        <dxlc:TileLayoutControl Orientation="Horizontal" Grid.ColumnSpan="4" Padding="0" Margin="0" x:Name="spmainservice1"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
         <Viewbox Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Stretch">
             <TextBlock Text="Dependent Services"/>
         </Viewbox>
-        <dxlc:TileLayoutControl x:Name="spdependentservice" Padding="0" Margin="0" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal"/>
+        <dxlc:TileLayoutControl x:Name="spdependentservice" Padding="0" Margin="0" Grid.ColumnSpan="4" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal"/>
        
     </Grid>
 </UserControl>

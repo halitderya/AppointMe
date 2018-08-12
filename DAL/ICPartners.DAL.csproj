@@ -144,6 +144,30 @@
     <Compile Include="Migrations\201808041402205_dependenttable3.Designer.cs">
       <DependentUpon>201808041402205_dependenttable3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808121003327_customerid.cs" />
+    <Compile Include="Migrations\201808121003327_customerid.Designer.cs">
+      <DependentUpon>201808121003327_customerid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808121103596_color.cs" />
+    <Compile Include="Migrations\201808121103596_color.Designer.cs">
+      <DependentUpon>201808121103596_color.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808121107028_defaultassigneeremoved.cs" />
+    <Compile Include="Migrations\201808121107028_defaultassigneeremoved.Designer.cs">
+      <DependentUpon>201808121107028_defaultassigneeremoved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808121133127_color2.cs" />
+    <Compile Include="Migrations\201808121133127_color2.Designer.cs">
+      <DependentUpon>201808121133127_color2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808121134077_color3.cs" />
+    <Compile Include="Migrations\201808121134077_color3.Designer.cs">
+      <DependentUpon>201808121134077_color3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808121252560_color4.cs" />
+    <Compile Include="Migrations\201808121252560_color4.Designer.cs">
+      <DependentUpon>201808121252560_color4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ICPartnersContext.cs" />
@@ -244,6 +268,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808041402205_dependenttable3.resx">
       <DependentUpon>201808041402205_dependenttable3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121003327_customerid.resx">
+      <DependentUpon>201808121003327_customerid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121103596_color.resx">
+      <DependentUpon>201808121103596_color.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121107028_defaultassigneeremoved.resx">
+      <DependentUpon>201808121107028_defaultassigneeremoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121133127_color2.resx">
+      <DependentUpon>201808121133127_color2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121134077_color3.resx">
+      <DependentUpon>201808121134077_color3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121252560_color4.resx">
+      <DependentUpon>201808121252560_color4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

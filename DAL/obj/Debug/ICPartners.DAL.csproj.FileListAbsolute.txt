@@ -19,11 +19,6 @@ C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.n
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.navproptest3.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.navproptestfinal.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.appointmentforein.resources
-C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.GenerateResource.cache
-C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.CoreCompileInputs.cache
-C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.CopyComplete
-C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.dll
-C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.pdb
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.new1.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.image.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.new4.resources
@@ -37,3 +32,14 @@ C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.d
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.dependenttable.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.dependenttable2.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.dependenttable3.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.customerid.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.color.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.defaultassigneeremoved.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.color2.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.color3.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.color4.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.GenerateResource.cache
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.CopyComplete
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.dll
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.pdb

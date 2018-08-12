@@ -78,11 +78,11 @@ namespace ICPartners.Domains
         }
         public string UpdatedBy { get; set; }
         #endregion
-
+        public int ParentID { get; set; }
         #region relation
 
-
-       
+        [ForeignKey("Customer")]
+        public int CustomerRefId { get; set; }
         public virtual Customer Customer { get; set; }
 
         [ForeignKey("Job")]
