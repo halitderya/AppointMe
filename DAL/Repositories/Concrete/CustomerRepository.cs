@@ -16,5 +16,11 @@ namespace ICPartners.DAL.Repositories.Concrete
         }
         public ICPartnersContext Context { get { return _context as ICPartnersContext; } }
 
+        public int AddCustomerWithId(Customer customer)
+        {
+            Context.Customers.Add(customer);
+            Context.SaveChanges();
+            return customer.CustomerID;
+        }
     }
 }

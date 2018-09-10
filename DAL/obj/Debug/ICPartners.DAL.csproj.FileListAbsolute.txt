@@ -38,8 +38,12 @@ C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.d
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.color2.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.color3.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.color4.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.status1.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.joboffsetandresponsible.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.GenerateResource.cache
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.CoreCompileInputs.cache
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.CopyComplete
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.dll
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.pdb
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.resourcerole.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.jobowner.resources

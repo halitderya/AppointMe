@@ -1,36 +1,69 @@
-﻿using System;
+﻿using DevExpress.Xpf.Core;
+using DevExpress.Xpf.Editors.Settings;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ICPartners.DevxUI.UserControls
 {
-    /// <summary>
-    /// Interaction logic for UCResource.xaml
     /// </summary>
     public partial class UCResource : UserControl
     {
+
         int AffectedRows;
         ICPartners.DAL.ICPartnersContext context;
+        //public ObservableCollection<RoleInfo> collection = new ObservableCollection<RoleInfo>(new List<RoleInfo> {
 
+          
+        //});
         public UCResource()
         {
+
+            //RoleInfo info = new RoleInfo
+            //{
+            //    Text="test1",
+            //    Value=1
+            //};
+
+            //collection.Add(info);
             InitializeComponent();
+
+            ComboBoxClass user = new ComboBoxClass() { Text = "User", Value = 1 };
+            ComboBoxClass operato = new ComboBoxClass() { Text = "Operator", Value = 2 };
+            ComboBoxClass admin = new ComboBoxClass() { Text = "Administrator", Value = 3 };
+            ObservableCollection<ComboBoxClass> colPersons = new ObservableCollection<ComboBoxClass>();
+            colPersons.Add(user);
+            colPersons.Add(operato);
+            colPersons.Add(admin);
+
+            ((ComboBoxEditSettings)TableViewResource.Columns["Role"].EditSettings).ItemsSource = colPersons;
+
+            ComboBoxClass stylist = new ComboBoxClass() { Text = "Stylist", Value = 1 };
+            ComboBoxClass beautician = new ComboBoxClass() { Text = "Beautician", Value = 2 };
+            ObservableCollection<ComboBoxClass> colduty = new ObservableCollection<ComboBoxClass>();
+            colduty.Add(stylist);
+            colduty.Add(beautician);
+
+            ((ComboBoxEditSettings)TableViewResource.Columns["ResourceDuty"].EditSettings).ItemsSource = colduty;
+
+
+
+
+
+
             context = new DAL.ICPartnersContext();
 
             context.Resources.Load();
             TableViewResource.ItemsSource = context.Resources.Local;
+
+
+
+
+
         }
 
         private void TableView_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
@@ -50,14 +83,14 @@ namespace ICPartners.DevxUI.UserControls
             try
             {
                 AffectedRows = context.SaveChanges();
-                MessageBox.Show(AffectedRows.ToString() + " Record(s) updated.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                DXMessageBox.Show(AffectedRows.ToString() + " Record(s) updated.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 SaveButton.IsEnabled = false;
                 RevertButton.IsEnabled = false;
             }
-            catch
+            catch(Exception ex)
             {
-
-                MessageBox.Show("Update Failed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Debug.WriteLine(ex.Message);
+                DXMessageBox.Show("Update Failed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

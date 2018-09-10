@@ -10,5 +10,6 @@ namespace ICPartners.Logic.Customer
     public class CustomerSelector
     {
         public static int CustomerToSelect { get; set; }
+        public static bool CreateCustomerWithAppointment { get; set; }
     }
 }

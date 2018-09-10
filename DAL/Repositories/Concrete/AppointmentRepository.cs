@@ -27,6 +27,17 @@ namespace ICPartners.DAL.Repositories.Concrete
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Appointment> GetAppointmentByCustomer(int customerID)
+        {
+
+            var temp = Context.Appointments.Include("Customer").Include("Resource").Where(x=>x.CustomerRefId==customerID);
+            return temp;
+        }
+
+
+
+  
+
         public ICPartnersContext Context { get { return _context as ICPartnersContext; } }
     }
 }

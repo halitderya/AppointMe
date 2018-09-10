@@ -8,6 +8,7 @@ using DevExpress.Data.Linq;
 using ICPartners.Domains;
 using System.Data.Entity;
 using System.Windows.Media.Imaging;
+using System;
 
 namespace ICPartners.DevxUI
 {
@@ -66,8 +67,14 @@ namespace ICPartners.DevxUI
 
         private void ThemedWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            //if (ICPartners.Logic.UserManagement.CurrentUser.LoggedUser.Role < 2)
+            //{
+            //    btnresources.Visibility = Visibility.Hidden;
+            //    btnconnected.Visibility = Visibility.Hidden;
+            //    BtnMaintainence.Visibility = Visibility.Hidden;
+            //    btnreports.Visibility = Visibility.Hidden;
+            //}
 
-             
         }
 
         private void ThemeDropDown_Click(object sender, RoutedEventArgs e)
@@ -85,11 +92,7 @@ namespace ICPartners.DevxUI
             Application.Current.Shutdown();
         }
 
-        private void Maximize_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Maximized;
-
-        }
+      
 
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {
@@ -99,6 +102,23 @@ namespace ICPartners.DevxUI
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
         
+        }
+
+        private void Resize_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = WindowState.Normal;
+                Resize.IsChecked = false;
+                
+            }
+            else if(this.WindowState== WindowState.Normal){
+                this.WindowState = WindowState.Maximized;
+                
+            }
+               
+
+
         }
     }
 }

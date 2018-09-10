@@ -9,6 +9,7 @@ using ICPartners.Domains;
 using System.Windows.Controls.Primitives;
 using DevExpress.Xpf.LayoutControl;
 using ICPartners.Logic.Appointment;
+using System.Diagnostics;
 
 namespace ICPartners.DevxUI.UserControls
 {
@@ -20,8 +21,8 @@ namespace ICPartners.DevxUI.UserControls
         List<Job> AllJoblist= new List<Job>();
         List<DependentJobs> DistrictDependentJobs= new List<DependentJobs>();
 
-        List<CustomTile> MainButtonList = new List<CustomTile>();
-        List<CustomTile> SubbuttonList= new List<CustomTile>();
+        List<CustomTile2> MainButtonList = new List<CustomTile2>();
+        List<CustomTile2> SubbuttonList= new List<CustomTile2>();
 
         public UCJobSelector()
         {
@@ -38,48 +39,64 @@ namespace ICPartners.DevxUI.UserControls
 
             foreach (var item in AllJoblist)
             {
-                CustomTile tile = new CustomTile();
+                if (item.JobOwner == ICPartners.Logic.Resource.ResourceSelector.SelectedResource.ResourceDuty)
+                {
+                    CustomTile2 tile = new CustomTile2();
+
+                    tile.Content = item.JobName;
+                    tile.Size = TileSize.ExtraSmall;
+                    tile.VerticalContentAlignment = VerticalAlignment.Center;
+                    tile.HorizontalContentAlignment = HorizontalAlignment.Center;
+                    tile.JobID = item.JobId;
+                    Color backtile = (Color)ColorConverter.ConvertFromString(item.Color.ToString());
+                    tile.Background = new SolidColorBrush(backtile);
+                    Color fronttile= (PerceivedBrightness(backtile) > 130 ? Color.FromRgb(20,20,20) : Color.FromRgb(230,230,230));
+                    tile.Foreground = new SolidColorBrush(fronttile);
+
+
+                    tile.Click += new EventHandler(button_click);
+                    MainButtonList.Add(tile);
+                    spmainservice1.Children.Add(tile);
+                    spdependentservice.IsEnabled = false;
+                    JobSelector.JobtoCreate = tile.JobID;
+                }
                 
-                tile.Content = item.JobName;
-                tile.Size = TileSize.ExtraSmall;
-                tile.VerticalContentAlignment = VerticalAlignment.Center;
-                tile.HorizontalContentAlignment = HorizontalAlignment.Center;
-                tile.JobID = item.JobId;
-                
-                tile.Click += new EventHandler(button_click);
-                MainButtonList.Add(tile);
-                spmainservice1.Children.Add(tile);
-                spdependentservice.IsEnabled = false;
-                JobSelector.JobtoCreate = tile.JobID;
             }
             if (MainButtonList.Count != 0)
             {
                 OrginalTileColor = (Color)ColorConverter.ConvertFromString(MainButtonList[0].Background.ToString());
             }
-            GenerateSubButtons();
+            //GenerateSubButtons();
+        }
+        int PerceivedBrightness(Color c)
+        {
+            return (int)Math.Sqrt(
+               c.R * c.R * .241 +
+               c.G * c.G * .691 +
+               c.B * c.B * .068);
         }
 
         private void button_click(object sender, EventArgs e)
         {
-
-            CustomTile button = sender as CustomTile;
+            
+            CustomTile2 button = sender as CustomTile2;
             if (button.IsClicked == false)
             {
                 UnMarkMainButtons();
-                UnMarkSubButtons();
+                //UnMarkSubButtons();
                 JobSelector.JobtoCreate = AllJoblist.Find(x => x.JobId == button.JobID).JobId;
                 button.Background = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-                JobSelector.DependentJobs = DistrictDependentJobs.Where(x => x.MainJob == JobSelector.JobtoCreate).ToList();
+                //JobSelector.DependentJobs = DistrictDependentJobs.Where(x => x.MainJob == JobSelector.JobtoCreate).ToList();
                 button.IsClicked = true;
-                spdependentservice.IsEnabled = true;
-                MarkSubbuttons();
+                //spdependentservice.IsEnabled = true;
+                //MarkSubbuttons();
             }
             else
             {
                 button.Background = new SolidColorBrush(OrginalTileColor);
                 button.IsClicked = false;
                 spdependentservice.IsEnabled = false;
-                UnMarkSubButtons();
+                //UnMarkSubButtons();
                 UnMarkMainButtons();
 
             }
@@ -95,7 +112,7 @@ namespace ICPartners.DevxUI.UserControls
                 {
                     
          
-                    CustomTile tile = SubbuttonList.Find(x => x.DependentID== item.DependentJob);
+                    CustomTile2 tile = SubbuttonList.Find(x => x.DependentID== item.DependentJob);
                     tile.Background = new SolidColorBrush(Color.FromRgb(0, 0, 0));
                     SubbuttonList.Add(tile);
                     tile.IsClicked = true;
@@ -124,8 +141,25 @@ namespace ICPartners.DevxUI.UserControls
             foreach (var item in MainButtonList)
             {
                 item.IsClicked = false;
-                item.Background = new SolidColorBrush(OrginalTileColor);
+                RedrawButtons();
             }
+        }
+        void RedrawButtons()
+        {
+            foreach (var item in MainButtonList)
+            {
+                try
+                {
+                    item.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(unitOfWork.jobRepository.GetByID(item.JobID).Color.ToString()));
+             
+                }
+                catch(Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+            }
+
+
         }
         void GenerateSubButtons()
         {
@@ -136,7 +170,7 @@ namespace ICPartners.DevxUI.UserControls
             foreach (var item in DistrictDependentJobs)
             {
 
-                CustomTile DependentTile= new CustomTile();
+                CustomTile2 DependentTile= new CustomTile2();
                 DependentTile.Content= AllJoblist.FirstOrDefault(x => x.JobId == item.DependentJob).JobName;
                 DependentTile.Name = "dt"+item.DependentJob.ToString();
                 DependentTile.VerticalAlignment = VerticalAlignment.Center;
@@ -144,7 +178,7 @@ namespace ICPartners.DevxUI.UserControls
                 DependentTile.Size = TileSize.ExtraSmall;
                 DependentTile.DependentID = item.DependentJob;
                 DependentTile.IsClicked = false;
-                DependentTile.Click += new EventHandler(subbutton_click);
+                //DependentTile.Click += new EventHandler(subbutton_click);
                 SubbuttonList.Add(DependentTile);
                 spdependentservice.Children.Add(DependentTile);
             }
@@ -155,7 +189,7 @@ namespace ICPartners.DevxUI.UserControls
 
         private void subbutton_click(object sender, EventArgs e)
         {
-            CustomTile ClickedTile = sender as CustomTile;
+            CustomTile2 ClickedTile = sender as CustomTile2;
             if (ClickedTile.IsClicked == true)
             {
                 ClickedTile.IsClicked = false;

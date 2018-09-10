@@ -9,5 +9,6 @@ namespace ICPartners.DAL.Repositories.Abstract
 {
     public interface ICustomerRepository:IRepository<Customer>
     {
+        int AddCustomerWithId(Customer customer);
     }
 }

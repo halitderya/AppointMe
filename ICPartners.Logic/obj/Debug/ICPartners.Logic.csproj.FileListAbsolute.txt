@@ -1,11 +1,13 @@
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Debug\ICPartners.Logic.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Debug\ICPartners.Logic.pdb
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Debug\DevExpress.Mvvm.v18.1.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Debug\ICPartners.DAL.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Debug\ICPartners.Domains.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Debug\EntityFramework.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Debug\ICPartners.DAL.pdb
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Debug\ICPartners.DAL.dll.config
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Debug\ICPartners.Domains.pdb
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Debug\DevExpress.Mvvm.v18.1.xml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Debug\EntityFramework.xml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\obj\Debug\ICPartners.Logic.csprojAssemblyReference.cache
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\obj\Debug\ICPartners.Logic.csproj.CoreCompileInputs.cache

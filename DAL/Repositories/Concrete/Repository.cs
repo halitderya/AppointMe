@@ -21,8 +21,8 @@ namespace ICPartners.DAL.Repositories.Concrete
         {
 
             _dbSet.Add(entity);
+           
 
-            
         }
 
         public void AddRange(IEnumerable<TEntity> entities)

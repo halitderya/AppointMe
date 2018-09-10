@@ -66,19 +66,18 @@
                     <dxschv:AppointmentLocationPresenter />
                 </dxschv:AppointmentContentPanel.Location>
                 <dxschv:AppointmentContentPanel.Description>
-                    <StackPanel>
+                    <StackPanel Margin="2,2,2,2">
                         <dxschv:FastTextBlock Text="{Binding Appointment.CustomFields[CustomerRefId], Converter={ViewModels:CustomerNameConverter}}" FontWeight="Normal" Foreground="Black" FontSize="8" WordWrap="True"/>
 
                         <dxschv:FastTextBlock Text="{Binding Appointment.CustomFields[JobRefId], Converter={ViewModels:JobNameConverter}}" FontWeight="Normal" FontStretch="ExtraCondensed" Foreground="Black" FontSize="8" WordWrap="True"/>
-
                         <dxschv:AppointmentDescriptionPresenter FontWeight="Normal" Margin="0,1,0,0" WordWrap="True"/>
-
                     </StackPanel>
                 </dxschv:AppointmentContentPanel.Description>
                 <dxschv:AppointmentContentPanel.Images>
                     <dxschv:AppointmentImagesPanel/>
                 </dxschv:AppointmentContentPanel.Images>
             </dxschv:AppointmentContentPanel>
+            
         </DataTemplate>
 
 
@@ -96,7 +95,7 @@
             <ColumnDefinition MaxWidth="180" MinWidth="180" />
         </Grid.ColumnDefinitions>
 
-        <dxsch:SchedulerControl x:Name="MainScheduler" ItemPropertyChanged="MainScheduler_ItemPropertyChanged"  HorizontalAlignment="Left" Grid.Column="0"  VerticalAlignment="Top" GroupType="Resource" BeforeAppointmentItemDelete="SchedulerControl_BeforeAppointmentItemDelete" >
+        <dxsch:SchedulerControl x:Name="MainScheduler" AppointmentsUpdated="MainScheduler_AppointmentsUpdated_1" AppointmentWindowShowing="MainScheduler_AppointmentWindowShowing" Loaded="MainScheduler_Loaded" ItemPropertyChanged="MainScheduler_ItemPropertyChanged" InitNewAppointment="MainScheduler_InitNewAppointment"  HorizontalAlignment="Left" Grid.Column="0"  VerticalAlignment="Top" GroupType="Resource"  BeforeAppointmentItemDelete="SchedulerControl_BeforeAppointmentItemDelete" AllowAppointmentConflicts="False" >
 
 
 
@@ -118,28 +117,24 @@
             
 
             <dxsch:SchedulerControl.DataSource>
-                <dxsch:DataSource AppointmentsSource="{Binding Appointments}" ResourcesSource="{Binding Resources}" AppointmentLabelsSource="{Binding Jobs}" DateTimeSavingMode="Appointment">
-                    <dxsch:DataSource.AppointmentLabelMappings>
-                        <dxsch:AppointmentLabelMappings
-                         Caption="JobName"
-                            Color="Color"
-                            Id="JobId"
-                            
-                         />
+                <dxsch:DataSource AppointmentsSource="{Binding Appointments}" 
+                                  AppointmentStatusesSource="{Binding StatusState}"
 
-
-                    </dxsch:DataSource.AppointmentLabelMappings>
+                    ResourcesSource="{Binding Resources}"
+                                  DateTimeSavingMode="Appointment">
+                    <dxsch:DataSource.AppointmentStatusMappings>
+                        <dxsch:AppointmentStatusMappings Brush="Brush" Id="Id" Caption="Caption"/>
+                    </dxsch:DataSource.AppointmentStatusMappings>
                     <dxsch:DataSource.AppointmentMappings>
                         <dxsch:AppointmentMappings 
                         Start="StartDate" 
+                            Id="AppointmentID"
                         End="EndDate" 
+                            StatusId="AppointmentStatus"
                         ResourceId="ResourceRefID"
-                        StatusId="AppointmentStatus"
                         >
                             <dxsch:CustomFieldMapping Mapping="JobRefId" Name="JobRefId"  />
                             <dxsch:CustomFieldMapping Mapping="CustomerRefId" Name="CustomerRefId"   />
-
-                            <!--<dxsch:CustomFieldMapping Mapping="Customer_CustomerID" Name="customerid"  />-->
                         </dxsch:AppointmentMappings>
                     </dxsch:DataSource.AppointmentMappings>
                    
@@ -158,15 +153,17 @@
             <dxsch:DayView x:Name="dayView1"
                             NavigationButtonsVisibility="Never"
                 ResourcesPerPage="5"
+                
                 ShowAllDayArea="False"
                 ShowWorkTimeOnly="True"
                 SnapToCellsMode="Never"
                             AppointmentContentTemplate="{StaticResource appointmentContentTemplate}"
-                TimeScale="00:10:00"
-                           ResourceHeaderContentTemplate="{StaticResource resourceHeaderContentTemplate}"
+                           
+                TimeScale="00:15:00"
+                           ResourceHeaderContentTemplate="{StaticResource resourceHeaderContentTemplate}" ShowResourceNavigator="False"
+                           
                            />
         </dxsch:SchedulerControl>
-
         <dxe:DateNavigator Grid.Column="1" ShowWeekNumbers="False" AllowMultipleRanges="False" >
             <dxe:DateNavigator.StyleSettings>
                 <dxsch:SchedulerDateNavigatorStyleSettings Scheduler="{Binding ElementName=MainScheduler}"/>

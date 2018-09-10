@@ -11,7 +11,7 @@
                  x:Class="ICPartners.DevxUI.MainWindow"
         Title="MainWindow" Height="350" Width="525" 
                  WindowStyle="None"
-        dx:ThemeManager.ThemeName="VS2017Dark"
+        dx:ThemeManager.ThemeName="VS2017Light"
         xmlns:UserControls="clr-namespace:ICPartners.DevxUI.UserControls"
                  xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
                  DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:AppointmentViewModel}}"
@@ -21,7 +21,7 @@ MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
     <Grid>
         <dxwui:HamburgerMenu OpenPaneWidth="200"
                          SelectedItem="{Binding HamburgerMenuSelectedItem, Mode=TwoWay}"
-                         NavigationTarget="{Binding ElementName=service}" IsInitiallyCompact="True"  ViewState="Overlay" >
+                         NavigationTarget="{Binding ElementName=service}" IsInitiallyCompact="True"  ViewState="Opened" >
                     <dxwui:HamburgerMenu.Content>
                 <dxwui:NavigationFrame  Source="{x:Type UserControls:UCAppointment}" Margin="5,5,5,5">
                             <dxmvvm:Interaction.Behaviors>
@@ -34,18 +34,18 @@ MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
                      <dxwui:HamburgerMenuNavigationButton Glyph="Source/HamburgerMenu/people_white.png" NavigationTargetType="{x:Type UserControls:UCCustomer}" Content="Customers" Placement="Top" />
             <dxwui:HamburgerMenuItemSeparator/>
             <dxwui:HamburgerMenuNavigationButton Glyph="Source/HamburgerMenu/task_white.png" Content="Jobs" NavigationTargetType="{x:Type UserControls:UcJob}" />
-            <dxwui:HamburgerMenuNavigationButton Glyph="source/HamburgerMenu/taskchain_white.png" Content="Connected Jobs" NavigationTargetType="{x:Type UserControls:UCDependent}"/>
-            <dxwui:HamburgerMenuNavigationButton Glyph="source/HamburgerMenu/employees_white.png" Content="Employees" NavigationTargetType="{x:Type UserControls:UCResource}"/>
+            <dxwui:HamburgerMenuNavigationButton Name="btnconnected" Glyph="source/HamburgerMenu/taskchain_white.png" Content="Connected Jobs" NavigationTargetType="{x:Type UserControls:UCDependent}"/>
+            <dxwui:HamburgerMenuNavigationButton Name="btnresources" Glyph="source/HamburgerMenu/employees_white.png" Content="Employees" NavigationTargetType="{x:Type UserControls:UCResource}"/>
                         
             <dxwui:HamburgerMenuItemSeparator/>
-            <dxwui:HamburgerMenuNavigationButton Glyph="source/HamburgerMenu/reports_white.png" Content="Reports"/>
-            <dxwui:HamburgerMenuNavigationButton Glyph="source/HamburgerMenu/maintenance_white.png" Content="Maintenace"/>
+            <dxwui:HamburgerMenuNavigationButton Name="btnreports" Glyph="source/HamburgerMenu/reports_white.png" Content="Reports"/>
+            <dxwui:HamburgerMenuNavigationButton Glyph="source/HamburgerMenu/maintenance_white.png" Name="BtnMaintainence" Content="Maintenace"/>
 
 
             <dxwui:HamburgerMenu.BottomBarItems>
             
             <dxwui:HamburgerMenuBottomBarRadioButton Content="Exit" Name="Exit" Click="Exit_Click" Glyph="Source/HamburgerMenu/shutdown.png" ></dxwui:HamburgerMenuBottomBarRadioButton>
-            <dxwui:HamburgerMenuBottomBarRadioButton Content="Maximize" Click="Maximize_Click" Name="Maximize" Glyph="Source/HamburgerMenu/fullscreen.png"></dxwui:HamburgerMenuBottomBarRadioButton>
+            <dxwui:HamburgerMenuBottomBarRadioButton Content="Resize" Click="Resize_Click" Name="Resize" Glyph="Source/HamburgerMenu/fullscreen.png"></dxwui:HamburgerMenuBottomBarRadioButton>
             <dxwui:HamburgerMenuBottomBarRadioButton Content="Minimize" Click="Minimize_Click" Name="Minimize" Glyph="Source/HamburgerMenu/minimize.png"></dxwui:HamburgerMenuBottomBarRadioButton>
             </dxwui:HamburgerMenu.BottomBarItems>
                 </dxwui:HamburgerMenu>

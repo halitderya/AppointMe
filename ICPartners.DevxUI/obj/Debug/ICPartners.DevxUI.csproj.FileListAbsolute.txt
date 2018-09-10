@@ -8,7 +8,7 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UcJob.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCJobSelector.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCResource.g.cs
-C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Windows\testwindow.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Windows\Login.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\App.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI_MarkupCompile.cache
@@ -19,9 +19,9 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCCustomer.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCCustomerSelector.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCDependent.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UcJob.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCJobSelector.baml
-C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCResource.baml
-C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Windows\testwindow.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Windows\Login.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.exe
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.pdb
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\ICPartners.DevxUI.exe.config
@@ -143,10 +143,12 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\de\DevExpress
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\es\DevExpress.Office.v18.1.Core.resources.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\ja\DevExpress.Office.v18.1.Core.resources.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\ru\DevExpress.Office.v18.1.Core.resources.dll
-C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UcJob.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCResource.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.g.resources
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.Properties.Resources.resources
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.csproj.GenerateResource.cache
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.exe.licenses
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.csproj.CoreCompileInputs.cache
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.csproj.CopyComplete
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\CustomTile2.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\CustomTile2.baml

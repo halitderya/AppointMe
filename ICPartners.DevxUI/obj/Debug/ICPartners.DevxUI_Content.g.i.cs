@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("source/hamburgermenu/icons8-maintenance-64.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("source/hamburgermenu/minimize_window.png")]
 
 

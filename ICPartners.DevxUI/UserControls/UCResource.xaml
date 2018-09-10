@@ -4,10 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ICPartners.DevxUI.UserControls"
+                 xmlns:local1="clr-namespace:ICPartners.DevxUI.UserControls"  
+
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" x:Class="ICPartners.DevxUI.UserControls.UCResource"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Migrations="clr-namespace:DAL.Migrations;assembly=ICPartners.DAL" xmlns:Specialized="clr-namespace:System.Collections.Specialized;assembly=System" x:Class="ICPartners.DevxUI.UserControls.UCResource"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <dx:IEnumerableDataSource x:Key="IEnumerableDataSource">
+            <dx:DesignDataManager.DesignData>
+                <dx:DesignDataSettings DataObjectType="{x:Type Migrations:Relations}" RowCount="5"/>
+            </dx:DesignDataManager.DesignData>
+        </dx:IEnumerableDataSource>
+        <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource" ContextType="{x:Type DAL:ICPartnersContext}" Path="Resources">
+            <dx:DesignDataManager.DesignData>
+                <dx:DesignDataSettings RowCount="5"/>
+            </dx:DesignDataManager.DesignData>
+        </dx:EntitySimpleDataSource>
+    </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -65,33 +80,60 @@
             </Grid>
 
         </Button>
-        <dxg:GridControl x:Name="TableViewResource"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold"  >
+        <dxg:GridControl x:Name="TableViewResource"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}"  >
 
             <dxg:GridControl.View>
                 <dxg:TableView AutoWidth="False" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" />
 
             </dxg:GridControl.View>
-            <dxg:GridColumn FieldName="ResourceID" IsSmart="True" />
-            <dxg:GridColumn FieldName="ResourceName" IsSmart="True"/>
-            <dxg:GridColumn FieldName="ResourceSurname" IsSmart="True"/>
-            <dxg:GridColumn FieldName="ResourceStartDate" IsSmart="True"/>
-            <dxg:GridColumn FieldName="ResourcePhone" IsSmart="True"/>
-            <dxg:GridColumn FieldName="ResourceEmerphone" IsSmart="True"/>
-            <dxg:GridColumn FieldName="EMail" IsSmart="True"/>
-            <dxg:GridColumn FieldName="ResourceImage" IsSmart="True">
+            <dxg:GridColumn FieldName="ResourceID" IsSmart="True" Visible="False" />
+            <dxg:GridColumn FieldName="ResourceName" IsSmart="True" Header="Name"/>
+            <dxg:GridColumn FieldName="ResourceSurname" IsSmart="True" Header="Surname"/>
+            <dxg:GridColumn FieldName="ResourceStartDate" IsSmart="True" Header="Start Date"/>
+            <dxg:GridColumn FieldName="ResourcePhone" IsSmart="True" Header="Phone" />
+            <dxg:GridColumn FieldName="ResourceEmerphone" IsSmart="True" Header="Emergency Phone" />
+            <dxg:GridColumn FieldName="EMail" IsSmart="True" SortOrder="Ascending" SortIndex="0"/>
+            <dxg:GridColumn FieldName="ResourceImage" Header="Image" IsSmart="True">
                 <dxg:GridColumn.EditSettings>
                     <dxe:ImageEditSettings/>
                 </dxg:GridColumn.EditSettings>
             </dxg:GridColumn>
-            <dxg:GridColumn FieldName="ResourceAddress" IsSmart="True"/>
-            <dxg:GridColumn FieldName="ResourcePostcode" IsSmart="True"/>
-            <dxg:GridColumn FieldName="ResourceCity" IsSmart="True"/>
+            <dxg:GridColumn FieldName="ResourceAddress" IsSmart="True" Header="Address"/>
+            <dxg:GridColumn FieldName="ResourcePostcode" IsSmart="True" Header="Post Code"/>
+            <dxg:GridColumn FieldName="ResourceCity" IsSmart="True" Header="City"/>
             <dxg:GridColumn FieldName="Password" IsSmart="True"/>
-            <dxg:GridColumn FieldName="Role" IsSmart="True"/>
-            <dxg:GridColumn FieldName="NIN" IsSmart="True"/>
-            <dxg:GridColumn FieldName="BankAccount" IsSmart="True"/>
+            <dxg:GridColumn FieldName="Role" IsSmart="True">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:ComboBoxEditSettings x:Name="RoleColumn" DisplayMember="Text" ValueMember="Value">
+                        <dxe:ComboBoxEditSettings.Items>
+
+
+
+                        </dxe:ComboBoxEditSettings.Items>
+                    </dxe:ComboBoxEditSettings>
+
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
+            <dxg:GridColumn FieldName="ResourceDuty" IsSmart="True" Header="Duty">
+
+
+                <dxg:GridColumn.EditSettings>
+                    <dxe:ComboBoxEditSettings x:Name="DutyColumn" DisplayMember="Text" ValueMember="Value">
+                        <dxe:ComboBoxEditSettings.Items>
+
+
+
+                        </dxe:ComboBoxEditSettings.Items>
+                    </dxe:ComboBoxEditSettings>
+
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
+
+            <dxg:GridColumn FieldName="NIN" IsSmart="True" Header="NIN Number"/>
+            <dxg:GridColumn FieldName="BankAccount" IsSmart="True" Header="Bank Account"/>
 
 
         </dxg:GridControl>
     </Grid>
+
 </UserControl>

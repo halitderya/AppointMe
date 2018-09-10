@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ namespace ICPartners.DAL.Repositories.Abstract
     {
       
         Appointment GetAppointmentById(int AppointmentID);
+
+        IEnumerable<Appointment> GetAppointmentByCustomer(int customerID);
 
         IEnumerable<Appointment> GetAppointmentByResource(int ResourceID);
 

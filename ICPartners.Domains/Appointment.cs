@@ -14,7 +14,7 @@ namespace ICPartners.Domains
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int AppointmentID { get; set; }
-        public short? AppointmentStatus { get; set; }
+        public int AppointmentStatus { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public double? ChargedAmount { get; set; }

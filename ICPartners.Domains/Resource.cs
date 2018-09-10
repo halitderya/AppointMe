@@ -27,7 +27,9 @@ namespace ICPartners.Domains
         public string ResourceCity { get; set; }
 
         public string Password { get; set; }
-        public short Role { get; set; }
+        public int Role { get; set; }
+
+        public int ResourceDuty { get; set; }
 
         public string NIN { get; set; }
 

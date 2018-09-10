@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.Xpf.LayoutControl;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,23 +11,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ICPartners.DevxUI.Windows
+namespace ICPartners.DevxUI.UserControls
 {
     /// <summary>
-    /// Interaction logic for testwindow.xaml
+    /// Interaction logic for CustomTile2.xaml
     /// </summary>
-    public partial class testwindow : Window
+    public partial class CustomTile2 : Tile
     {
-        public testwindow()
+        public CustomTile2()
         {
+
+
             InitializeComponent();
         }
 
-        private void Tile_Click(object sender, EventArgs e)
-        {
 
-        }
+        public bool IsClicked { get; set; }
+        public int JobID { get; set; }
+        public int DependentID { get; set; }
     }
 }

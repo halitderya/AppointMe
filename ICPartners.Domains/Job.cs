@@ -21,12 +21,15 @@ namespace ICPartners.Domains
         public double JobPrice { get; set; }
 
         public short JobMode { get; set; }
+        public int JobOwner { get; set; }
+
+
+        public short JobResponsible { get; set; }
         public TimeSpan JobTimeSpan { get; set; }
 
-
+        public TimeSpan JobOffsetTime { get; set; }
 
         public string Color { get; set; }
-
 
 
 

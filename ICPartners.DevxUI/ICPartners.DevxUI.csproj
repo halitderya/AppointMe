@@ -95,8 +95,13 @@
     <Compile Include="CustomAppointmentWindow.xaml.cs">
       <DependentUpon>CustomAppointmentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\StatusesState.cs" />
+    <Compile Include="UserControls\ComboBoxClass.cs" />
     <Compile Include="UserControls\CustomTile.cs" />
     <Compile Include="Preferences\ApplyThemeSettings.cs" />
+    <Compile Include="UserControls\CustomTile2.xaml.cs">
+      <DependentUpon>CustomTile2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCAppointment.xaml.cs">
       <DependentUpon>UCAppointment.xaml</DependentUpon>
     </Compile>
@@ -124,8 +129,8 @@
     <Compile Include="ViewModels\DisplayConverter.cs" />
     <Compile Include="ViewModels\HtmlColorCodeToColorConverter.cs" />
     <Compile Include="ViewModels\JobNameConverter.cs" />
-    <Compile Include="Windows\testwindow.xaml.cs">
-      <DependentUpon>testwindow.xaml</DependentUpon>
+    <Compile Include="Windows\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Page Include="CustomAppointmentWindow.xaml">
       <SubType>Designer</SubType>
@@ -143,6 +148,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\CustomTile2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\UCAppointment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,7 +180,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\testwindow.xaml">
+    <Page Include="Windows\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,6 +276,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Source\HamburgerMenu\maintenance_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\LoginMenu\icon_password.png" />
+    <Resource Include="Source\LoginMenu\icon_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\minimize_window.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

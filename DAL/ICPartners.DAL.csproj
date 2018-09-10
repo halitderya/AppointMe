@@ -168,6 +168,22 @@
     <Compile Include="Migrations\201808121252560_color4.Designer.cs">
       <DependentUpon>201808121252560_color4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808151733202_status1.cs" />
+    <Compile Include="Migrations\201808151733202_status1.Designer.cs">
+      <DependentUpon>201808151733202_status1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808301107012_joboffsetandresponsible.cs" />
+    <Compile Include="Migrations\201808301107012_joboffsetandresponsible.Designer.cs">
+      <DependentUpon>201808301107012_joboffsetandresponsible.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808302002551_resourcerole.cs" />
+    <Compile Include="Migrations\201808302002551_resourcerole.Designer.cs">
+      <DependentUpon>201808302002551_resourcerole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808302050072_jobowner.cs" />
+    <Compile Include="Migrations\201808302050072_jobowner.Designer.cs">
+      <DependentUpon>201808302050072_jobowner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ICPartnersContext.cs" />
@@ -286,6 +302,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808121252560_color4.resx">
       <DependentUpon>201808121252560_color4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808151733202_status1.resx">
+      <DependentUpon>201808151733202_status1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808301107012_joboffsetandresponsible.resx">
+      <DependentUpon>201808301107012_joboffsetandresponsible.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808302002551_resourcerole.resx">
+      <DependentUpon>201808302002551_resourcerole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808302050072_jobowner.resx">
+      <DependentUpon>201808302050072_jobowner.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

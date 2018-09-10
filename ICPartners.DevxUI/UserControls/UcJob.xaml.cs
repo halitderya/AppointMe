@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DevExpress.Xpf.Editors.Settings;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -30,6 +32,15 @@ namespace ICPartners.DevxUI.UserControls
             context = new DAL.ICPartnersContext();
             context.Jobs.Load();
             TableViewJob.ItemsSource = context.Jobs.Local;
+
+
+            ComboBoxClass stylist = new ComboBoxClass() { Text = "Stylist", Value = 1 };
+            ComboBoxClass beautician = new ComboBoxClass() { Text = "Beautician", Value = 2 };
+            ObservableCollection<ComboBoxClass> jobowner = new ObservableCollection<ComboBoxClass>();
+            jobowner.Add(stylist);
+            jobowner.Add(beautician);
+
+            ((ComboBoxEditSettings)TableViewJob.Columns["JobOwner"].EditSettings).ItemsSource = jobowner;
 
 
         }
