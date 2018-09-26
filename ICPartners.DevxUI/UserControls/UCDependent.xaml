@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:ICPartners.DevxUI.UserControls"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL" x:Class="ICPartners.DevxUI.UserControls.UCDependent"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" x:Class="ICPartners.DevxUI.UserControls.UCDependent"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -87,13 +88,26 @@
             </Grid>
 
         </Button>
-        <dxg:GridControl x:Name="TableViewDependent"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold"   ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}"   >
+        <dxg:GridControl x:Name="TableViewDependent"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Row" FontWeight="Bold"   ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}"   >
 
             <dxg:GridControl.View>
-                <dxg:TableView AutoWidth="False" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" />
+                <dxg:TableView AutoWidth="False" Name="tableview" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" ValidateRow="tableview_ValidateRow">
+                        <dxg:TableView.RowCellMenuCustomizations>
+                            <dxb:BarButtonItem Name="deleteRowItem" Content="Delete" 
+                           ItemClick="deleteRowItem_ItemClick"/>
+                            <dxb:BarButtonItem Name="copyCellDataItem" Content="Copy Cell Data" 
+                           ItemClick="copyCellDataItem_ItemClick" />
+
+                        </dxg:TableView.RowCellMenuCustomizations>
+                    </dxg:TableView>
 
             </dxg:GridControl.View>
-            <dxg:GridColumn FieldName="DependentID" IsSmart="True"/>
+            <dxg:GridColumn FieldName="Sequence" IsSmart="True" SortOrder="Ascending" SortIndex="0"  >
+                <dxg:GridColumn.EditSettings >
+                    <dxe:ComboBoxEditSettings DefaultButtonClick="sequenceedit_DefaultButtonClick" Name="sequenceedit"  IsTextEditable="False"/>
+                </dxg:GridColumn.EditSettings>
+
+            </dxg:GridColumn>
             <dxg:GridColumn FieldName="MainJob" IsSmart="True" >
                 <dxg:GridColumn.EditSettings>
                     <dxe:ComboBoxEditSettings DisplayMember="JobName" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource1}}" ValueMember="JobId"/>
@@ -104,11 +118,7 @@
                     <dxe:ComboBoxEditSettings x:Name="dependentedit" DisplayMember="JobName" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource2}}" ValueMember="JobId"/>
                 </dxg:GridColumn.EditSettings>
             </dxg:GridColumn>
-            <dxg:GridColumn FieldName="DefaultResource" IsSmart="True">
-                <dxg:GridColumn.EditSettings>
-                    <dxe:ComboBoxEditSettings DisplayMember="ResourceName" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource3}}" ValueMember="ResourceID"/>
-                </dxg:GridColumn.EditSettings>
-            </dxg:GridColumn>
+
 
 
         </dxg:GridControl>

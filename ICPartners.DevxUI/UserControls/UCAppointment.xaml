@@ -56,23 +56,23 @@
         </DataTemplate>
         <DataTemplate x:Key="appointmentContentTemplate">
             <dxschv:AppointmentContentPanel>
-                <dxschv:AppointmentContentPanel.Background>
-                    <SolidColorBrush Color="{Binding Appointment.CustomFields[JobRefId], Converter={StaticResource ColorConverter}, Mode=OneWay}"/>
-                </dxschv:AppointmentContentPanel.Background>
+                <!--<dxschv:AppointmentContentPanel.Background>
+                    <SolidColorBrush Color="{Binding Appointment.CustomFields[Job], Converter={StaticResource ColorConverter}, Mode=OneWay}"/>
+                </dxschv:AppointmentContentPanel.Background>-->
                 <dxschv:AppointmentContentPanel.IntervalSubject>
                     <dxschv:AppointmentIntervalSubjectPresenter/>
                 </dxschv:AppointmentContentPanel.IntervalSubject>
                 <dxschv:AppointmentContentPanel.Location>
                     <dxschv:AppointmentLocationPresenter />
                 </dxschv:AppointmentContentPanel.Location>
-                <dxschv:AppointmentContentPanel.Description>
+                <!--<dxschv:AppointmentContentPanel.Description>
                     <StackPanel Margin="2,2,2,2">
                         <dxschv:FastTextBlock Text="{Binding Appointment.CustomFields[CustomerRefId], Converter={ViewModels:CustomerNameConverter}}" FontWeight="Normal" Foreground="Black" FontSize="8" WordWrap="True"/>
 
-                        <dxschv:FastTextBlock Text="{Binding Appointment.CustomFields[JobRefId], Converter={ViewModels:JobNameConverter}}" FontWeight="Normal" FontStretch="ExtraCondensed" Foreground="Black" FontSize="8" WordWrap="True"/>
+                        <dxschv:FastTextBlock Text="{Binding Appointment.CustomFields[Job], Converter={ViewModels:JobNameConverter}}" FontWeight="Normal" FontStretch="ExtraCondensed" Foreground="Black" FontSize="8" WordWrap="True"/>
                         <dxschv:AppointmentDescriptionPresenter FontWeight="Normal" Margin="0,1,0,0" WordWrap="True"/>
                     </StackPanel>
-                </dxschv:AppointmentContentPanel.Description>
+                </dxschv:AppointmentContentPanel.Description>-->
                 <dxschv:AppointmentContentPanel.Images>
                     <dxschv:AppointmentImagesPanel/>
                 </dxschv:AppointmentContentPanel.Images>
@@ -130,10 +130,11 @@
                         Start="StartDate" 
                             Id="AppointmentID"
                         End="EndDate" 
+                            
                             StatusId="AppointmentStatus"
                         ResourceId="ResourceRefID"
                         >
-                            <dxsch:CustomFieldMapping Mapping="JobRefId" Name="JobRefId"  />
+                            <dxsch:CustomFieldMapping Mapping="Job" Name="Job"  />
                             <dxsch:CustomFieldMapping Mapping="CustomerRefId" Name="CustomerRefId"   />
                         </dxsch:AppointmentMappings>
                     </dxsch:DataSource.AppointmentMappings>

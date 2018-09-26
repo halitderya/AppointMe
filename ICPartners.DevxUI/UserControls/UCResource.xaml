@@ -7,7 +7,8 @@
                  xmlns:local1="clr-namespace:ICPartners.DevxUI.UserControls"  
 
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Migrations="clr-namespace:DAL.Migrations;assembly=ICPartners.DAL" xmlns:Specialized="clr-namespace:System.Collections.Specialized;assembly=System" x:Class="ICPartners.DevxUI.UserControls.UCResource"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Migrations="clr-namespace:DAL.Migrations;assembly=ICPartners.DAL" xmlns:Specialized="clr-namespace:System.Collections.Specialized;assembly=System"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" x:Class="ICPartners.DevxUI.UserControls.UCResource"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -83,11 +84,22 @@
         <dxg:GridControl x:Name="TableViewResource"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}"  >
 
             <dxg:GridControl.View>
-                <dxg:TableView AutoWidth="False" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" />
+                <dxg:TableView AutoWidth="False" Name="tableview" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" >
+                    <dxg:TableView.RowCellMenuCustomizations>
+                        <dxb:BarButtonItem Name="deleteRowItem" Content="Delete" 
+                           ItemClick="deleteRowItem_ItemClick"/>
+                        <dxb:BarButtonItem Name="copyCellDataItem" Content="Copy Cell Data" 
+                           ItemClick="copyCellDataItem_ItemClick" />
+
+                    </dxg:TableView.RowCellMenuCustomizations>
+
+
+
+
+                </dxg:TableView>
 
             </dxg:GridControl.View>
-            <dxg:GridColumn FieldName="ResourceID" IsSmart="True" Visible="False" />
-            <dxg:GridColumn FieldName="ResourceName" IsSmart="True" Header="Name"/>
+            <dxg:GridColumn FieldName="ResourceName" Header="Name" IsSmart="True" />
             <dxg:GridColumn FieldName="ResourceSurname" IsSmart="True" Header="Surname"/>
             <dxg:GridColumn FieldName="ResourceStartDate" IsSmart="True" Header="Start Date"/>
             <dxg:GridColumn FieldName="ResourcePhone" IsSmart="True" Header="Phone" />

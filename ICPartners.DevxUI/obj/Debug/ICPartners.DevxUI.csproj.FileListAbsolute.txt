@@ -152,3 +152,5 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.De
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.csproj.CopyComplete
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\CustomTile2.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\CustomTile2.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCCustomerHistory.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCCustomerHistory.baml

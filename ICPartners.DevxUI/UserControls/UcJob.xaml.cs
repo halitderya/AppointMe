@@ -1,8 +1,12 @@
-﻿using DevExpress.Xpf.Editors.Settings;
+﻿using DevExpress.Xpf.Bars;
+using DevExpress.Xpf.Core;
+using DevExpress.Xpf.Editors.Settings;
+using DevExpress.Xpf.Grid;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,14 +60,14 @@ namespace ICPartners.DevxUI.UserControls
             try
             {
                 AffectedRows = context.SaveChanges();
-                MessageBox.Show(AffectedRows.ToString() + " Record(s) updated.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                DXMessageBox.Show(AffectedRows.ToString() + " Record(s) updated.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 SaveButton.IsEnabled = false;
                 RevertButton.IsEnabled = false;
             }
-            catch
+            catch(Exception exception)
             {
-
-                MessageBox.Show("Update Failed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Debug.WriteLine(exception.Message);
+                DXMessageBox.Show("Update Failed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -87,5 +91,28 @@ namespace ICPartners.DevxUI.UserControls
                 return value == null ? null : value.ToString();
             }
         }
+        private void copyCellDataItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            GridCellMenuInfo menuInfo = tableview.GridMenu.MenuInfo as GridCellMenuInfo;
+            if (menuInfo != null && menuInfo.Row != null)
+            {
+                string text = "" +
+                    TableViewJob.GetCellValue(menuInfo.Row.RowHandle.Value, menuInfo.Column as GridColumn).ToString();
+                Clipboard.SetText(text);
+            }
+        }
+
+        private void deleteRowItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            GridCellMenuInfo menuInfo = tableview.GridMenu.MenuInfo as GridCellMenuInfo;
+            if (menuInfo != null && menuInfo.Row != null)
+            {
+                tableview.DeleteRow(menuInfo.Row.RowHandle.Value);
+            SaveButton.IsEnabled = true;
+
+            }
+        }
+
+    
     }
 }

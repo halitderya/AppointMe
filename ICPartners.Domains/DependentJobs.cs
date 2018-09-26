@@ -14,8 +14,9 @@ namespace ICPartners.Domains
         [Key]
         public int DependentID { get; set; }
 
+        public int Sequence { get; set; }
 
-    
+
         public int MainJob { get; set; }
 
         public int DependentJob { get; set; }

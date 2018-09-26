@@ -68,7 +68,7 @@
                 <DockPanel >
                     <dxe:DateEdit x:Name="editorStartDate" DockPanel.Dock="Left" Width="150" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_StartDate}}"/>
                     <dxe:TextEdit x:Name="editorStartTime" DockPanel.Dock="Left" Width="150" Margin="4,0,0,0" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_StartTime}}" Mask="t" />
-                    <dxe:TextEdit Name="TbAppointmentID" Margin="10,0,0,0" BorderBrush="Black" BorderThickness="2" Foreground="Black"></dxe:TextEdit>
+                    <dxe:TextEdit Name="TbAppointmentID" Margin="10,0,0,0" BorderBrush="Black" BorderThickness="2" Foreground="Black" Width="55"></dxe:TextEdit>
 
                     <!--<dxe:CheckEdit x:Name="editorAllDay" Margin="16,0,0,0" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_AllDay}}"/>-->
                 </DockPanel>
@@ -82,24 +82,27 @@
                 </DockPanel>
             </dxlc:LayoutItem>-->
             <dxlc:LayoutItem Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=LayoutItem_Description}}">
-                <Grid>
+                <Grid Name="AppointmentWindowMainGrid">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Name="colu" Width="3*"/>
                     </Grid.ColumnDefinitions>
-                
-                
-                <usercontrols:UCJobSelector Grid.Column="0">
-                    
-                </usercontrols:UCJobSelector>
-                <usercontrols:UCCustomerSelector x:Name="CSelector" Grid.Column="1">
-                        
-                </usercontrols:UCCustomerSelector>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <usercontrols:Jobselector Grid.Column="0"/>
+
+
+                    <usercontrols:UCCustomerSelector x:Name="CSelector" Grid.Column="1"/>
+
+                    <!--<usercontrols:UCCustomerHistory Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>-->
                 </Grid>
             </dxlc:LayoutItem>
 
 
-            <dx:SimpleButton x:Name="SaveButton" Content="save" Command="{Binding SaveAndCloseAppointmentCommand}"  HorizontalAlignment="Right"  Height="26" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Glyph="{dx:DXImage Image=Save_16x16.png}" />
+            <dx:SimpleButton x:Name="SaveButton" Content="save" Click="SaveButton_Click" Command="{Binding SaveAndCloseAppointmentCommand}"  HorizontalAlignment="Right"  Height="26" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Glyph="{dx:DXImage Image=Save_16x16.png}" />
                 <dx:SimpleButton x:Name="CancelButton" Content="close" Click="simpleButton2_Click" HorizontalAlignment="Right" Height="26" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Glyph="{dx:DXImage Image=Close_16x16.png}" />
 
             

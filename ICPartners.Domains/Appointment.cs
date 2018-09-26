@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -10,6 +11,14 @@ namespace ICPartners.Domains
 {
     public class Appointment
     {
+        public Appointment()
+        {
+            if (this.Job == null)
+            {
+                //this.Job = new Collection<Job>();
+            }
+
+        }
         #region body
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
@@ -59,35 +68,26 @@ namespace ICPartners.Domains
 
         }
 
-        public DateTime DeleteDate
-        {
-
-
-            get
-
-            {
-                return _currentdate;
-            }
-            set
-            {
-                if (AppointmentID == 0)
-                {
-                    _currentdate = value;
-                }
-            }
-        }
+        
         public string UpdatedBy { get; set; }
         #endregion
         public int ParentID { get; set; }
+        public string ColorBrand { get; set; }
+        public string ColorCode { get; set; }
+
+        public string ColorQuantity { get; set; }
+        public string ColorActivator { get; set; }
+        public string Remarks { get; set; }
+
+        
         #region relation
+ 
 
         [ForeignKey("Customer")]
         public int CustomerRefId { get; set; }
         public virtual Customer Customer { get; set; }
 
-        [ForeignKey("Job")]
-        public int JobRefId { get; set; }
-        public Job Job { get; set; }
+        public virtual ICollection<Job> Job { get; set; }
 
 
 

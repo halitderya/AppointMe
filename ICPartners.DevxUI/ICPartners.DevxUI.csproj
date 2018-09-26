@@ -108,6 +108,9 @@
     <Compile Include="UserControls\UCCustomer.xaml.cs">
       <DependentUpon>UCCustomer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCCustomerHistory.xaml.cs">
+      <DependentUpon>UCCustomerHistory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCCustomerSelector.xaml.cs">
       <DependentUpon>UCCustomerSelector.xaml</DependentUpon>
     </Compile>
@@ -157,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\UCCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UCCustomerHistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

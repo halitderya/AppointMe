@@ -10,6 +10,7 @@ using ICPartners.Logic.Appointment;
 using ICPartners.DevxUI.UserControls;
 using System.Windows.Media;
 using ICPartners.DevxUI.Models;
+using System.Collections.Generic;
 
 namespace ICPartners.DevxUI.ViewModels
 {
@@ -17,11 +18,30 @@ namespace ICPartners.DevxUI.ViewModels
 #region declarations
     public class AppointmentViewModel
     {
+        UnitOfWork unitOfWork = new UnitOfWork(new ICPartnersContext());
         public static string[] StatusLabels = { "Open", "In Progress", "Cancelled", "Waiting For Update", "Completed - Waiting Payment", "Completed - Payment Made" };
         public static Brush[] StatusBrushes = { new SolidColorBrush(Colors.Yellow), new SolidColorBrush(Colors.Blue), new SolidColorBrush(Colors.Red), new SolidColorBrush(Colors.Orange), new SolidColorBrush(Colors.GreenYellow), new SolidColorBrush(Colors.Green) };
         
         public virtual ObservableCollection<Resource> Resources { get; set; }
-        public virtual ObservableCollection<Appointment> Appointments { get; set; }
+        private ObservableCollection<Appointment> _appointment;
+        public virtual ObservableCollection<Appointment> Appointments {
+
+            get
+            {
+                //if (_appointment.LastOrDefault().Job == null)
+                //{
+                //    _appointment.LastOrDefault().Job = new List<Job>();
+                //}
+                return this._appointment;
+            }
+            set
+            {
+
+                this._appointment = value;
+
+            }
+
+        }
         public virtual ObservableCollection<Job> Jobs { get; set; }
         public virtual ObservableCollection<DependentJobs> DependentJobs { get; set; }
         public virtual ObservableCollection<StatusesState> StatusState { get; set; }
@@ -35,48 +55,89 @@ namespace ICPartners.DevxUI.ViewModels
         {
             if (appointment != null)
             {
+                //Edit appointment
             }
-            
-            if(this.Appointments.Any(x=>x.AppointmentID==0))
-            if (JobSelector.JobtoCreate > 0)
-            {
-                Appointment NewMainAppointment = this.Appointments.FirstOrDefault(x => x.AppointmentID == 0);
-                this.Appointments.Remove(NewMainAppointment);
-                NewMainAppointment.JobRefId = JobSelector.JobtoCreate;
-                NewMainAppointment.EndDate = NewMainAppointment.StartDate.Add(Jobs.FirstOrDefault(x => x.JobId == NewMainAppointment.JobRefId).JobTimeSpan);
-                NewMainAppointment.CustomerRefId = CustomerSelector.CustomerToSelect;
-                this.Appointments.Add(NewMainAppointment);
-                var ddf = IcPartnersContext.SaveChanges();
-                JobSelector.JobtoCreate = 0;
+            List<Domains.DependentJobs> DependentJobs = new List<Domains.DependentJobs>();
+            List<Domains.Job> JobList = new List<Domains.Job>();
+            Appointment oldAppointment = this.Appointments.FirstOrDefault(x => x.AppointmentID == 0);
+            if (this.Appointments.Any(x => x.AppointmentID == 0))
+                if (JobSelector.JobtoCreate > 0)
+                {
+                    Appointment NewMainAppointment = new Appointment()
+                    {
+                        AppointmentID = 0,
+                        Resource = oldAppointment.Resource,
+                        AppointmentStatus = 0,
+                        StartDate = oldAppointment.StartDate,
+                        EndDate = oldAppointment.EndDate,
+                        ResourceRefID = oldAppointment.ResourceRefID,
+                        CustomerRefId = CustomerSelector.CustomerToSelect,
+                        Job = new List<Job>()
+                        
+
+                    };
+                        
+
+                    
+                    
+                    
+                    this.Appointments.Remove(oldAppointment);
+                    //NewMainAppointment.CustomerRefId = CustomerSelector.CustomerToSelect;
+                    Job JobWillCreate = unitOfWork.jobRepository.GetByID(JobSelector.JobtoCreate);
+                   
+                    if (unitOfWork.DependentRepository.GetAll().Any(x => x.MainJob == JobWillCreate.JobId))
+                    {
+                        DependentJobs = unitOfWork.DependentRepository.GetAll().Where(x => x.MainJob == JobWillCreate.JobId).OrderBy(x => x.Sequence).ToList();
+
+                        foreach (var item in DependentJobs)
+                        {
+                            JobList.Add(unitOfWork.jobRepository.GetByID(item.MainJob));
+                        }
+
+                        //Is the any offset job in the list?
+                        if (JobList.Any(x => x.JobOffsetTime.TotalSeconds > 0))
+                        {
+                            //DECIDE- Multi-job with offset.
+                        }
+                        else
+                        {
+                         
+
+                            //DECIDE- Multi-job without offset
 
 
-                //if (JobSelector.DependentJobs.Count > 0)
-                //{
-                //    foreach (var item in JobSelector.DependentJobs)
-                //    {
-                //        Appointment app = new Appointment();
-                //        app.StartDate = Appointments.LastOrDefault().EndDate;
 
-                //        app.JobRefId = Jobs.FirstOrDefault(x => x.JobId == item.DependentJob).JobId;
-                //        app.CustomerRefId = Appointments.LastOrDefault().CustomerRefId;
-                //        app.EndDate = app.StartDate.Add(Jobs.FirstOrDefault(x => x.JobId == app.JobRefId).JobTimeSpan);
-                //        if (item.DefaultResource == 0)
-                //        {
-                //            app.ResourceRefID = Appointments.LastOrDefault().ResourceRefID;
-                //        }
-                //        else
-                //        {
-                //            app.ResourceRefID = item.DefaultResource;
+                        }
 
-                //        }
-                //        Appointments.Add(app);
-                //        //UCAppointment ucAppointment = new UCAppointment();
-                //        //ucAppointment.MainScheduler.RefreshData();
 
-                //    }
-                //    JobSelector.DependentJobs = null;
-                //}
-            }
+                    }
+                    else
+
+                    {
+
+
+
+                        NewMainAppointment.Job.Add(IcPartnersContext.Jobs.FirstOrDefault(x=>x.JobId==JobSelector.JobtoCreate));
+                       
+                        //List<Job> job= new List<Job>();
+                        //job.Add(unitOfWork.jobRepository.GetByID(JobSelector.JobtoCreate));
+                        //NewMainAppointment.Job= job;
+
+                        
+
+                        //DECIDE- Single Job.
+
+                    }
+
+
+
+                    this.Appointments.Add(NewMainAppointment);
+
+
+                 
+                }
+            JobSelector.JobtoCreate = 0;
+
             IcPartnersContext.SaveChanges();
         }
 
@@ -99,8 +160,9 @@ namespace ICPartners.DevxUI.ViewModels
       Jobs = IcPartnersContext.Jobs.Local;
       IcPartnersContext.DependentJobs.Load();
       DependentJobs = IcPartnersContext.DependentJobs.Local;
-            IcPartnersContext.Appointments.Load();
+            IcPartnersContext.Appointments.Include("Job").Load();
             Appointments = IcPartnersContext.Appointments.Local;
+
 
 
 

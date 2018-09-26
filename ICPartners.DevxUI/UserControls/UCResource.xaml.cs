@@ -1,5 +1,7 @@
-﻿using DevExpress.Xpf.Core;
+﻿using DevExpress.Xpf.Bars;
+using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Editors.Settings;
+using DevExpress.Xpf.Grid;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -93,5 +95,29 @@ namespace ICPartners.DevxUI.UserControls
                 DXMessageBox.Show("Update Failed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void copyCellDataItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            GridCellMenuInfo menuInfo = tableview.GridMenu.MenuInfo as GridCellMenuInfo;
+            if (menuInfo != null && menuInfo.Row != null)
+            {
+                string text = "" +
+                    TableViewResource.GetCellValue(menuInfo.Row.RowHandle.Value, menuInfo.Column as GridColumn).ToString();
+                Clipboard.SetText(text);
+            }
+        }
+
+        private void deleteRowItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            GridCellMenuInfo menuInfo = tableview.GridMenu.MenuInfo as GridCellMenuInfo;
+            if (menuInfo != null && menuInfo.Row != null)
+            {
+                tableview.DeleteRow(menuInfo.Row.RowHandle.Value);
+                SaveButton.IsEnabled = true;
+
+            }
+        }
+
+
+
     }
 }

@@ -184,6 +184,34 @@
     <Compile Include="Migrations\201808302050072_jobowner.Designer.cs">
       <DependentUpon>201808302050072_jobowner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809122002016_colorhistory.cs" />
+    <Compile Include="Migrations\201809122002016_colorhistory.Designer.cs">
+      <DependentUpon>201809122002016_colorhistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809130926417_appointmentfields.cs" />
+    <Compile Include="Migrations\201809130926417_appointmentfields.Designer.cs">
+      <DependentUpon>201809130926417_appointmentfields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809171427260_sequence.cs" />
+    <Compile Include="Migrations\201809171427260_sequence.Designer.cs">
+      <DependentUpon>201809171427260_sequence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809201354220_multiplejobs.cs" />
+    <Compile Include="Migrations\201809201354220_multiplejobs.Designer.cs">
+      <DependentUpon>201809201354220_multiplejobs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809201740325_multiplejob.cs" />
+    <Compile Include="Migrations\201809201740325_multiplejob.Designer.cs">
+      <DependentUpon>201809201740325_multiplejob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809201743458_multiplejob2.cs" />
+    <Compile Include="Migrations\201809201743458_multiplejob2.Designer.cs">
+      <DependentUpon>201809201743458_multiplejob2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809231051287_jobvirtual.cs" />
+    <Compile Include="Migrations\201809231051287_jobvirtual.Designer.cs">
+      <DependentUpon>201809231051287_jobvirtual.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ICPartnersContext.cs" />
@@ -314,6 +342,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808302050072_jobowner.resx">
       <DependentUpon>201808302050072_jobowner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809122002016_colorhistory.resx">
+      <DependentUpon>201809122002016_colorhistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809130926417_appointmentfields.resx">
+      <DependentUpon>201809130926417_appointmentfields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809171427260_sequence.resx">
+      <DependentUpon>201809171427260_sequence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809201354220_multiplejobs.resx">
+      <DependentUpon>201809201354220_multiplejobs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809201740325_multiplejob.resx">
+      <DependentUpon>201809201740325_multiplejob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809201743458_multiplejob2.resx">
+      <DependentUpon>201809201743458_multiplejob2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809231051287_jobvirtual.resx">
+      <DependentUpon>201809231051287_jobvirtual.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

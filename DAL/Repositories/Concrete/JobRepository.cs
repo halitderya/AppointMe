@@ -36,8 +36,8 @@ namespace ICPartners.DAL.Repositories.Concrete
 
         public int JobTaskCount(int JobID)
         {
-            var test= Context.DependentJobs.Select(x => x.MainJob == JobID).Count();
-            return test;
+            return Context.DependentJobs.Select(x => x.MainJob == JobID).Count();
+            
         }
     }
 }

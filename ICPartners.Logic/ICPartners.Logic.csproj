@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppointmentFactory\AppointmentFactory.cs" />
+    <Compile Include="CustomerFactory\CustomerForAppointment.cs" />
     <Compile Include="Appointment\AppointmentSelector.cs" />
     <Compile Include="Appointment\JobSelector.cs" />
+    <Compile Include="CustomerFactory\CustomerFactory.cs" />
+    <Compile Include="CustomerFactory\ICustomer.cs" />
     <Compile Include="Resource\ResourceSelector.cs" />
     <Compile Include="UserManagement\CurrentUser.cs" />
     <Compile Include="Customer\CustomerSelector.cs" />

@@ -16,7 +16,7 @@ namespace ICPartners.DAL
 
         public ICPartnersContext():base("ConStr")
         {
-            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.LazyLoadingEnabled = true;
             this.Configuration.ProxyCreationEnabled = false;
         }
 

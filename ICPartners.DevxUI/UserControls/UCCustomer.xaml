@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:ICPartners.DevxUI.UserControls"
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL" x:Class="ICPartners.DevxUI.UserControls.UCCustomer"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" x:Class="ICPartners.DevxUI.UserControls.UCCustomer"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -71,20 +72,25 @@
         <dxg:GridControl x:Name="TableViewCustomer"  Grid.ColumnSpan="3" Grid.Row="1" SelectionMode="Cell" FontWeight="Bold"   >
 
             <dxg:GridControl.View>
-                <dxg:TableView AutoWidth="False"  NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" >
-                    
-                </dxg:TableView>
+                <dxg:TableView AutoWidth="False" Name="tableview"  NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" >
+                        <dxg:TableView.RowCellMenuCustomizations>
+                            <dxb:BarButtonItem Name="deleteRowItem" Content="Delete" 
+                           ItemClick="deleteRowItem_ItemClick"/>
+                            <dxb:BarButtonItem Name="copyCellDataItem" Content="Copy Cell Data" 
+                           ItemClick="copyCellDataItem_ItemClick" />
+
+                        </dxg:TableView.RowCellMenuCustomizations>
+                    </dxg:TableView>
 
             </dxg:GridControl.View>
-            <dxg:GridColumn FieldName="CustomerID" IsSmart="True"/>
-            <dxg:GridColumn FieldName="CustomerTitle" IsSmart="True"/>
-            <dxg:GridColumn FieldName="CustomerName" IsSmart="True"/>
-            <dxg:GridColumn FieldName="CustomerSurname" IsSmart="True"/>
-            <dxg:GridColumn FieldName="CustomerEmail" IsSmart="True"/>
-            <dxg:GridColumn FieldName="CustomerPhone" IsSmart="True"/>
-            <dxg:GridColumn FieldName="CustomerAddress" IsSmart="True"/>
-            <dxg:GridColumn FieldName="CustomerPostCode" IsSmart="True"/>
-            <dxg:GridColumn FieldName="CustomerCity" IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerTitle" Header="Title" IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerName" Header="Name" IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerSurname" Header="Surname" IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerEmail" Header="E-Mail" IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerPhone" Header="Phone" IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerAddress" Header="Address" IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerPostCode" Header="Post Code" IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerCity" Header="City" IsSmart="True"/>
 
 
         </dxg:GridControl>

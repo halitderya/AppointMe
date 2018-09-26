@@ -11,7 +11,8 @@
              xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"  
              x:Class="ICPartners.DevxUI.UserControls.UCCustomerSelector"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             
+             d:DesignHeight="450" d:DesignWidth="800" >
     <UserControl.Resources>
         <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource" ContextType="{x:Type DAL:ICPartnersContext}" Path="Customers">
             <dx:DesignDataManager.DesignData>
@@ -68,7 +69,21 @@
             <dxe:TextEdit x:Name="CustomerEMail"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" />
             <dxe:TextEdit x:Name="CustomerAddress" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="0" />
             <dxe:TextEdit x:Name="CustomerCity"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="1" />
-            <DataGrid x:Name="CustomerHistory" AutoGenerateColumns="True" AutoGeneratingColumn="CustomerHistory_AutoGeneratingColumn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Grid.ColumnSpan="2"/>
+            <!--<dxg:GridControl x:Name="CustomerHistory"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Grid.ColumnSpan="2" ClipboardCopyMode="IncludeHeader" AllowLiveDataShaping="True">
+                <dxg:GridControl.View>
+                    <dxg:TableView EditFormCaptionBinding="{x:Null}" UseLegacyColumnVisibleIndexes="False" ShowGroupPanel="False" AllowEditing="False"/>
+                </dxg:GridControl.View>
+                <dxg:GridColumn FieldName="Date" Width="auto"/>
+                <dxg:GridColumn FieldName="Job" Width="auto"/>
+                <dxg:GridColumn FieldName="Resource" Width="auto"/>
+                <dxg:GridColumn FieldName="Color Brand" Width="auto"/>
+                <dxg:GridColumn FieldName="Color Activator" Width="auto"/>
+                <dxg:GridColumn FieldName="Color Quantity" Width="auto"/>
+                <dxg:GridColumn FieldName="Remarks" Width="auto"/>
+            </dxg:GridControl>-->
+
+
+
 
         </Grid>
     </Grid>

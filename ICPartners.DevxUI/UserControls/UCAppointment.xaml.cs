@@ -100,8 +100,15 @@ namespace ICPartners.DevxUI.UserControls
         private void MainScheduler_InitNewAppointment(object sender, DevExpress.Xpf.Scheduling.AppointmentItemEventArgs e)
         {
             ICPartners.Logic.Resource.ResourceSelector.SelectedResource = unitOfWork.resourceRepository.GetByID((int)(sender as DevExpress.Xpf.Scheduling.SchedulerControl).SelectedResource.Id);
+            //ICPartners.Logic.Appointment.AppointmentSelector.SelectedNewAppointment = new Domains.Appointment {
+            //    AppointmentID = 0,
+            //    AppointmentStatus = 0,
+            //    StartDate = e.Appointment.Start,
+            //    Job = (e.Appointment.CustomFields[0])
 
-            e.Appointment.StatusId = 0;
+               
+            //};
+            //e.Appointment.StatusId = 0;
         }
 
         private void MainScheduler_Loaded(object sender, RoutedEventArgs e)
@@ -116,6 +123,8 @@ namespace ICPartners.DevxUI.UserControls
                 ICPartners.Logic.Appointment.AppointmentSelector.AppointmentToEdit = unitOfWork.appointmentRepository.GetByID((int)e.Appointment.Id);
 
             }
+
+            
 
         }
 
