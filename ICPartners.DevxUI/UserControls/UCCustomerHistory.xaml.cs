@@ -1,11 +1,12 @@
 ﻿using ICPartners.DAL;
 using ICPartners.Domains;
 using ICPartners.Logic.Customer;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
-
 namespace ICPartners.DevxUI.UserControls
 {
  
@@ -14,12 +15,14 @@ namespace ICPartners.DevxUI.UserControls
         public static IEnumerable<Appointment> history;
         UnitOfWork unitOfWork = new UnitOfWork(new ICPartnersContext());
         public static DataTable HistoryTable= new DataTable();
-
+        ICPartnersContext context = new ICPartnersContext();
         public UCCustomerHistory(int customer)
         {
 
             InitializeComponent();
-            history = unitOfWork.appointmentRepository.GetAppointmentByCustomer(customer).ToList();
+
+            //history = unitOfWork.appointmentRepository.GetAppointmentByCustomer(customer).ToList();
+            
             Populatehistory();
         }
 
@@ -43,26 +46,35 @@ namespace ICPartners.DevxUI.UserControls
                 HistoryTable.Columns.Add("Remarks");
             }
 
-
-            foreach (var item in history)
+            if (history!=null)
             {
-                string JobNameCombi=null;
-
-                foreach (var ite in item.Job)
+                try
                 {
-                    JobNameCombi = JobNameCombi+" + " +  ite.JobName;
-                }
+                    foreach (var item in history)
+                    {
+                        string JobNameCombi = null;
 
-                HistoryTable.Rows.Add
-                (
-                item.CreateDate.ToShortDateString().ToString(),
-                JobNameCombi.ToString(),
-                item.Resource.ResourceName.ToString(),
-                item.ColorBrand ?? "",
-                item.ColorCode ?? " ",
-                item.ColorQuantity ?? " ",
-                item.Remarks ?? " "
-                );
+                        foreach (var ite in item.Job)
+                        {
+                            JobNameCombi = JobNameCombi + " + " + ite.JobName;
+                        }
+
+                        HistoryTable.Rows.Add
+                        (
+                        item.CreateDate.ToShortDateString().ToString(),
+                        JobNameCombi.ToString(),
+                        item.Resource.ResourceName.ToString(),
+                        item.ColorBrand ?? "",
+                        item.ColorCode ?? " ",
+                        item.ColorQuantity ?? " ",
+                        item.Remarks ?? " "
+                        );
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
             }
             CustomerHistoryGrid.ItemsSource = HistoryTable.AsDataView();
         }

@@ -212,6 +212,14 @@
     <Compile Include="Migrations\201809231051287_jobvirtual.Designer.cs">
       <DependentUpon>201809231051287_jobvirtual.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809291638135_Nav_Prop_Job.cs" />
+    <Compile Include="Migrations\201809291638135_Nav_Prop_Job.Designer.cs">
+      <DependentUpon>201809291638135_Nav_Prop_Job.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809291712142_App_Job_Nav_propTest.cs" />
+    <Compile Include="Migrations\201809291712142_App_Job_Nav_propTest.Designer.cs">
+      <DependentUpon>201809291712142_App_Job_Nav_propTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ICPartnersContext.cs" />
@@ -363,6 +371,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809231051287_jobvirtual.resx">
       <DependentUpon>201809231051287_jobvirtual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809291638135_Nav_Prop_Job.resx">
+      <DependentUpon>201809291638135_Nav_Prop_Job.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809291712142_App_Job_Nav_propTest.resx">
+      <DependentUpon>201809291712142_App_Job_Nav_propTest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

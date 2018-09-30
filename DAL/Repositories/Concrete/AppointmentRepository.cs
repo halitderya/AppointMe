@@ -29,8 +29,14 @@ namespace ICPartners.DAL.Repositories.Concrete
 
         public IEnumerable<Appointment> GetAppointmentByCustomer(int customerID) 
         {
-            
-            var temp = Context.Appointments.Include("Customer").Include("Resource").Include("Job").Where(x=>x.CustomerRefId==customerID);
+
+            var temp = Context.Appointments.Include("Customer").Include("Resource").Include("Job").Where(x => x.CustomerRefId == customerID);
+
+
+
+
+
+
             return temp;
         }
 

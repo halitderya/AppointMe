@@ -91,7 +91,6 @@ namespace ICPartners.DevxUI {
             customerwithappointment.CustomerCity = CSelector.CustomerCity.Text;
             CustomerFactory factory = new CustomerFactory();
             return factory.CreateCustomerForAppointment(customerwithappointment);
-            
 
         }
 
