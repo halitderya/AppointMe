@@ -20,9 +20,9 @@ namespace ICPartners.DevxUI.UserControls
         {
 
             InitializeComponent();
+            if(customer!=0)
+            history = unitOfWork.appointmentRepository.GetAppointmentByCustomer(customer).ToList();
 
-            //history = unitOfWork.appointmentRepository.GetAppointmentByCustomer(customer).ToList();
-            
             Populatehistory();
         }
 
@@ -53,22 +53,31 @@ namespace ICPartners.DevxUI.UserControls
                     foreach (var item in history)
                     {
                         string JobNameCombi = null;
-
-                        foreach (var ite in item.Job)
+                        if (item.Jobs.Count > 1)
                         {
-                            JobNameCombi = JobNameCombi + " + " + ite.JobName;
+                            foreach (var ite in item.Jobs)
+                            {
+                                JobNameCombi = JobNameCombi + " + " + ite.JobName;
+                            }
+                        }
+                        else
+                        {
+                            JobNameCombi = item.Jobs.FirstOrDefault().JobName;
                         }
 
-                        HistoryTable.Rows.Add
-                        (
-                        item.CreateDate.ToShortDateString().ToString(),
-                        JobNameCombi.ToString(),
-                        item.Resource.ResourceName.ToString(),
-                        item.ColorBrand ?? "",
-                        item.ColorCode ?? " ",
-                        item.ColorQuantity ?? " ",
-                        item.Remarks ?? " "
-                        );
+                        if (JobNameCombi!=null)
+                        {
+                            HistoryTable.Rows.Add
+                            (
+                            item.CreateDate.ToShortDateString().ToString(),
+                            JobNameCombi.ToString(),
+                            item.Resource.ResourceName.ToString(),
+                            item.ColorBrand ?? "",
+                            item.ColorCode ?? " ",
+                            item.ColorQuantity ?? " ",
+                            item.Remarks ?? " "
+                            );
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -77,8 +86,9 @@ namespace ICPartners.DevxUI.UserControls
                 }
             }
             CustomerHistoryGrid.ItemsSource = HistoryTable.AsDataView();
+            
         }
-
+        
         
      
 

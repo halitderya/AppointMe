@@ -57,6 +57,8 @@ namespace ICPartners.DevxUI {
         private void window_Closed(object sender, EventArgs e)
         {
             AppointmentSelector.AppointmentToEdit = null;
+        
+            
         }
 
         private void window_Loaded(object sender, RoutedEventArgs e)
@@ -132,6 +134,7 @@ namespace ICPartners.DevxUI {
             {
                 CustomerSelector.CustomerToSelect = CreateCustomerWithID();
             }
+
             //Domains.Appointment appointment = new Domains.Appointment();
             //Domains.Job job2 = new Domains.Job();
             //job2 = UnitOfWork.jobRepository.GetByID(JobSelector.JobtoCreate);

@@ -134,7 +134,7 @@
                             StatusId="AppointmentStatus"
                         ResourceId="ResourceRefID"
                         >
-                            <dxsch:CustomFieldMapping Mapping="Job" Name="Job"  />
+                            <dxsch:CustomFieldMapping Mapping="Jobs" Name="Jobs"  />
                             <dxsch:CustomFieldMapping Mapping="CustomerRefId" Name="CustomerRefId"   />
                         </dxsch:AppointmentMappings>
                     </dxsch:DataSource.AppointmentMappings>

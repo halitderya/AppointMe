@@ -7,12 +7,14 @@ using System.Text;
 using System.Drawing;
 
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace ICPartners.Domains
 {
     public class Job
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int JobId { get; set; }
         public string JobName { get; set; }
         public string JobDescription { get; set; }
@@ -33,7 +35,7 @@ namespace ICPartners.Domains
 
 
 
-        public virtual Appointment Appointments { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
 
         public ICollection<DependentJobs> DependentJobs { get; set; }
     }

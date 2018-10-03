@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201809291712142_App_Job_Nav_propTest.Designer.cs">
       <DependentUpon>201809291712142_App_Job_Nav_propTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810031043339_Jobapphopefinal.cs" />
+    <Compile Include="Migrations\201810031043339_Jobapphopefinal.Designer.cs">
+      <DependentUpon>201810031043339_Jobapphopefinal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ICPartnersContext.cs" />
@@ -377,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809291712142_App_Job_Nav_propTest.resx">
       <DependentUpon>201809291712142_App_Job_Nav_propTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810031043339_Jobapphopefinal.resx">
+      <DependentUpon>201810031043339_Jobapphopefinal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
