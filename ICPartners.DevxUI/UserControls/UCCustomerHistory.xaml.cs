@@ -62,7 +62,11 @@ namespace ICPartners.DevxUI.UserControls
                         }
                         else
                         {
-                            JobNameCombi = item.Jobs.FirstOrDefault().JobName;
+                            if (item.Jobs!=null && item.Jobs.Count!=0)
+                            {
+
+                                JobNameCombi = item.Jobs.FirstOrDefault().JobName;
+                            }
                         }
 
                         if (JobNameCombi!=null)

@@ -35,7 +35,7 @@ namespace ICPartners.Domains
 
 
 
-        public ICollection<Appointment> Appointments { get; set; }
+        public virtual ICollection<Appointment> Appointments { get; set; }
 
         public ICollection<DependentJobs> DependentJobs { get; set; }
     }

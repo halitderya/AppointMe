@@ -224,6 +224,14 @@
     <Compile Include="Migrations\201810031043339_Jobapphopefinal.Designer.cs">
       <DependentUpon>201810031043339_Jobapphopefinal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810032100309_fluentapi.cs" />
+    <Compile Include="Migrations\201810032100309_fluentapi.Designer.cs">
+      <DependentUpon>201810032100309_fluentapi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810032103556_fluentapi2.cs" />
+    <Compile Include="Migrations\201810032103556_fluentapi2.Designer.cs">
+      <DependentUpon>201810032103556_fluentapi2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ICPartnersContext.cs" />
@@ -242,7 +250,9 @@
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -384,6 +394,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810031043339_Jobapphopefinal.resx">
       <DependentUpon>201810031043339_Jobapphopefinal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810032100309_fluentapi.resx">
+      <DependentUpon>201810032100309_fluentapi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810032103556_fluentapi2.resx">
+      <DependentUpon>201810032103556_fluentapi2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

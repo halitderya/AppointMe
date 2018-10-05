@@ -149,7 +149,12 @@ namespace ICPartners.DevxUI.UserControls
                     e.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
                     e.SetError("This order already defined in this scope!");
                 }
-
+                else if (dependentJobs.Any(x => x.DependentJob == row.MainJob))
+                {
+                    e.IsValid = false;
+                    e.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical;
+                    e.SetError("MainJob already defined as dependent in this scope!");
+                }
                 else
                 {
 

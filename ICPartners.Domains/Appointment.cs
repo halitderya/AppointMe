@@ -13,10 +13,12 @@ namespace ICPartners.Domains
     {
         public Appointment()
         {
-            if (this.Jobs == null)
-            {
-                this.Jobs = new Collection<Job>();
-            }
+            this.Jobs = new HashSet<Job>();
+
+            //if (this.Jobs == null)
+            //{
+            //    this.Jobs = new Collection<Job>();
+            //}
         }
         #region body
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -85,7 +87,7 @@ namespace ICPartners.Domains
         [ForeignKey("Customer")]
         public int CustomerRefId { get; set; }
         public virtual Customer Customer { get; set; }
-        public ICollection<Job> Jobs {get; set; }
+        public virtual ICollection<Job> Jobs {get; set; }
 
 
 

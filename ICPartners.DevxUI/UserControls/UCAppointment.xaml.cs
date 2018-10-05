@@ -63,22 +63,30 @@ namespace ICPartners.DevxUI.UserControls
 
         private void MainScheduler_ItemPropertyChanged(object sender, DevExpress.Xpf.Scheduling.ItemPropertyChangedEventArgs e)
         {
-            //if (e.PropertyName == "StatusId")
-            //{
-            //    var ItemToChange = e.Item as AppointmentItem;
-            //    if (ItemToChange != null)
-            //        try
-            //        {
+            var ItemToChange = e.Item as AppointmentItem;
 
-            //            unitOfWork.appointmentRepository.GetByID((int)ItemToChange.Id).AppointmentStatus = Convert.ToInt16(ItemToChange.StatusId);
-            //            unitOfWork.Complete();
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            Console.Write(ex.Message);
+            switch (e.PropertyName)
+            {
+                case"StatusId"
+                        unitOfWork.appointmentRepository.GetByID((int)ItemToChange.Id).AppointmentStatus = Convert.ToInt16(ItemToChange.StatusId);
+                    break;
+            }
+            if(e.PropertyName == "StatusId")
+            
+                if (ItemToChange != null)
+                    try
+                    {
 
-            //        }
-            //}
+                        unitOfWork.appointmentRepository.GetByID((int)ItemToChange.Id).AppointmentStatus = Convert.ToInt16(ItemToChange.StatusId);
+                        unitOfWork.Complete();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.Write(ex.Message);
+
+                    }
+            
+            unitOfWork.Complete();
         }
         public void RefreshScheduler(Domains.Appointment oldAppointment, Domains.Appointment newAppointment)
         {
@@ -130,6 +138,7 @@ namespace ICPartners.DevxUI.UserControls
 
         private void MainScheduler_AppointmentsUpdated_1(object sender, EventArgs e)
         {
+    
 
         }
 
