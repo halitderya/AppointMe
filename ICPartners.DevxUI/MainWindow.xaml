@@ -10,7 +10,7 @@
              WindowState="Normal"
                  x:Class="ICPartners.DevxUI.MainWindow"
         Title="MainWindow" Height="350" Width="525" 
-                 WindowStyle="None"
+                 WindowStyle="SingleBorderWindow"
         dx:ThemeManager.ThemeName="VS2017Light"
         xmlns:UserControls="clr-namespace:ICPartners.DevxUI.UserControls"
                  xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"

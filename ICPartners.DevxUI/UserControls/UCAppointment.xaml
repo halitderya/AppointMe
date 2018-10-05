@@ -54,6 +54,7 @@
 
 
         </DataTemplate>
+        
         <DataTemplate x:Key="appointmentContentTemplate">
             <dxschv:AppointmentContentPanel>
                 <dxschv:AppointmentContentPanel.Background>
@@ -96,7 +97,7 @@
             <ColumnDefinition MaxWidth="180" MinWidth="180" />
         </Grid.ColumnDefinitions>
 
-        <dxsch:SchedulerControl x:Name="MainScheduler" AppointmentsUpdated="MainScheduler_AppointmentsUpdated_1" AppointmentWindowShowing="MainScheduler_AppointmentWindowShowing" Loaded="MainScheduler_Loaded" ItemPropertyChanged="MainScheduler_ItemPropertyChanged" InitNewAppointment="MainScheduler_InitNewAppointment"  HorizontalAlignment="Left" Grid.Column="0"  VerticalAlignment="Top" GroupType="Resource"  BeforeAppointmentItemDelete="SchedulerControl_BeforeAppointmentItemDelete" AllowAppointmentConflicts="False" >
+        <dxsch:SchedulerControl AllowAppointmentDragBetweenResources="True" x:Name="MainScheduler" AppointmentsUpdated="MainScheduler_AppointmentsUpdated_1" AppointmentWindowShowing="MainScheduler_AppointmentWindowShowing" Loaded="MainScheduler_Loaded" ItemPropertyChanged="MainScheduler_ItemPropertyChanged" InitNewAppointment="MainScheduler_InitNewAppointment"  HorizontalAlignment="Left" Grid.Column="0"  VerticalAlignment="Top" GroupType="Resource"  BeforeAppointmentItemDelete="SchedulerControl_BeforeAppointmentItemDelete" Drop="MainScheduler_Drop" AppointmentDrop="MainScheduler_AppointmentDrop"   >
 
 
 

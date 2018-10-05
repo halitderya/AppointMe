@@ -24,14 +24,13 @@ namespace ICPartners.DevxUI.UserControls
     /// Interaction logic for UCAppointment.xaml
     /// </summary>
 
-   
     public partial class UCAppointment : UserControl
     {
 
 
 
-
         UnitOfWork unitOfWork = new UnitOfWork(new ICPartnersContext());
+        
         public UCAppointment()
         {
 
@@ -63,30 +62,60 @@ namespace ICPartners.DevxUI.UserControls
 
         private void MainScheduler_ItemPropertyChanged(object sender, DevExpress.Xpf.Scheduling.ItemPropertyChangedEventArgs e)
         {
-            var ItemToChange = e.Item as AppointmentItem;
-
-            switch (e.PropertyName)
+            string[] Important = new string[] { "StatusId", "Start", "End" , "ResourceIds" };
+            var fe = e.PropertyName;
+            //unitOfWork.appointmentRepository.GetByID((int)ItemToChange.Id).AppointmentStatus = Convert.ToInt16(ItemToChange.StatusId);
+            if ((e.Item is AppointmentItem ItemToChange) && (Array.Exists(Important, x => x.Equals(e.PropertyName.ToString()))))
             {
-                case"StatusId"
-                        unitOfWork.appointmentRepository.GetByID((int)ItemToChange.Id).AppointmentStatus = Convert.ToInt16(ItemToChange.StatusId);
-                    break;
+                
+                        Domains.Appointment appointment = unitOfWork.appointmentRepository.GetByID((ItemToChange.SourceObject as Domains.Appointment).AppointmentID);
+
+                switch (e.PropertyName)
+                {
+                    case "StatusId":
+                        appointment.AppointmentStatus = Convert.ToInt16(ItemToChange.StatusId);
+                        Console.WriteLine("statusid");
+                        break;
+                    case "Start":
+
+                        appointment.StartDate = ItemToChange.Start;
+                        appointment.EndDate = ItemToChange.Start + ItemToChange.Duration;
+                        Console.WriteLine("start+end");
+                        break;
+                    case "End":
+                        Console.WriteLine("end");
+                        
+                        appointment.EndDate = ItemToChange.End;
+
+                        break;
+                    case "ResourceIds":
+                        Console.WriteLine("resource");
+                        appointment.ResourceRefID = Logic.Resource.ResourceSelector.DroppedResource;
+                        break;
+
+                }
+
+
+                unitOfWork.Complete();
+                ;
             }
-            if(e.PropertyName == "StatusId")
-            
-                if (ItemToChange != null)
-                    try
-                    {
 
-                        unitOfWork.appointmentRepository.GetByID((int)ItemToChange.Id).AppointmentStatus = Convert.ToInt16(ItemToChange.StatusId);
-                        unitOfWork.Complete();
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.Write(ex.Message);
 
-                    }
-            
-            unitOfWork.Complete();
+
+            //if (ItemToChange != null)
+            //    try
+            //    {
+
+            //        unitOfWork.appointmentRepository.GetByID((int)ItemToChange.Id).AppointmentStatus = Convert.ToInt16(ItemToChange.StatusId);
+            //        unitOfWork.Complete();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.Write(ex.Message);
+
+            //    }
+
+            //unitOfWork.Complete();
         }
         public void RefreshScheduler(Domains.Appointment oldAppointment, Domains.Appointment newAppointment)
         {
@@ -142,6 +171,14 @@ namespace ICPartners.DevxUI.UserControls
 
         }
 
-       
+        private void MainScheduler_Drop(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void MainScheduler_AppointmentDrop(object sender, AppointmentItemDragDropEventArgs e)
+        {
+            ICPartners.Logic.Resource.ResourceSelector.DroppedResource = (int)e.HitResource.Id ;
+        }
     }
 }
