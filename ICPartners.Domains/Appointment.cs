@@ -90,10 +90,10 @@ namespace ICPartners.Domains
         public virtual ICollection<Job> Jobs {get; set; }
 
 
-
         [ForeignKey("Resource")]
         public int ResourceRefID { get; set; }
         public virtual Resource Resource { get; set; }
+
 
         #endregion
     }

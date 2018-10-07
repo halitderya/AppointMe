@@ -224,13 +224,13 @@
     <Compile Include="Migrations\201810031043339_Jobapphopefinal.Designer.cs">
       <DependentUpon>201810031043339_Jobapphopefinal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810032100309_fluentapi.cs" />
-    <Compile Include="Migrations\201810032100309_fluentapi.Designer.cs">
-      <DependentUpon>201810032100309_fluentapi.cs</DependentUpon>
+    <Compile Include="Migrations\201810061820335_resourcerefid_removed.cs" />
+    <Compile Include="Migrations\201810061820335_resourcerefid_removed.Designer.cs">
+      <DependentUpon>201810061820335_resourcerefid_removed.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810032103556_fluentapi2.cs" />
-    <Compile Include="Migrations\201810032103556_fluentapi2.Designer.cs">
-      <DependentUpon>201810032103556_fluentapi2.cs</DependentUpon>
+    <Compile Include="Migrations\201810062020533_resourcerefid_replaced.cs" />
+    <Compile Include="Migrations\201810062020533_resourcerefid_replaced.Designer.cs">
+      <DependentUpon>201810062020533_resourcerefid_replaced.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -395,11 +395,11 @@
     <EmbeddedResource Include="Migrations\201810031043339_Jobapphopefinal.resx">
       <DependentUpon>201810031043339_Jobapphopefinal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810032100309_fluentapi.resx">
-      <DependentUpon>201810032100309_fluentapi.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810061820335_resourcerefid_removed.resx">
+      <DependentUpon>201810061820335_resourcerefid_removed.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810032103556_fluentapi2.resx">
-      <DependentUpon>201810032103556_fluentapi2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810062020533_resourcerefid_replaced.resx">
+      <DependentUpon>201810062020533_resourcerefid_replaced.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

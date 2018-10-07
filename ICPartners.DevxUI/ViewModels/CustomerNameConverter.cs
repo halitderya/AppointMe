@@ -17,10 +17,11 @@ namespace ICPartners.DevxUI.ViewModels
 
             if (value != null)
             {
-                UnitOfWork unitOfWork = new UnitOfWork(new ICPartnersContext());
-                var repo = unitOfWork.CustomerRepository.GetByID((int)value);
+                ICPartnersContext context = new ICPartnersContext();
+                var repo2 = context.Customers.FirstOrDefault(x => x.CustomerID == (int)value);
+                //var repo = unitOfWork.CustomerRepository.GetByID((int)value);
 
-                string CustomerFullName = repo.CustomerName.ToUpper() +" "+ repo.CustomerSurname.ToUpper();
+                string CustomerFullName = repo2.CustomerName.ToUpper() +" "+ repo2.CustomerSurname.ToUpper();
                 return CustomerFullName;
 
 

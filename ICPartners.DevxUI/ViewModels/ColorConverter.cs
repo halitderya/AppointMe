@@ -18,26 +18,46 @@ namespace ICPartners.DevxUI.ViewModels
         {
             HashSet<Job> list = (HashSet<Job>)value;
 
-        
-                string oldcolor = list.FirstOrDefault().Color;
-                if (oldcolor.ToString().StartsWith("0x"))
-                    return String.Concat("#", oldcolor.ToString().Remove(0, 1));
-                else
-                    return oldcolor;
-        
+            if (list!=null)
+            {
+
+                if (list.Count>0)
+                {
+                    string oldcolor = list.FirstOrDefault().Color;
+                    if (oldcolor.ToString().StartsWith("0x"))
+                        return String.Concat("#", oldcolor.ToString().Remove(0, 1));
+                    else
+                        return oldcolor;
+                }
+                return null;
+            }
+            else
+            {
+                return null;
+            }
 
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             HashSet<Job> list = (HashSet<Job>)value;
 
-          
-                string oldcolor = list.FirstOrDefault().Color;
-                if (oldcolor.ToString().StartsWith("0x"))
-                    return String.Concat("#", oldcolor.ToString().Remove(0, 1));
-                else
-                    return oldcolor;
-           
+
+            if (list!=null)
+            {
+                if (list.Count>0)
+                {
+                    string oldcolor = list.FirstOrDefault().Color;
+                    if (oldcolor.ToString().StartsWith("0x"))
+                        return String.Concat("#", oldcolor.ToString().Remove(0, 1));
+                    else
+                        return oldcolor;
+                }
+                return null;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider)

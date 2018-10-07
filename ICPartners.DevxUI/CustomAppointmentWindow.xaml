@@ -10,77 +10,55 @@
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+                 xmlns:local1="clr-namespace:ICPartners.DevxUI"  
+
+
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
                     xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL"
                     xmlns:usercontrols="clr-namespace:ICPartners.DevxUI.UserControls" 
+                 xmlns:converter="clr-namespace:ICPartners.DevxUI.ViewModels"
+
                     x:Class="ICPartners.DevxUI.CustomAppointmentWindow"
                     mc:Ignorable="d"
                     Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Window}}"
                     x:Name="window" Title="New Window" Loaded="window_Loaded" Closed="window_Closed" WindowStyle="None" MinWidth="1024" MinHeight="600" >
 
-    <!--<Window.Resources>
-        <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource1" ContextType="{x:Type DAL:ICPartnersContext}" Path="Appointments">
-            <dx:DesignDataManager.DesignData>
-                <dx:DesignDataSettings RowCount="5"/>
-            </dx:DesignDataManager.DesignData>
-            
-        </dx:EntitySimpleDataSource>
-    </Window.Resources>-->
 
     <dxmvvm:Interaction.Behaviors>
         <dxmvvm:CurrentWindowService ClosingCommand="{Binding WindowClosingCommand}"/>
         <dxmvvm:KeyToCommand KeyGesture="Esc" EventName="KeyDown" MarkRoutedEventsAsHandled="True" Command="{DXCommand Execute=@e(window).Close()}"/>
     </dxmvvm:Interaction.Behaviors>
+    <dx:DXWindow.Resources>
+        <!--<dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource" ContextType="{x:Type DAL:ICPartnersContext}" Path="Customers">
+            <dx:DesignDataManager.DesignData>
+                <dx:DesignDataSettings RowCount="5"/>
+            </dx:DesignDataManager.DesignData>
+        </dx:EntitySimpleDataSource>-->
+        <dx:EntityServerModeDataSource x:Key="EntityServerModeDataSource" ContextType="{x:Type DAL:ICPartnersContext}" DefaultSorting="CustomerName DESC" KeyExpression="CustomerID" Path="Customers">
+            <dx:DesignDataManager.DesignData>
+                <dx:DesignDataSettings RowCount="5"/>
+            </dx:DesignDataManager.DesignData>
+        </dx:EntityServerModeDataSource>
+        <dxe:EnumItemsSource x:Key="EnumItemsSource" EnumType="{x:Type local1:TitleList}"/>
 
+
+
+    </dx:DXWindow.Resources>
     <DockPanel>
-        <!--<dxr:RibbonControl DockPanel.Dock="Top"  Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=RibbonControl}}">
-            <dxr:RibbonControl.ToolbarItems>
-                <dxb:BarButtonItem x:Name="toolbar_barItemSave" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Actions_Save}}"/>
-                <dxb:BarButtonItem x:Name="toolbar_barItemPrevious" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Actions_Previous}}"/>
-                <dxb:BarButtonItem x:Name="toolbar_barItemNext" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Actions_Next}}"/>
-                <dxb:BarButtonItem x:Name="toolbar_barItemDelete" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Actions_Delete}}"/>
-            </dxr:RibbonControl.ToolbarItems>
-            <dxr:RibbonDefaultPageCategory Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Categories_Default}}">
-                <dxr:RibbonPage  Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Pages_Appointment}}">
-                    <dxr:RibbonPageGroup Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Groups_Actions}}">
-                        --><!--<dxb:BarButtonItem x:Name="barItemSaveAndClose" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Actions_SaveAndClose}}"/>--><!--
-                        <dxb:BarButtonItem x:Name="barItemDelete" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Actions_Delete}}"/>
-                    </dxr:RibbonPageGroup>
-                    <dxr:RibbonPageGroup Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Groups_Options}}">
-                        <dxb:BarEditItem x:Name="barItemLabel" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Options_Label}}"/>
-                        <dxb:BarEditItem x:Name="barItemStatus" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Options_Status}}"/>
-                        <dxb:BarEditItem x:Name="barItemResources" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Options_Resources}}"/>
-                        <dxb:BarEditItem x:Name="barItemResource" Style="{DynamicResource {dxscht:AppointmentWindowCommandBarThemeKey ResourceKey=Items_Options_Resource}}"/>
-                    </dxr:RibbonPageGroup>
-                    <dxr:RibbonPageGroup x:Name="ribbon" Caption="Job">
-                        <dxb:BarEditItem x:Name="jobdropdown" Content="Job" EditValue="{Binding CustomFields[jobdropdown],Mode=TwoWay}" EditWidth="100" RibbonStyle="Default" >
-                            <dxb:BarEditItem.EditSettings>
-                                <dxe:ComboBoxEditSettings DisplayMember="JobName"  ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource2}}" ValueMember="JobId"/>
-                            </dxb:BarEditItem.EditSettings>
-                        </dxb:BarEditItem>
-                    </dxr:RibbonPageGroup>
-                </dxr:RibbonPage>
-            </dxr:RibbonDefaultPageCategory>
-        </dxr:RibbonControl>-->
+
 
         <dxlc:LayoutControl x:Name="validationContainer" Orientation="Vertical" dxe:ValidationService.IsValidationContainer="True">
-            <dxlc:LayoutItem x:Name="layoutStartTime" Width="400" HorizontalAlignment="Left"  Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=LayoutItem_StartTime}}">
+            <dxlc:LayoutItem x:Name="layoutStartTime" Width="600" HorizontalAlignment="Left"  Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=LayoutItem_StartTime}}">
                 <DockPanel >
                     <dxe:DateEdit x:Name="editorStartDate" DockPanel.Dock="Left" Width="150" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_StartDate}}"/>
                     <dxe:TextEdit x:Name="editorStartTime" DockPanel.Dock="Left" Width="150" Margin="4,0,0,0" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_StartTime}}" Mask="t" />
-                    <dxe:TextEdit Name="TbAppointmentID" Margin="10,0,0,0" BorderBrush="Black" BorderThickness="2" Foreground="Black" Width="55"></dxe:TextEdit>
+                    <!--<dxe:TextEdit Name="TbAppointmentID" Margin="10,0,0,0" BorderBrush="Black" BorderThickness="2" Foreground="Black" Width="55"></dxe:TextEdit>-->
+                    <dxe:TextEdit Name="fefe" Margin="10,0,0,0" DataContext="{Binding Appointment.CustomFields[Jobs]}" EditValue="{Binding JobName}" BorderBrush="Black" BorderThickness="2" Foreground="Black" Width="55"></dxe:TextEdit>
 
-                    <!--<dxe:CheckEdit x:Name="editorAllDay" Margin="16,0,0,0" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_AllDay}}"/>-->
                 </DockPanel>
             </dxlc:LayoutItem>
-            
-            <!--<dxlc:LayoutItem x:Name="layoutEndTime"  Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=LayoutItem_EndTime}}">
-                <DockPanel>
-                    <dxe:DateEdit x:Name="editorEndDate" DockPanel.Dock="Left" Width="150" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_EndDate}}"/>
-                    <dxe:TextEdit x:Name="editorEndTime" DockPanel.Dock="Left" Width="150" Margin="4,0,0,0" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_EndTime}}"/>
-                    <dxsch:TimeZoneEdit x:Name="editorTimeZone" Margin="16,0,0,0" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_TimeZone}}"/>
-                </DockPanel>
-            </dxlc:LayoutItem>-->
+
+
             <dxlc:LayoutItem Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=LayoutItem_Description}}">
                 <Grid Name="AppointmentWindowMainGrid">
                     <Grid.ColumnDefinitions>
@@ -92,22 +70,85 @@
                         <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
 
-                    <usercontrols:Jobselector Grid.Column="0"/>
+                    <usercontrols:Jobselector Tag="Bindind " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"/>
 
 
-                    <usercontrols:UCCustomerSelector x:Name="CSelector" Grid.Column="1"/>
+                    <!--<usercontrols:UCCustomerSelector x:Name="CSelector" Grid.Column="1"/>-->
+
 
                     <!--<usercontrols:UCCustomerHistory Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>-->
+
+                    <!--Customer Selector Starts Here-->
+
+                    <Grid x:Name="CustomerMainGrid" Grid.Column="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+
+                            <RowDefinition Height="6*"/>
+
+                        </Grid.RowDefinitions>
+
+                        <dxe:ComboBoxEdit Grid.Row="0" x:Name="CustomerList" DisplayTextConverter="{converter:DisplayConverter}" EditValue="{Binding Appointment.CustomFields[CustomerRefId]}" EditValueChanged="CustomerList_EditValueChanged" SelectedIndexChanged="CustomerList_SelectedIndexChanged" AddNewButtonPlacement="EditBox"  AutoComplete="True" FilterCondition="Contains" FindButtonPlacement="Popup"  FindMode="FindClick" IsTextEditable="False" FontSize="14"   DisplayMember="CustomerName"  ItemsSource="{Binding Data, Source={StaticResource EntityServerModeDataSource}}" ValueMember="CustomerID" >
+                            <dxe:ComboBoxEdit.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding CustomerID , Converter={converter:DisplayConverter}}"/>
+                                    </StackPanel>
+                                    
+                                </DataTemplate>
+                            </dxe:ComboBoxEdit.ItemTemplate>
+                        </dxe:ComboBoxEdit>
+
+                        <Grid x:Name="CustomerDetailGrid" IsEnabled="True" Grid.Row="1" Grid.ColumnSpan="2" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="5*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Row="0" x:Name="CustomerNameGrid" Grid.ColumnSpan="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <dxe:ComboBoxEdit x:Name="CustomerTitle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"  ItemsSource="{Binding Source={StaticResource EnumItemsSource}}"  />
+                                <dxe:TextEdit x:Name="CustomerName" EditValue="{Binding CustomerID,Converter={converter:CustomerNameConverter},ConverterParameter=Name}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="1" />
+                                <dxe:TextEdit x:Name="CustomerSurname"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" />
+                            </Grid>
+                            <dxe:TextEdit x:Name="CustomerPhone"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"  Grid.Column="0" />
+                            <dxe:TextEdit x:Name="CustomerEMail"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" />
+                            <dxe:TextEdit x:Name="CustomerAddress" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="0" />
+                            <dxe:TextEdit x:Name="CustomerCity"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="1" />
+
+
+
+
+                        </Grid>
+                    </Grid>
+
+
+
+
+
+
+
+
+                    <!--customer selector ends here-->
+
                 </Grid>
             </dxlc:LayoutItem>
 
 
-            <dx:SimpleButton x:Name="SaveButton" Content="save" Click="SaveButton_Click" Command="{Binding SaveAndCloseAppointmentCommand}"  HorizontalAlignment="Right"  Height="26" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Glyph="{dx:DXImage Image=Save_16x16.png}" />
-                <dx:SimpleButton x:Name="CancelButton" Content="close" Click="simpleButton2_Click" HorizontalAlignment="Right" Height="26" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Glyph="{dx:DXImage Image=Close_16x16.png}" />
+            <dx:SimpleButton x:Name="SaveButton"  Content="save" Click="SaveButton_Click" Command="{Binding SaveAndCloseAppointmentCommand}"  HorizontalAlignment="Right"  Height="26" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Glyph="{dx:DXImage Image=Save_16x16.png}" />
+            <dx:SimpleButton x:Name="CancelButton" Content="close" Click="simpleButton2_Click" HorizontalAlignment="Right" Height="26" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Glyph="{dx:DXImage Image=Close_16x16.png}" />
 
-            
+
         </dxlc:LayoutControl>
-        
+
     </DockPanel>
 </dx:DXWindow>
-

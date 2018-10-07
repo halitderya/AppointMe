@@ -36,29 +36,31 @@ namespace ICPartners.DevxUI.UserControls
         {
             AllJoblist = unitOfWork.jobRepository.GetAll().ToList();
             //DistrictDependentJobs = unitOfWork.DependentRepository.GetAll().GroupBy(x => x.DependentJob).Select(g => g.First()).ToList();
-
             foreach (var item in AllJoblist)
             {
-                if (item.JobOwner == ICPartners.Logic.Resource.ResourceSelector.SelectedResource.ResourceDuty)
+                if (ICPartners.Logic.Resource.ResourceSelector.SelectedResource!=null)
                 {
-                    CustomTile2 tile = new CustomTile2();
+                    if (item.JobOwner == ICPartners.Logic.Resource.ResourceSelector.SelectedResource.ResourceDuty)
+                    {
+                        CustomTile2 tile = new CustomTile2();
 
-                    tile.Content = item.JobName;
-                    tile.Size = TileSize.ExtraSmall;
-                    tile.VerticalContentAlignment = VerticalAlignment.Center;
-                    tile.HorizontalContentAlignment = HorizontalAlignment.Center;
-                    tile.JobID = item.JobId;
-                    Color backtile = (Color)ColorConverter.ConvertFromString(item.Color.ToString());
-                    tile.Background = new SolidColorBrush(backtile);
-                    Color fronttile= (PerceivedBrightness(backtile) > 130 ? Color.FromRgb(20,20,20) : Color.FromRgb(230,230,230));
-                    tile.Foreground = new SolidColorBrush(fronttile);
-                    tile.Click += new EventHandler(button_click);
-                    MainButtonList.Add(tile);
-                    spmainservice1.Children.Add(tile);
-                    spdependentservice.IsEnabled = false;
-                    JobSelector.JobtoCreate = tile.JobID;
+                        tile.Content = item.JobName;
+                        tile.Size = TileSize.ExtraSmall;
+                        tile.VerticalContentAlignment = VerticalAlignment.Center;
+                        tile.HorizontalContentAlignment = HorizontalAlignment.Center;
+                        tile.JobID = item.JobId;
+                        Color backtile = (Color)ColorConverter.ConvertFromString(item.Color.ToString());
+                        tile.Background = new SolidColorBrush(backtile);
+                        Color fronttile = (PerceivedBrightness(backtile) > 130 ? Color.FromRgb(20, 20, 20) : Color.FromRgb(230, 230, 230));
+                        tile.Foreground = new SolidColorBrush(fronttile);
+                        tile.Click += new EventHandler(button_click);
+                        MainButtonList.Add(tile);
+                        spmainservice1.Children.Add(tile);
+                        spdependentservice.IsEnabled = false;
+                        JobSelector.JobtoCreate = tile.JobID;
+                    }
                 }
-                
+
             }
             if (MainButtonList.Count != 0)
             {

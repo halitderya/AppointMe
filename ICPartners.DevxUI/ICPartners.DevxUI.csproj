@@ -111,9 +111,6 @@
     <Compile Include="UserControls\UCCustomerHistory.xaml.cs">
       <DependentUpon>UCCustomerHistory.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UCCustomerSelector.xaml.cs">
-      <DependentUpon>UCCustomerSelector.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\UCDependent.xaml.cs">
       <DependentUpon>UCDependent.xaml</DependentUpon>
     </Compile>
@@ -164,10 +161,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\UCCustomerHistory.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\UCCustomerSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -2,6 +2,7 @@
 using DevExpress.Xpf.Scheduler;
 using DevExpress.Xpf.Scheduling;
 using DevExpress.XtraScheduler;
+using DevExpress.XtraScheduler.Services;
 using ICPartners.DAL;
 using System;
 using System.Collections.Generic;
@@ -39,10 +40,12 @@ namespace ICPartners.DevxUI.UserControls
 
             dayView1.ResourcesPerPage = unitOfWork.resourceRepository.GetAll().Count();
 
-
+         
 
 
         }
+
+       
 
         private void SchedulerControl_BeforeAppointmentItemDelete(object sender, DevExpress.Xpf.Scheduling.AppointmentItemCancelEventArgs e)
         {
@@ -53,12 +56,6 @@ namespace ICPartners.DevxUI.UserControls
             }
         }
 
-        private void MainScheduler_AppointmentsUpdated(object sender, EventArgs e)
-        {
-
-            
-            
-        }
 
         private void MainScheduler_ItemPropertyChanged(object sender, DevExpress.Xpf.Scheduling.ItemPropertyChangedEventArgs e)
         {
@@ -90,7 +87,7 @@ namespace ICPartners.DevxUI.UserControls
                         break;
                     case "ResourceIds":
                         Console.WriteLine("resource");
-                        appointment.ResourceRefID = Logic.Resource.ResourceSelector.DroppedResource;
+                        //appointment.ResourceRefID = Logic.Resource.ResourceSelector.DroppedResource;
                         break;
 
                 }
@@ -101,37 +98,6 @@ namespace ICPartners.DevxUI.UserControls
             }
 
 
-
-            //if (ItemToChange != null)
-            //    try
-            //    {
-
-            //        unitOfWork.appointmentRepository.GetByID((int)ItemToChange.Id).AppointmentStatus = Convert.ToInt16(ItemToChange.StatusId);
-            //        unitOfWork.Complete();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Console.Write(ex.Message);
-
-            //    }
-
-            //unitOfWork.Complete();
-        }
-        public void RefreshScheduler(Domains.Appointment oldAppointment, Domains.Appointment newAppointment)
-        {
-            //MainScheduler.AppointmentItems.Remove(new AppointmentItem {
-
-            //    Id = oldAppointment.AppointmentID
-
-            //});
-            //MainScheduler.AppointmentItems.Add(new AppointmentItem
-            //{
-            //    Id = oldAppointment.AppointmentID,
-            //    StatusId=6
-                
-               
-            //});
-            //unitOfWork.Complete();
 
         }
         private void MainScheduler_InitNewAppointment(object sender, DevExpress.Xpf.Scheduling.AppointmentItemEventArgs e)
@@ -148,37 +114,36 @@ namespace ICPartners.DevxUI.UserControls
             //e.Appointment.StatusId = 0;
         }
 
-        private void MainScheduler_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void MainScheduler_AppointmentWindowShowing(object sender, AppointmentWindowShowingEventArgs e)
         {
             if (e.Appointment != null && e.Appointment.Id != null)
             {
                 ICPartners.Logic.Appointment.AppointmentSelector.AppointmentToEdit = unitOfWork.appointmentRepository.GetByID((int)e.Appointment.Id);
-
+                ICPartners.Logic.Resource.ResourceSelector.SelectedResource = unitOfWork.resourceRepository.GetByID((int)((e.Appointment as AppointmentItem).ResourceId));
             }
 
             
 
         }
 
-        private void MainScheduler_AppointmentsUpdated_1(object sender, EventArgs e)
-        {
-    
 
-        }
 
-        private void MainScheduler_Drop(object sender, DragEventArgs e)
-        {
-
-        }
 
         private void MainScheduler_AppointmentDrop(object sender, AppointmentItemDragDropEventArgs e)
         {
             ICPartners.Logic.Resource.ResourceSelector.DroppedResource = (int)e.HitResource.Id ;
+        }
+
+        private void MainScheduler_AppointmentsUpdated(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void MainScheduler_ItemsCollectionChanged(object sender, ItemsCollectionChangedEventArgs e)
+        {
+            
+                
         }
     }
 }

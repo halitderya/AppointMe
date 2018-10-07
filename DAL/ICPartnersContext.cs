@@ -16,7 +16,7 @@ namespace ICPartners.DAL
 
         public ICPartnersContext():base("ConStr")
         {
-            this.Configuration.LazyLoadingEnabled = true;
+            this.Configuration.LazyLoadingEnabled = false;
             this.Configuration.ProxyCreationEnabled = false;
         }
 
@@ -29,9 +29,24 @@ namespace ICPartners.DAL
 
         public override int SaveChanges()
         {
+
+            var add = this.ChangeTracker.Entries().Where(e => e.State == EntityState.Added);
+
             return base.SaveChanges();
         }
-      
+
+     
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Appointment>()
+        //        .HasOptional(a => a.UserDetail)
+        //        .WithOptionalDependent()
+        //        .WillCascadeOnDelete(true);
+        //}
+
+
 
     }
-}
+    }
+
