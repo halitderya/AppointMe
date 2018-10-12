@@ -17,22 +17,26 @@ namespace ICPartners.DevxUI.ViewModels
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            HashSet<Job> list = (HashSet<Job>)value;
-
-            if (list.Count == 1)
+            if (value!=null)
             {
-                return list.FirstOrDefault().JobName;
+                HashSet<Job> list = (HashSet<Job>)value;
 
-            }
-            else
-            {
-                string Jobname = "";
-                foreach (var item in list)
+                if (list.Count == 1)
                 {
-                    Jobname +=  item.JobName + " ";
+                    return list.FirstOrDefault().JobName;
+
                 }
-                return Jobname;
+                else
+                {
+                    string Jobname = "";
+                    foreach (var item in list)
+                    {
+                        Jobname += item.JobName + " ";
+                    }
+                    return Jobname;
+                }
             }
+            return null;
 
         }
         void Recall()

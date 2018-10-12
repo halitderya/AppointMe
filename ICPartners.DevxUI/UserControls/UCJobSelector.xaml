@@ -5,36 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ICPartners.DevxUI.UserControls"
              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
-             xmlns:Custom="http://schemas.devexpress.com/winfx/2008/xaml/printingcore/xtraprinting/native/presentation" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:core="http://schemas.devexpress.com/winfx/2008/xaml/core" x:Class="ICPartners.DevxUI.UserControls.Jobselector"
+             xmlns:Custom="http://schemas.devexpress.com/winfx/2008/xaml/printingcore/xtraprinting/native/presentation" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:core="http://schemas.devexpress.com/winfx/2008/xaml/core" x:Class="ICPartners.DevxUI.UserControls.UCJobselector"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Height="auto" Width="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    Loaded="UserControl_Loaded"         
+    d:DesignHeight="450" d:DesignWidth="800" Height="auto" Width="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+   
     
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-
-
-            <RowDefinition Height="6*"/>
-
-            <RowDefinition Height="1*"/>
-
-            <RowDefinition Height="6*"/>
-
-
-
-
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
        
-        <dxlc:TileLayoutControl Orientation="Horizontal" Grid.ColumnSpan="4" Padding="0" Margin="0" x:Name="spmainservice1"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
+        <dxlc:TileLayoutControl Padding="10,10,10,10" Orientation="Horizontal" Grid.ColumnSpan="4" x:Name="spmainservice1"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
    
-        <dxlc:TileLayoutControl x:Name="spdependentservice" Padding="0" Margin="0" Grid.ColumnSpan="4" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal"/>
 
     </Grid>
 </UserControl>

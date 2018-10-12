@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="ICPartners.DevxUI.UserControls.UCStatusSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ICPartners.DevxUI.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="600">
+    <Grid>
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal" >
+            
+            <local:CustomTile2 Size="Small" Content="Open" FontWeight="Black" FontSize="26" Background="GreenYellow" Foreground="Black"/>
+            <local:CustomTile2 Size="Small" Content="Cancelled" Background="Red" FontWeight="Black" FontSize="26" Foreground="Black" />
+            <local:CustomTile2 Size="Small"  FontSize="26" Background="Orange"  Foreground="Black" >
+                <local:CustomTile2.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock FontSize="26" Text="Completed" FontWeight="Black" Foreground="Black"/>
+                        <TextBlock FontSize="26" Text="(Waiting" Foreground="Black"/>
+                        <TextBlock FontSize="26" Text="Payment)"  Foreground="Black"/>
+
+                    </StackPanel>
+                    
+                </local:CustomTile2.Content>
+                
+            </local:CustomTile2>
+            <local:CustomTile2 Size="Small" Content="Completed" FontWeight="Black" Background="ForestGreen" Foreground="Black" FontSize="26" />
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

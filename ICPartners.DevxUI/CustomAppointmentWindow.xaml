@@ -1,4 +1,4 @@
-<dx:DXWindow
+<dx:DXWindow xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -16,24 +16,20 @@
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
                     xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL"
                     xmlns:usercontrols="clr-namespace:ICPartners.DevxUI.UserControls" 
+
                  xmlns:converter="clr-namespace:ICPartners.DevxUI.ViewModels"
 
                     x:Class="ICPartners.DevxUI.CustomAppointmentWindow"
                     mc:Ignorable="d"
                     Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Window}}"
-                    x:Name="window" Title="New Window" Loaded="window_Loaded" Closed="window_Closed" WindowStyle="None" MinWidth="1024" MinHeight="600" >
+                    x:Name="window" Title="New Window"  Loaded="window_Loaded" Closed="window_Closed" WindowStyle="None" MinWidth="1024" MinHeight="600" Activated="window_Activated" Initialized="window_Initialized" >
 
-
+        
     <dxmvvm:Interaction.Behaviors>
         <dxmvvm:CurrentWindowService ClosingCommand="{Binding WindowClosingCommand}"/>
         <dxmvvm:KeyToCommand KeyGesture="Esc" EventName="KeyDown" MarkRoutedEventsAsHandled="True" Command="{DXCommand Execute=@e(window).Close()}"/>
     </dxmvvm:Interaction.Behaviors>
     <dx:DXWindow.Resources>
-        <!--<dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource" ContextType="{x:Type DAL:ICPartnersContext}" Path="Customers">
-            <dx:DesignDataManager.DesignData>
-                <dx:DesignDataSettings RowCount="5"/>
-            </dx:DesignDataManager.DesignData>
-        </dx:EntitySimpleDataSource>-->
         <dx:EntityServerModeDataSource x:Key="EntityServerModeDataSource" ContextType="{x:Type DAL:ICPartnersContext}" DefaultSorting="CustomerName DESC" KeyExpression="CustomerID" Path="Customers">
             <dx:DesignDataManager.DesignData>
                 <dx:DesignDataSettings RowCount="5"/>
@@ -42,41 +38,69 @@
         <dxe:EnumItemsSource x:Key="EnumItemsSource" EnumType="{x:Type local1:TitleList}"/>
 
 
-
     </dx:DXWindow.Resources>
+    
     <DockPanel>
 
 
         <dxlc:LayoutControl x:Name="validationContainer" Orientation="Vertical" dxe:ValidationService.IsValidationContainer="True">
-            <dxlc:LayoutItem x:Name="layoutStartTime" Width="600" HorizontalAlignment="Left"  Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=LayoutItem_StartTime}}">
+            <dxlc:LayoutItem x:Name="layoutStartTime" Width="700" HorizontalAlignment="Left"  Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=LayoutItem_StartTime}}">
                 <DockPanel >
                     <dxe:DateEdit x:Name="editorStartDate" DockPanel.Dock="Left" Width="150" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_StartDate}}"/>
                     <dxe:TextEdit x:Name="editorStartTime" DockPanel.Dock="Left" Width="150" Margin="4,0,0,0" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_StartTime}}" Mask="t" />
-                    <!--<dxe:TextEdit Name="TbAppointmentID" Margin="10,0,0,0" BorderBrush="Black" BorderThickness="2" Foreground="Black" Width="55"></dxe:TextEdit>-->
-                    <dxe:TextEdit Name="fefe" Margin="10,0,0,0" DataContext="{Binding Appointment.CustomFields[Jobs]}" EditValue="{Binding JobName}" BorderBrush="Black" BorderThickness="2" Foreground="Black" Width="55"></dxe:TextEdit>
+                    <!--<dxe:TextEdit Name="fefe" Margin="10,0,0,0" DataContext="{Binding Appointment.CustomFields[Jobs]}" EditValue="{Binding JobName}" BorderBrush="Black" BorderThickness="2" Foreground="Black" Width="55"></dxe:TextEdit>-->
+                    <dxe:TextEdit x:Name="updatetime" DockPanel.Dock="Left" Width="150" Margin="4,0,0,0" EditValue="{Binding Appointment.CustomFields[UpdateDate] }" Mask="t" />
 
                 </DockPanel>
             </dxlc:LayoutItem>
 
 
             <dxlc:LayoutItem Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=LayoutItem_Description}}">
-                <Grid Name="AppointmentWindowMainGrid">
+                <Grid Name="AppointmentWindowMainGrid" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Name="colu" Width="3*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5*"/>
+                        <RowDefinition Height="1*"/>
                         <RowDefinition Height="2*"/>
+
                     </Grid.RowDefinitions>
 
-                    <usercontrols:Jobselector Tag="Bindind " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"/>
+                    <!--<dxlc:TileLayoutControl  Orientation="Horizontal"  DataContext="{Binding Appointment.[Jobs],Mode=TwoWay}" x:Name="spmainservice1" Visibility="Hidden"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />-->
 
+
+                    <!--<Button Name="btn" Grid.Row="1" Content="Click" Click="btn_Click" Tag="{Binding Appointment.CustomFields[Jobs],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
+                    <!--<dxg:GridControl Name="gridcontroljob" Visibility="Visible" Grid.Row="1" SelectionMode="Cell"  AutoGenerateColumns="RemoveOld" ShowBorder="False" ItemsSourceChanged="GridControl_ItemsSourceChanged"  ItemsSource="{Binding Appointment.CustomFields[Jobs],Mode=TwoWay,NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True,UpdateSourceTrigger=PropertyChanged}">
+                        <dxg:GridControl.View>
+                            <dxg:TableView Name="tableview" AutoWidth="False" NewItemRowPosition="Bottom" AllowChangeBandParent="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" ShowGroupPanel="False">
+                                <dxg:TableView.RowCellMenuCustomizations>
+                                    <dxb:BarButtonItem Name="deleteRowItem" Content="Delete"  ItemClick="deleteRowItem_ItemClick"/>
+                               
+                                </dxg:TableView.RowCellMenuCustomizations>
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>-->
+                    <!--<DataGrid Name="gridcontroljob" Visibility="Visible" Grid.Row="1"  ItemsSource="{Binding Appointment.CustomFields[Jobs],Mode=TwoWay,NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True,UpdateSourceTrigger=PropertyChanged}">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="Button_Click_1">Delete</Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>-->
+                    <usercontrols:UCJobselector Width="450" Height="230" ReceivedJobs="{Binding Appointment.CustomFields[Jobs],Mode=TwoWay}" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></usercontrols:UCJobselector>
+
+
+                    <usercontrols:UCStatusSelector Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></usercontrols:UCStatusSelector>
 
                     <!--<usercontrols:UCCustomerSelector x:Name="CSelector" Grid.Column="1"/>-->
 
-
-                    <!--<usercontrols:UCCustomerHistory Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>-->
+                    <!--<usercontrols:UCCustomerHistory Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>-->
 
                     <!--Customer Selector Starts Here-->
 
@@ -131,20 +155,13 @@
                         </Grid>
                     </Grid>
 
-
-
-
-
-
-
-
                     <!--customer selector ends here-->
 
                 </Grid>
             </dxlc:LayoutItem>
 
 
-            <dx:SimpleButton x:Name="SaveButton"  Content="save" Click="SaveButton_Click" Command="{Binding SaveAndCloseAppointmentCommand}"  HorizontalAlignment="Right"  Height="26" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Glyph="{dx:DXImage Image=Save_16x16.png}" />
+            <dx:SimpleButton x:Name="SaveButton"  Tag="{Binding Appointment}" Content="save" Click="SaveButton_Click" Command="{Binding SaveAndCloseAppointmentCommand}"   HorizontalAlignment="Right"  Height="26" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Glyph="{dx:DXImage Image=Save_16x16.png}" />
             <dx:SimpleButton x:Name="CancelButton" Content="close" Click="simpleButton2_Click" HorizontalAlignment="Right" Height="26" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Glyph="{dx:DXImage Image=Close_16x16.png}" />
 
 

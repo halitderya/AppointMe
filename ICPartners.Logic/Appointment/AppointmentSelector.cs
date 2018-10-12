@@ -10,5 +10,7 @@ namespace ICPartners.Logic.Appointment
     {
         public static Domains.Appointment AppointmentToEdit { get; set; }
         public static Domains.Appointment SelectedNewAppointment { get; set; }
+        public static Domains.Appointment OriginalAppointment { get; set; }
+        public  static int AppointmentToDelete { get; set; }
     }
 }

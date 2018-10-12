@@ -16,10 +16,9 @@
              xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduling"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
              xmlns:dxschv="http://schemas.devexpress.com/winfx/2008/xaml/scheduling/visual"
-
-              DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:AppointmentViewModel}}"
+             DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:AppointmentViewModel}}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Initialized="UserControl_Initialized">
 
     <UserControl.Resources>
 
@@ -70,6 +69,13 @@
                         ShowStatus="False"
                         Style="{DynamicResource {dxscht:SchedulerFlyoutThemeKey ResourceKey=Appointment}}" />
                 </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <dxschv:FastTextBlock Text="#"  FontSize="12" FontWeight="Bold"  Foreground="Black" />
+
+                    <dxschv:FastTextBlock Text="{Binding Appointment.Id}" FontSize="12" Foreground="Black"/>
+
+                </StackPanel>
+
                 <dxlc:LayoutControl Margin="0,5,0,0" VerticalAlignment="Top" Orientation="Vertical" Padding="0">
                     <dxlc:LayoutItem Style="{DynamicResource {dxscht:SchedulerFlyoutThemeKey ResourceKey=LayoutItem_Start}}" />
                     <dxlc:LayoutItem Style="{DynamicResource {dxscht:SchedulerFlyoutThemeKey ResourceKey=LayoutItem_End}}" />
@@ -84,6 +90,7 @@
                         <dxschv:FastTextBlock Text="{Binding Appointment.CustomFields[Jobs], Converter={ViewModels:JobNameConverter}}" FontSize="12" Foreground="Black"/>
 
                     </StackPanel>
+
                     <StackPanel Orientation="Horizontal">
                         <dxschv:FastTextBlock Text="Customer: "  FontSize="12" FontWeight="Bold"  Foreground="Black" />
 
@@ -114,7 +121,6 @@
                         <dxschv:FastTextBlock Text="{Binding Appointment.CustomFields[CustomerRefId], Converter={ViewModels:CustomerNameConverter}}" FontWeight="Normal" Foreground="Black" FontSize="8" WordWrap="True"/>
 
                         <dxschv:FastTextBlock Text="{Binding Appointment.CustomFields[Jobs], Converter={ViewModels:JobNameConverter}}" FontWeight="Normal" FontStyle="Italic" FontSize="8" FontStretch="ExtraCondensed" Foreground="Black" />
-                       
                         <dxschv:AppointmentDescriptionPresenter FontWeight="Normal" Margin="0,1,0,0" WordWrap="True"/>
                     </StackPanel>
                 </dxschv:AppointmentContentPanel.Description>
@@ -129,6 +135,7 @@
         <Style TargetType="{x:Type dxschv:ResourceHeaderControl}">
             <Setter Property="ContentOrientation" Value="Horizontal" />
             <Setter Property="Background" Value="LightGray"/>
+
         </Style>
 
     </UserControl.Resources>
@@ -139,8 +146,13 @@
             <ColumnDefinition />
             <ColumnDefinition MaxWidth="180" MinWidth="180" />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
 
-        <dxsch:SchedulerControl AllowAppointmentDragBetweenResources="True" x:Name="MainScheduler" FlyoutContentTemplate="{StaticResource appointmentFlyoutContentTemplate}"  AppointmentWindowShowing="MainScheduler_AppointmentWindowShowing" ItemPropertyChanged="MainScheduler_ItemPropertyChanged" InitNewAppointment="MainScheduler_InitNewAppointment"  HorizontalAlignment="Left" Grid.Column="0"  VerticalAlignment="Top" GroupType="Resource"  BeforeAppointmentItemDelete="SchedulerControl_BeforeAppointmentItemDelete"  AppointmentDrop="MainScheduler_AppointmentDrop" AppointmentsUpdated="MainScheduler_AppointmentsUpdated" ItemsCollectionChanged="MainScheduler_ItemsCollectionChanged"   >
+        </Grid.RowDefinitions>
+        <Button Grid.Row="1" Click="Button_Click"></Button>
+        <dxsch:SchedulerControl Grid.Row="0" SizeChanged="MainScheduler_SizeChanged" AllowAppointmentDragBetweenResources="True" x:Name="MainScheduler" FlyoutContentTemplate="{StaticResource appointmentFlyoutContentTemplate}"  AppointmentWindowShowing="MainScheduler_AppointmentWindowShowing" ItemPropertyChanged="MainScheduler_ItemPropertyChanged" InitNewAppointment="MainScheduler_InitNewAppointment"  HorizontalAlignment="Left" Grid.Column="0"  VerticalAlignment="Top" GroupType="Resource"  BeforeAppointmentItemDelete="SchedulerControl_BeforeAppointmentItemDelete"  AppointmentDrop="MainScheduler_AppointmentDrop" AppointmentsUpdated="MainScheduler_AppointmentsUpdated" ItemsCollectionChanged="MainScheduler_ItemsCollectionChanged"   >
 
 
 
@@ -162,25 +174,29 @@
             
 
             <dxsch:SchedulerControl.DataSource>
-                <dxsch:DataSource AppointmentsSource="{Binding Appointments}" 
+                <dxsch:DataSource Name="fefe" AppointmentsSource="{Binding Appointments,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                                   AppointmentStatusesSource="{Binding StatusState}"
-
                     ResourcesSource="{Binding Resources}"
+                                  
                                   DateTimeSavingMode="Appointment">
                     <dxsch:DataSource.AppointmentStatusMappings>
                         <dxsch:AppointmentStatusMappings Brush="Brush" Id="Id" Caption="Caption"/>
                     </dxsch:DataSource.AppointmentStatusMappings>
+                   
                     <dxsch:DataSource.AppointmentMappings>
                         <dxsch:AppointmentMappings 
                         Start="StartDate" 
                         Id="AppointmentID"
                         End="EndDate" 
                         StatusId="AppointmentStatus"
+                           
                         
                         ResourceId="ResourceRefID"
                         >
                             <dxsch:CustomFieldMapping Mapping="Jobs" Name="Jobs"  />
                             <dxsch:CustomFieldMapping Mapping="CustomerRefId" Name="CustomerRefId"/>
+                            <dxsch:CustomFieldMapping Mapping="UpdateDate" Name="UpdateDate"/>
+                            <dxsch:CustomFieldMapping Mapping="ParentID" Name="ParentID"/>
 
                         </dxsch:AppointmentMappings>
                     </dxsch:DataSource.AppointmentMappings>

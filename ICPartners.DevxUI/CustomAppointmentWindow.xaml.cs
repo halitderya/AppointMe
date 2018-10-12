@@ -11,6 +11,13 @@ using DevExpress.Xpf.Scheduling;
 using System.Data.Entity;
 using System.Collections.Generic;
 using DevExpress.XtraScheduler;
+using ICPartners.Domains;
+using DevExpress.Xpf.LayoutControl;
+using System.Windows.Media;
+using System.Diagnostics;
+using System.Windows.Data;
+using DevExpress.Xpf.Grid;
+using ICPartners.DevxUI.ViewModels;
 
 namespace ICPartners.DevxUI
 {
@@ -25,6 +32,9 @@ namespace ICPartners.DevxUI
     }
     public partial class CustomAppointmentWindow  {
 
+
+
+        ICPartnersContext context = new ICPartnersContext();
         UnitOfWork UnitOfWork = new UnitOfWork(new ICPartnersContext());
         public IList<string> TitleList;
 
@@ -35,6 +45,8 @@ namespace ICPartners.DevxUI
             AppointmentWindowMainGrid.Children.Add(history);
             Grid.SetRow(history, 2);
             Grid.SetColumnSpan(history, 2);
+            //GenerateMainButtons();
+            //CustomBind();
 
         }
 
@@ -57,16 +69,27 @@ namespace ICPartners.DevxUI
         }
         private void window_Closed(object sender, EventArgs e)
         {
-            AppointmentSelector.AppointmentToEdit = null;
+            //AppointmentSelector.AppointmentToEdit = null;
         
             
         }
 
         private void window_Loaded(object sender, RoutedEventArgs e)
         {
-        
-            if(AppointmentSelector.AppointmentToEdit!=null)
+            ICPartnersContext context = new ICPartnersContext();
+            if ((this.DataContext as AppointmentWindowViewModel).Appointment.Id !=null )
             {
+                int SelectedValue= Convert.ToInt16((this.DataContext as AppointmentWindowViewModel).Appointment.Id);
+                ICPartners.Logic.Appointment.AppointmentSelector.AppointmentToEdit = context.Appointments.FirstOrDefault(x => x.AppointmentID == SelectedValue);
+
+            }
+
+
+            context.SaveChanges();
+            var ss = CustomerList;
+            if (AppointmentSelector.AppointmentToEdit!=null)
+            {
+
                 //TbAppointmentID.Text = AppointmentSelector.AppointmentToEdit.AppointmentID.ToString();
                 //UCCustomerSelector selector = new UCCustomerSelector();
                 //CSelector.CustomerList.SelectedItem = UnitOfWork.CustomerRepository.GetByID(AppointmentSelector.AppointmentToEdit.CustomerRefId + 1);
@@ -78,9 +101,9 @@ namespace ICPartners.DevxUI
                 //TbAppointmentID.Text = "New";
 
             }
-            ICPartners.DevxUI.UserControls.Jobselector jobselector = new Jobselector();
-            AppointmentWindowMainGrid.Children.Add(jobselector);
-            Grid.SetColumn(jobselector, 0);
+            //ICPartners.DevxUI.UserControls.Jobselector jobselector = new Jobselector();
+            //AppointmentWindowMainGrid.Children.Add(jobselector);
+            //Grid.SetColumn(jobselector, 0);
 
 
         }
@@ -134,19 +157,42 @@ namespace ICPartners.DevxUI
 
 
         {
+            AppointmentViewModel model = new AppointmentViewModel();
+            var buttontag = ((sender as SimpleButton).Tag as AppointmentItem);
+            var buttontagApp = buttontag.SourceObject as Domains.Appointment;
+            if (buttontagApp != null&& buttontagApp!=null)
+            {
+
+                Logic.Appointment.AppointmentSelector.AppointmentToEdit = buttontagApp;
+                buttontagApp.UpdateDate = DateTime.Now;
+                buttontag.End = buttontag.End.AddMilliseconds(1);
+                foreach (var item in buttontag.CustomFields)
+                {
+                    var converted = (item as DevExpress.XtraScheduler.Native.CustomField);
+                    if (converted.Name == "UpdateDate")
+                    {
+                        converted.Value = DateTime.Now;
+                        //model.AppointmentsUpdated(null);
+                        
+                    }
+                    if (converted.Name == "Jobs")
+                    {
+                        var jjo = converted.Value as HashSet<Job>;
+                        //jjo.Clear();
+                    }
+
+
+                }
+             
+
+            }
+
+    
 
             
-            
-            
-            //ICPartnersContext IcPartnersContext = new ICPartnersContext();
             //SimpleButton button = (SimpleButton)sender;
             //AppointmentItem appointmentItem = button.Tag as AppointmentItem;
             //int id = Convert.ToInt16(appointmentItem.Id);
-            //var add = IcPartnersContext.ChangeTracker.Entries().Where(x => x.State == EntityState.Added);
-            //var remo = IcPartnersContext.ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted);
-            //var det = IcPartnersContext.ChangeTracker.Entries().Where(x => x.State == EntityState.Detached);
-            //var mod = IcPartnersContext.ChangeTracker.Entries().Where(x => x.State == EntityState.Modified);
-
 
             ////List<Domains.DependentJobs> DependentJobs = new List<Domains.DependentJobs>();
             ////List<Domains.Job> JobList = new List<Domains.Job>();
@@ -249,6 +295,11 @@ namespace ICPartners.DevxUI
             //    //this.Close();
         }
 
+        private void Buttontag_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         private void AppointmentWindowMainGrid_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -284,8 +335,215 @@ namespace ICPartners.DevxUI
 
 
         }
+        #region UCJOBSELECTOR
+        //private void GenerateMainButtons()
+        //{
+        //    AllJoblist = unitOfWork.jobRepository.GetAll().ToList();
+        //    //DistrictDependentJobs = unitOfWork.DependentRepository.GetAll().GroupBy(x => x.DependentJob).Select(g => g.First()).ToList();
+        //    foreach (var item in AllJoblist)
+        //    {
+        //        if (ICPartners.Logic.Resource.ResourceSelector.SelectedResource != null)
+        //        {
+        //            if (item.JobOwner == ICPartners.Logic.Resource.ResourceSelector.SelectedResource.ResourceDuty)
+        //            {
+        //                CustomTile2 tile = new CustomTile2();
+
+        //                tile.Content = item.JobName;
+        //                tile.Size = TileSize.ExtraSmall;
+        //                tile.VerticalContentAlignment = VerticalAlignment.Center;
+        //                tile.HorizontalContentAlignment = HorizontalAlignment.Center;
+        //                tile.JobID = item.JobId;
+        //                Color backtile = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(item.Color.ToString());
+        //                tile.Background = new SolidColorBrush(backtile);
+        //                Color fronttile = (PerceivedBrightness(backtile) > 130 ? Color.FromRgb(20, 20, 20) : Color.FromRgb(230, 230, 230));
+        //                tile.Foreground = new SolidColorBrush(fronttile);
+        //                tile.Click += new EventHandler(button_click);
+        //                MainButtonList.Add(tile);
+        //                //spmainservice1.Children.Add(tile);
+        //                JobSelector.JobtoCreate = tile.JobID;
+        //            }
+        //        }
+
+        //    }
+        //    if (MainButtonList.Count != 0)
+        //    {
+        //        OrginalTileColor = (Color)ColorConverter.ConvertFromString(MainButtonList[0].Background.ToString());
+        //    }
+        //    //GenerateSubButtons();
+        //}
+
+        //int PerceivedBrightness(Color c)
+        //{
+        //    return (int)Math.Sqrt(
+        //       c.R * c.R * .241 +
+        //       c.G * c.G * .691 +
+        //       c.B * c.B * .068);
+        //}
+
+        //private void button_click(object sender, EventArgs e)
+        //{
+
+        //    CustomTile2 button = sender as CustomTile2;
+        //    if (button.IsClicked == false)
+        //    {
+        //        CustomBind();
+        //        UnMarkMainButtons();
+        //        //UnMarkSubButtons();
+        //        JobSelector.JobtoCreate = AllJoblist.Find(x => x.JobId == button.JobID).JobId;
+        //        ICPartnersContext context = new ICPartnersContext();
+        //        if (unitOfWork.DependentRepository.GetAll().Any(x => x.MainJob == JobSelector.JobtoCreate))
+        //        {
+        //            List<DependentJobs> DependentJobs = new List<DependentJobs>(unitOfWork.DependentRepository.GetAll().Where(x => x.MainJob == JobSelector.JobtoCreate).OrderBy(x => x.Sequence).ToList());
+        //            foreach (var item in DependentJobs)
+        //            {
+        //                JobSelector.JobsToSelect.Add(unitOfWork.jobRepository.GetByID(item.DependentJob));
+        //                //ReceivedJobs.Add(unitOfWork.jobRepository.GetByID(item.DependentJob));
+
+        //            }
+        //        }
+        //        else
+        //        {
+        //            JobSelector.JobsToSelect.Add(unitOfWork.jobRepository.GetByID(JobSelector.JobtoCreate));
+        //            //if (ReceivedJobs == null)
+        //            //    ReceivedJobs = new HashSet<Job>();
+        //            //ReceivedJobs.Add(unitOfWork.jobRepository.GetByID(JobSelector.JobtoCreate));
+
+        //        }
+
+
+
+
+
+
+        //        button.Background = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+
+        //        //JobSelector.DependentJobs = DistrictDependentJobs.Where(x => x.MainJob == JobSelector.JobtoCreate).ToList();
+        //        button.IsClicked = true;
+        //        //spdependentservice.IsEnabled = true;
+        //        //MarkSubbuttons();
+        //    }
+        //    else
+        //    {
+        //        button.Background = new SolidColorBrush(OrginalTileColor);
+        //        button.IsClicked = false;
+        //        //UnMarkSubButtons();
+        //        UnMarkMainButtons();
+
+        //    }
+
+        //}
+
+        //void UnMarkMainButtons()
+        //{
+        //    foreach (var item in MainButtonList)
+        //    {
+        //        item.IsClicked = false;
+        //        RedrawButtons();
+        //    }
+        //}
+        //void RedrawButtons()
+        //{
+        //    foreach (var item in MainButtonList)
+        //    {
+        //        try
+        //        {
+        //            item.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(unitOfWork.jobRepository.GetByID(item.JobID).Color.ToString()));
+
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Debug.WriteLine(ex.Message);
+        //        }
+        //    }
+
+
+        //}
+
+
+        //void MarkExisting()
+        //{
+        //    //try
+        //    //{
+
+        //    //    if (ReceivedJobs != null)
+        //    //    {
+        //    //        ICPartners.Logic.Appointment.JobSelector.JobsToSelect = ReceivedJobs;
+        //    //    }
+        //    //    if (JobSelector.JobsToSelect != null)
+        //    //        if (JobSelector.JobsToSelect.Count > 0)
+        //    //        {
+        //    //            if (MainButtonList.Count > 0)
+        //    //                foreach (var Job in JobSelector.JobsToSelect)
+        //    //                {
+        //    //                    CustomTile2 Pressed = MainButtonList.Find(x => x.JobID == Job.JobId);
+        //    //                    Pressed.Background = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+        //    //                    Pressed.IsClicked = true;
+
+
+        //    //                }
+        //    //        }
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+
+        //    //}
+        //}
+        //void CustomBind()
+        //{
+         
+        //    //Binding myBinding = new Binding();
+        //    //myBinding.Source = ViewModel;
+        //    //myBinding.Path = new PropertyPath("SomeString");
+        //    //myBinding.Mode = BindingMode.TwoWay;
+        //    //myBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+        //    //BindingOperations.SetBinding(txtText, TextBox.TextProperty, myBinding);
+        //}
+
+
+        #endregion UCJOBSELECTOR
+
+        //private void deleteRowItem_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        //{
+        //    GridCellMenuInfo menuInfo = tableview.GridMenu.MenuInfo as GridCellMenuInfo;
+        //    if (menuInfo != null && menuInfo.Row != null)
+        //    {
+        //        tableview.DeleteRow(menuInfo.Row.RowHandle.Value);
+
+
+        //    }
+
+        //}
+
+        private void btn_Click(object sender, RoutedEventArgs e)
+        {
+            Job remove= (((sender as Button).Tag) as HashSet<Job>).FirstOrDefault();
+            (((sender as Button).Tag) as HashSet<Job>).Remove(remove);
+            
+            ICPartnersContext context = new ICPartnersContext();
+            context.SaveChanges();
+        }
+
+        private void GridControl_ItemsSourceChanged(object sender, ItemsSourceChangedEventArgs e)
+        {
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void window_Activated(object sender, EventArgs e)
+        {
+            var de = DataContext;
+
+        }
+
+        private void window_Initialized(object sender, EventArgs e)
+        {
+
+        }
     }
 
-  
-    
+
+
 }

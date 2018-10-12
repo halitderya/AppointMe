@@ -8,8 +8,22 @@ using System.Threading.Tasks;
 namespace ICPartners.Logic.Appointment
 {
     public class JobSelector
+
     {
-        public static int JobtoCreate;
+
+        static JobSelector()
+        {
+            if (JobsToSelect == null)
+                JobsToSelect = new HashSet<Job>();
+        }
+        public static int JobtoCreate { get; set; }
         public static List<DependentJobs> DependentJobs;
+        private static HashSet<Job> _JobToSelect;
+        public static HashSet<Job> JobsToSelect
+        {
+            get { return _JobToSelect; }
+            set { _JobToSelect = value; }
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Domains\bin\Debug\ICPartners.Domains.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Domains\bin\Debug\ICPartners.Domains.pdb
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Domains\obj\Debug\ICPartners.Domains.csprojAssemblyReference.cache
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Domains\obj\Debug\ICPartners.Domains.csproj.CoreCompileInputs.cache
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Domains\obj\Debug\ICPartners.Domains.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.Domains\obj\Debug\ICPartners.Domains.pdb

@@ -17,6 +17,8 @@ namespace ICPartners.DAL.Repositories.Abstract
 
         IEnumerable<Appointment> GetAppointmentByResource(int ResourceID);
 
+        IEnumerable<Appointment> GetAppointmentByParent(int ParentID);
+
         
     }
 }

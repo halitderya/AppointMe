@@ -40,9 +40,14 @@ namespace ICPartners.DAL.Repositories.Concrete
             return temp;
         }
 
+        public IEnumerable<Appointment> GetAppointmentByParent(int ParentID)
+        {
+
+            var temp = Context.Appointments.Where(x => x.ParentID == ParentID).ToList();
+            return temp;
 
 
-  
+        }
 
         public ICPartnersContext Context { get { return _context as ICPartnersContext; } }
     }

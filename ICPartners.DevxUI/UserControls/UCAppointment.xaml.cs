@@ -54,6 +54,11 @@ namespace ICPartners.DevxUI.UserControls
             {
                 e.Cancel = true;
             }
+
+            Logic.Appointment.AppointmentSelector.AppointmentToDelete = (int)e.Appointment.Id;
+
+
+
         }
 
 
@@ -102,7 +107,11 @@ namespace ICPartners.DevxUI.UserControls
         }
         private void MainScheduler_InitNewAppointment(object sender, DevExpress.Xpf.Scheduling.AppointmentItemEventArgs e)
         {
-            ICPartners.Logic.Resource.ResourceSelector.SelectedResource = unitOfWork.resourceRepository.GetByID((int)(sender as DevExpress.Xpf.Scheduling.SchedulerControl).SelectedResource.Id);
+
+
+
+          
+            //ICPartners.Logic.Resource.ResourceSelector.SelectedResource = unitOfWork.resourceRepository.GetByID((int)(sender as DevExpress.Xpf.Scheduling.SchedulerControl).SelectedResource.Id);
             //ICPartners.Logic.Appointment.AppointmentSelector.SelectedNewAppointment = new Domains.Appointment {
             //    AppointmentID = 0,
             //    AppointmentStatus = 0,
@@ -117,13 +126,14 @@ namespace ICPartners.DevxUI.UserControls
 
         private void MainScheduler_AppointmentWindowShowing(object sender, AppointmentWindowShowingEventArgs e)
         {
+            
             if (e.Appointment != null && e.Appointment.Id != null)
             {
                 ICPartners.Logic.Appointment.AppointmentSelector.AppointmentToEdit = unitOfWork.appointmentRepository.GetByID((int)e.Appointment.Id);
-                ICPartners.Logic.Resource.ResourceSelector.SelectedResource = unitOfWork.resourceRepository.GetByID((int)((e.Appointment as AppointmentItem).ResourceId));
             }
+            ViewModels.AppointmentViewModel model = new ViewModels.AppointmentViewModel();
+            ICPartners.Logic.Resource.ResourceSelector.SelectedResource = unitOfWork.resourceRepository.GetByID((int)((e.Appointment as AppointmentItem).ResourceId));
 
-            
 
         }
 
@@ -137,13 +147,32 @@ namespace ICPartners.DevxUI.UserControls
 
         private void MainScheduler_AppointmentsUpdated(object sender, EventArgs e)
         {
-            
+
         }
 
         private void MainScheduler_ItemsCollectionChanged(object sender, ItemsCollectionChangedEventArgs e)
         {
             
                 
+        }
+
+        private void UserControl_Initialized(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void MainScheduler_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+          
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            
+            var mains = MainScheduler;
+
         }
     }
 }

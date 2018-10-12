@@ -69,18 +69,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R3 2017\Binaries\WPF45\Telerik.Windows.Controls.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Windows.Controls.Data">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R3 2017\Binaries\WPF45\Telerik.Windows.Controls.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Windows.Controls.Input">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R3 2017\Binaries\WPF45\Telerik.Windows.Controls.Input.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Windows.Data">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R3 2017\Binaries\WPF45\Telerik.Windows.Data.dll</HintPath>
-    </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
@@ -118,11 +106,18 @@
       <DependentUpon>UcJob.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UCJobSelector.xaml.cs">
-      <DependentUpon>UCJobSelector.xaml</DependentUpon>
+      <DependentUpon>UcJobSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UCResource.xaml.cs">
       <DependentUpon>UCResource.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCStatusSelector.xaml.cs">
+      <DependentUpon>UCStatusSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCTest.xaml.cs">
+      <DependentUpon>UCTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AppointmentParentImageConverter.cs" />
     <Compile Include="ViewModels\AppointmentViewModel.cs" />
     <Compile Include="ViewModels\ColorConverter.cs" />
     <Compile Include="ViewModels\CustomerNameConverter.cs" />
@@ -173,10 +168,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\UCJobSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UCResource.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\UCResource.xaml">
+    <Page Include="UserControls\UCStatusSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UCTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -229,6 +232,7 @@
   <ItemGroup>
     <Folder Include="Garbage\" />
     <Folder Include="Pages\" />
+    <Folder Include="UserControls\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Source\if_Block_381636.png" />
@@ -283,6 +287,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Source\HamburgerMenu\minimize_window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\UIMisc\chain.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
