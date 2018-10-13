@@ -16,6 +16,7 @@ namespace ICPartners.Domains
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int JobId { get; set; }
+
         public string JobName { get; set; }
         public string JobDescription { get; set; }
 

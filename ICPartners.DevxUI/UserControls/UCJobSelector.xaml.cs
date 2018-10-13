@@ -182,5 +182,10 @@ namespace ICPartners.DevxUI.UserControls
             }
 
         }
+
+        private void spmainservice1_TileClick(object sender, TileClickEventArgs e)
+        {
+            Logic.Appointment.JobSelector.IsJobEdited = true;
+        }
     }
 }

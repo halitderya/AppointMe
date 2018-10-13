@@ -25,8 +25,8 @@ namespace ICPartners.DevxUI.ViewModels
     {
         UnitOfWork unitOfWork = new UnitOfWork(new ICPartnersContext());
         public static string[] StatusLabels = { "Open",  "Cancelled", "Completed - Waiting Payment", "Completed - Payment Made" };
-        public static Brush[] StatusBrushes = { new SolidColorBrush(Colors.GreenYellow), new SolidColorBrush(Colors.Red), new SolidColorBrush(Colors.Orange), new SolidColorBrush(Colors.Green) };
-
+        public static Brush[] StatusBrushes = { new SolidColorBrush(Colors.Green), new SolidColorBrush(Colors.Red), new SolidColorBrush(Colors.Orange), new SolidColorBrush(Colors.Green) };
+        public int JobSeq { get; set; }
         public virtual ObservableCollection<Resource> Resources { get; set; }
         private ObservableCollection<Appointment> _Appointment;
         private int myVar;
@@ -68,16 +68,16 @@ namespace ICPartners.DevxUI.ViewModels
 
             if (AppointmentSelector.AppointmentToDelete > 0)
             {
-                //List<Appointment> AppointmentsToDelete= new List<Appointment>();
-                //AppointmentsToDelete= unitOfWork.appointmentRepository.GetAppointmentByParent(AppointmentSelector.AppointmentToDelete).ToList<Appointment>();
-                //AppointmentsToDelete.Add(unitOfWork.appointmentRepository.GetByID(AppointmentSelector.AppointmentToDelete));
-                //foreach (var item in AppointmentsToDelete)
-                //{
-                //   unitOfWork.appointmentRepository.Remove(item.AppointmentID);
-                //}
-                //Logic.Appointment.AppointmentSelector.AppointmentToDelete = 0;
-                //IcPartnersContext.SaveChanges();
-               
+                List<Domains.Appointment> AppointmentsToDelete = new List<Domains.Appointment>();
+                AppointmentsToDelete = unitOfWork.appointmentRepository.GetAppointmentByParent(Logic.Appointment.AppointmentSelector.AppointmentToDelete).ToList();
+                //AppointmentsToDelete.Add(unitOfWork.appointmentRepository.GetByID(Logic.Appointment.AppointmentSelector.AppointmentToDelete));
+                foreach (var item in AppointmentsToDelete)
+                {
+                    var itemtodelete = this.Appointments.FirstOrDefault(x=>x.AppointmentID==item.AppointmentID);
+                    this.Appointments.Remove(itemtodelete);
+                }
+                Logic.Appointment.AppointmentSelector.AppointmentToDelete = 0;
+
             }
 
 
@@ -89,8 +89,12 @@ namespace ICPartners.DevxUI.ViewModels
                 oldAppointment = this.Appointments.FirstOrDefault(x => x.AppointmentID == 0);
 
 
-            if (AppointmentSelector.AppointmentToEdit != null)
-            {oldAppointment = this.Appointments.FirstOrDefault(x=>x.AppointmentID==AppointmentSelector.AppointmentToEdit.AppointmentID);}
+            if (AppointmentSelector.AppointmentToEdit != null && JobSelector.IsJobEdited)
+            {
+                oldAppointment = this.Appointments.FirstOrDefault(x=>x.AppointmentID==AppointmentSelector.AppointmentToEdit.AppointmentID);
+
+            }
+
             if (oldAppointment != null)
             { 
                 if (JobSelector.JobtoCreate > 0) //Bu if'te exception almamak için ikinci defa kontrol ediliyor.
@@ -117,12 +121,25 @@ namespace ICPartners.DevxUI.ViewModels
                                 NewAppointment = new Appointment()
                                 {
                                     ResourceRefID = oldAppointment.ResourceRefID,
-                                    AppointmentStatus = 0,
+                                    Remarks = oldAppointment.Remarks,
+                                    ColorActivator = oldAppointment.ColorActivator,
+                                    ColorCode = oldAppointment.ColorCode,
+                                    ColorBrand = oldAppointment.ColorBrand,
+                                    ColorQuantity = oldAppointment.ColorQuantity,
+                                    ChargedAmount = oldAppointment.ChargedAmount,
+                                    CreateDate = oldAppointment.CreateDate,
+                                    AppointmentStatus = Logic.Appointment.AppointmentSelector.SelectedStatus,
                                     StartDate = oldAppointment.StartDate,
                                     EndDate = oldAppointment.StartDate + item.JobTimeSpan,
                                     CustomerRefId = oldAppointment.CustomerRefId,
+                                    UpdateDate=oldAppointment.UpdateDate,
+                                    UpdatedBy=oldAppointment.UpdatedBy
+
 
                                 };
+                                NewAppointment.CreateDate = oldAppointment.CreateDate != default(DateTime) ? oldAppointment.CreateDate : NewAppointment.CreateDate = DateTime.Now;
+                                NewAppointment.UpdateDate = oldAppointment.UpdateDate != default(DateTime) ? oldAppointment.UpdateDate : NewAppointment.UpdateDate = DateTime.Now;
+
                                 Offset = true;
                                 if (MasterAppointment != 0 )
                                 {
@@ -152,15 +169,27 @@ namespace ICPartners.DevxUI.ViewModels
 
                             NewAppointment = new Appointment()
                             {
-                                AppointmentID = 0,
-                                CustomerRefId = oldAppointment.CustomerRefId,
-                                ResourceRefID = oldAppointment.ResourceRefID,
-                                StartDate = oldAppointment.StartDate,
 
+                                ResourceRefID = oldAppointment.ResourceRefID,
+                                Remarks = oldAppointment.Remarks,
+                                ColorActivator = oldAppointment.ColorActivator,
+                                ColorCode = oldAppointment.ColorCode,
+                                ColorBrand = oldAppointment.ColorBrand,
+                                ColorQuantity = oldAppointment.ColorQuantity,
+                                ChargedAmount = oldAppointment.ChargedAmount,
+                                CreateDate = oldAppointment.CreateDate,
+                                AppointmentStatus = Logic.Appointment.AppointmentSelector.SelectedStatus,
+                                StartDate = oldAppointment.StartDate,
+                                CustomerRefId = oldAppointment.CustomerRefId,
+                                UpdateDate = oldAppointment.UpdateDate,
+                                UpdatedBy = oldAppointment.UpdatedBy
 
 
                             };
 
+
+
+                            NewAppointment.CreateDate = oldAppointment.CreateDate != default(DateTime) ? oldAppointment.CreateDate : NewAppointment.CreateDate = DateTime.Now;
 
                             if (JobToRemove.Any(x => x.JobOffsetTime.TotalMinutes > 0))
                             {
@@ -191,13 +220,26 @@ namespace ICPartners.DevxUI.ViewModels
 
                         NewAppointment = new Appointment()
                         {
-                            AppointmentStatus = 0,
-                            StartDate = oldAppointment.StartDate,
-                            EndDate = oldAppointment.EndDate,
                             ResourceRefID = oldAppointment.ResourceRefID,
+                            Remarks = oldAppointment.Remarks,
+                            ColorActivator = oldAppointment.ColorActivator,
+                            ColorCode = oldAppointment.ColorCode,
+                            ColorBrand = oldAppointment.ColorBrand,
+                            ColorQuantity = oldAppointment.ColorQuantity,
+                            ChargedAmount = oldAppointment.ChargedAmount,
+                            CreateDate = oldAppointment.CreateDate,
+                            AppointmentStatus = Logic.Appointment.AppointmentSelector.SelectedStatus,
+                            StartDate = oldAppointment.StartDate,
                             CustomerRefId = oldAppointment.CustomerRefId,
-                        };
+                            UpdateDate = oldAppointment.UpdateDate,
+                            UpdatedBy = oldAppointment.UpdatedBy
+                            
+                            
 
+
+                        };
+                        NewAppointment.CreateDate = oldAppointment.CreateDate != default(DateTime) ? oldAppointment.CreateDate : NewAppointment.CreateDate = DateTime.Now;
+                        NewAppointment.EndDate = NewAppointment.StartDate + JobWillCreate.JobTimeSpan;
                         CreateMultiOffset(NewAppointment, oldAppointment, JobWillCreate, null,false);
 
                     }
@@ -261,7 +303,6 @@ namespace ICPartners.DevxUI.ViewModels
                 foreach (var item in List)
                 {
                     var Multiple = IcPartnersContext.Jobs.Find(item.JobId);
-
                     IcPartnersContext.Set<Job>().Attach(Multiple);
                     NewAppointment.Jobs.Add(Multiple);
                     IcPartnersContext.Entry(Multiple).State = EntityState.Unchanged;

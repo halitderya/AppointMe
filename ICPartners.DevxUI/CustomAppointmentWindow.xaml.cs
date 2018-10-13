@@ -70,7 +70,8 @@ namespace ICPartners.DevxUI
         private void window_Closed(object sender, EventArgs e)
         {
             //AppointmentSelector.AppointmentToEdit = null;
-        
+
+            //ICPartners.Logic.Appointment.JobSelector.IsJobEdited = false;
             
         }
 
@@ -157,15 +158,21 @@ namespace ICPartners.DevxUI
 
 
         {
+
+
+
             AppointmentViewModel model = new AppointmentViewModel();
             var buttontag = ((sender as SimpleButton).Tag as AppointmentItem);
             var buttontagApp = buttontag.SourceObject as Domains.Appointment;
+
             if (buttontagApp != null&& buttontagApp!=null)
             {
-
+                buttontag.StatusId = Logic.Appointment.AppointmentSelector.SelectedStatus;
                 Logic.Appointment.AppointmentSelector.AppointmentToEdit = buttontagApp;
                 buttontagApp.UpdateDate = DateTime.Now;
+                buttontag.End = buttontag.End.AddMilliseconds(-1);
                 buttontag.End = buttontag.End.AddMilliseconds(1);
+
                 foreach (var item in buttontag.CustomFields)
                 {
                     var converted = (item as DevExpress.XtraScheduler.Native.CustomField);
@@ -534,13 +541,19 @@ namespace ICPartners.DevxUI
 
         private void window_Activated(object sender, EventArgs e)
         {
-            var de = DataContext;
+
 
         }
 
         private void window_Initialized(object sender, EventArgs e)
         {
+            ICPartners.Logic.Appointment.JobSelector.IsJobEdited = false;
 
+        }
+
+        private void window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //ICPartners.Logic.Appointment.AppointmentSelector.AppointmentToEdit = null;
         }
     }
 

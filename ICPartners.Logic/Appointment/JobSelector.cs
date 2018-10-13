@@ -19,6 +19,7 @@ namespace ICPartners.Logic.Appointment
         public static int JobtoCreate { get; set; }
         public static List<DependentJobs> DependentJobs;
         private static HashSet<Job> _JobToSelect;
+        public static bool IsJobEdited { get; set; }
         public static HashSet<Job> JobsToSelect
         {
             get { return _JobToSelect; }

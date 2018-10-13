@@ -38,7 +38,7 @@ MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
             <dxwui:HamburgerMenuNavigationButton Name="btnresources" Glyph="source/HamburgerMenu/employees_white.png" Content="Employees" NavigationTargetType="{x:Type UserControls:UCResource}"/>
                         
             <dxwui:HamburgerMenuItemSeparator/>
-            <dxwui:HamburgerMenuNavigationButton Name="btnreports" Glyph="source/HamburgerMenu/reports_white.png" Content="Reports"/>
+            <dxwui:HamburgerMenuNavigationButton Name="btnreports" Glyph="source/HamburgerMenu/reports_white.png" Content="Reports" NavigationTargetType="{x:Type UserControls:UCReport}" />
             <dxwui:HamburgerMenuNavigationButton Glyph="source/HamburgerMenu/maintenance_white.png" Name="BtnMaintainence" Content="Maintenace"/>
 
 

@@ -12,5 +12,6 @@ namespace ICPartners.Logic.Appointment
         public static Domains.Appointment SelectedNewAppointment { get; set; }
         public static Domains.Appointment OriginalAppointment { get; set; }
         public  static int AppointmentToDelete { get; set; }
+        public static int SelectedStatus { get; set; }
     }
 }

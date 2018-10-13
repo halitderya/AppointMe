@@ -232,6 +232,30 @@
     <Compile Include="Migrations\201810062020533_resourcerefid_replaced.Designer.cs">
       <DependentUpon>201810062020533_resourcerefid_replaced.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810121420033_JobQueue.cs" />
+    <Compile Include="Migrations\201810121420033_JobQueue.Designer.cs">
+      <DependentUpon>201810121420033_JobQueue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810121516591_JobQueue-2.cs" />
+    <Compile Include="Migrations\201810121516591_JobQueue-2.Designer.cs">
+      <DependentUpon>201810121516591_JobQueue-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810121519219_JobQueue-3.cs" />
+    <Compile Include="Migrations\201810121519219_JobQueue-3.Designer.cs">
+      <DependentUpon>201810121519219_JobQueue-3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810121520539_JobQueue-4.cs" />
+    <Compile Include="Migrations\201810121520539_JobQueue-4.Designer.cs">
+      <DependentUpon>201810121520539_JobQueue-4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810121904168_jobseq-remove.cs" />
+    <Compile Include="Migrations\201810121904168_jobseq-remove.Designer.cs">
+      <DependentUpon>201810121904168_jobseq-remove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810121907329_jobseq-remove2.cs" />
+    <Compile Include="Migrations\201810121907329_jobseq-remove2.Designer.cs">
+      <DependentUpon>201810121907329_jobseq-remove2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ICPartnersContext.cs" />
@@ -400,6 +424,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810062020533_resourcerefid_replaced.resx">
       <DependentUpon>201810062020533_resourcerefid_replaced.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810121420033_JobQueue.resx">
+      <DependentUpon>201810121420033_JobQueue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810121516591_JobQueue-2.resx">
+      <DependentUpon>201810121516591_JobQueue-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810121519219_JobQueue-3.resx">
+      <DependentUpon>201810121519219_JobQueue-3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810121520539_JobQueue-4.resx">
+      <DependentUpon>201810121520539_JobQueue-4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810121904168_jobseq-remove.resx">
+      <DependentUpon>201810121904168_jobseq-remove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810121907329_jobseq-remove2.resx">
+      <DependentUpon>201810121907329_jobseq-remove2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

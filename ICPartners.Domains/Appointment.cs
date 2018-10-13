@@ -87,7 +87,7 @@ namespace ICPartners.Domains
         [ForeignKey("Customer")]
         public int CustomerRefId { get; set; }
         public virtual Customer Customer { get; set; }
-        public virtual ICollection<Job> Jobs {get; set; }
+        public virtual HashSet<Job> Jobs {get; set; }
 
 
         [ForeignKey("Resource")]

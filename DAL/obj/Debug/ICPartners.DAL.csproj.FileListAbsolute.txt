@@ -59,3 +59,9 @@ C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.CoreC
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.CopyComplete
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.dll
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.pdb
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.JobQueue.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.JobQueue2.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.JobQueue3.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.JobQueue4.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.jobseqremove.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.jobseqremove2.resources
