@@ -13,8 +13,8 @@ namespace ICPartners.Domains
 {
     public class Job
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int JobId { get; set; }
 
         public string JobName { get; set; }

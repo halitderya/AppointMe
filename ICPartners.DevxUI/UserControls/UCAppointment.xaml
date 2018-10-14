@@ -144,15 +144,13 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition MaxWidth="180" MinWidth="180" />
+            <ColumnDefinition MaxWidth="200" MinWidth="200" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
-            <RowDefinition Height="1*"/>
 
         </Grid.RowDefinitions>
-        <Button Grid.Row="1" Click="Button_Click"></Button>
-        <dxsch:SchedulerControl Grid.Row="0" SizeChanged="MainScheduler_SizeChanged" AllowAppointmentDragBetweenResources="True" x:Name="MainScheduler" FlyoutContentTemplate="{StaticResource appointmentFlyoutContentTemplate}"  AppointmentWindowShowing="MainScheduler_AppointmentWindowShowing" ItemPropertyChanged="MainScheduler_ItemPropertyChanged" InitNewAppointment="MainScheduler_InitNewAppointment"  HorizontalAlignment="Left" Grid.Column="0"  VerticalAlignment="Top" GroupType="Resource"  BeforeAppointmentItemDelete="SchedulerControl_BeforeAppointmentItemDelete"  AppointmentDrop="MainScheduler_AppointmentDrop" AppointmentsUpdated="MainScheduler_AppointmentsUpdated" ItemsCollectionChanged="MainScheduler_ItemsCollectionChanged" AllowInplaceEditor="False" MouseDoubleClick="MainScheduler_MouseDoubleClick"   >
+        <dxsch:SchedulerControl Grid.Row="0" SizeChanged="MainScheduler_SizeChanged"  AllowAppointmentDragBetweenResources="True" x:Name="MainScheduler" FlyoutContentTemplate="{StaticResource appointmentFlyoutContentTemplate}"  AppointmentWindowShowing="MainScheduler_AppointmentWindowShowing" ItemPropertyChanged="MainScheduler_ItemPropertyChanged" InitNewAppointment="MainScheduler_InitNewAppointment"  HorizontalAlignment="Left" Grid.Column="0"  VerticalAlignment="Top" GroupType="Resource"  BeforeAppointmentItemDelete="SchedulerControl_BeforeAppointmentItemDelete"  AppointmentDrop="MainScheduler_AppointmentDrop" AppointmentsUpdated="MainScheduler_AppointmentsUpdated" ItemsCollectionChanged="MainScheduler_ItemsCollectionChanged" AllowInplaceEditor="False" MouseDoubleClick="MainScheduler_MouseDoubleClick" FirstDayOfWeek="Monday" WorkDays="EveryDay"   >
 
 
 

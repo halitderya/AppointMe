@@ -35,5 +35,6 @@ namespace ICPartners.Domains
 
         public string BankAccount { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
+        public ICollection<OffDay> OffDays { get; set; }
     }
 }

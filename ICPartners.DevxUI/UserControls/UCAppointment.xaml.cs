@@ -1,10 +1,13 @@
-﻿using DevExpress.Xpf.Core;
+﻿using DevExpress.Mvvm;
+using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Scheduler;
 using DevExpress.Xpf.Scheduling;
 using DevExpress.XtraScheduler;
 using DevExpress.XtraScheduler.Services;
 using ICPartners.DAL;
+using ICPartners.Domains;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -117,6 +120,9 @@ namespace ICPartners.DevxUI.UserControls
         private void MainScheduler_InitNewAppointment(object sender, DevExpress.Xpf.Scheduling.AppointmentItemEventArgs e)
         {
 
+           
+
+
 
 
           
@@ -135,14 +141,41 @@ namespace ICPartners.DevxUI.UserControls
 
         private void MainScheduler_AppointmentWindowShowing(object sender, AppointmentWindowShowingEventArgs e)
         {
-            
+
+
+
             if (e.Appointment != null && e.Appointment.Id != null)
             {
                 ICPartners.Logic.Appointment.AppointmentSelector.AppointmentToEdit = unitOfWork.appointmentRepository.GetByID((int)e.Appointment.Id);
             }
+          
+            else
+            {
+                if((sender as DevExpress.Xpf.Scheduling.SchedulerControl).SelectedResource.Id != null)
+                {
+                    int id = Convert.ToInt16((sender as DevExpress.Xpf.Scheduling.SchedulerControl).SelectedResource.Id);
+                    List<OffDay> offdaylist = new List<OffDay>();
+                    offdaylist= unitOfWork.OffDaysRepository.GetAll().ToList().Where(x => x.ResourceRefID == id).ToList();
+                    bool WeekEnd = offdaylist.Any(x => x.OffWeekDay == e.Appointment.Start.DayOfWeek.ToString());
+                    bool Holiday= offdaylist.Any(x => x.OffDaysStart <= e.Appointment.Start && e.Appointment.Start < x.OffDaysEnd);
+
+                    if (WeekEnd == true || Holiday==true)
+                    {
+                        MessageBoxResult result = DXMessageBox.Show("The resource you have selected out of work hours selected interval. Do you want to proceed anyway?", "Off-Day Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        if (result == MessageBoxResult.No)
+                        {
+                            e.Cancel = true;
+                        }
+                           
+                    }
+
+                }
+
+
+            }
+
             ViewModels.AppointmentViewModel model = new ViewModels.AppointmentViewModel();
             ICPartners.Logic.Resource.ResourceSelector.SelectedResource = unitOfWork.resourceRepository.GetByID((int)((e.Appointment as AppointmentItem).ResourceId));
-
 
         }
 
@@ -187,6 +220,10 @@ namespace ICPartners.DevxUI.UserControls
         private void MainScheduler_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             
+        }
+
+        private void MainScheduler_CustomWorkTime(object sender, CustomWorkTimeEventArgs e)
+        {
         }
     }
 }

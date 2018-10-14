@@ -76,7 +76,7 @@
             </Grid>
 
         </Button>
-        <dxg:GridControl x:Name="TableViewJob"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource} }"   >
+        <dxg:GridControl x:Name="TableViewJob"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}"   >
 
             <dxg:GridControl.View>
                 <dxg:TableView AutoWidth="False" Name="tableview" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" >

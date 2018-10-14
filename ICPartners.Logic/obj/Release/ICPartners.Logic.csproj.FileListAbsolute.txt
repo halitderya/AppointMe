@@ -1,0 +1,16 @@
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Release\ICPartners.Logic.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Release\ICPartners.Logic.pdb
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Release\DevExpress.Mvvm.v18.1.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Release\ICPartners.DAL.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Release\ICPartners.Domains.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Release\EntityFramework.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Release\ICPartners.DAL.pdb
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Release\ICPartners.DAL.dll.config
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Release\ICPartners.Domains.pdb
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Release\DevExpress.Mvvm.v18.1.xml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\bin\Release\EntityFramework.xml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\obj\Release\ICPartners.Logic.csprojAssemblyReference.cache
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\obj\Release\ICPartners.Logic.csproj.CoreCompileInputs.cache
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\obj\Release\ICPartners.Logic.csproj.CopyComplete
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\obj\Release\ICPartners.Logic.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.Logic\obj\Release\ICPartners.Logic.pdb

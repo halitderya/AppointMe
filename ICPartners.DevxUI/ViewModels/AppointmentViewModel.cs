@@ -44,7 +44,7 @@ namespace ICPartners.DevxUI.ViewModels
             get;
             set;
         }
-
+        public virtual ObservableCollection<OffDay> OffDays { get; set; }
         public virtual ObservableCollection<StatusesState> StatusState { get; set; }
         public static int MasterAppointment { get; set; }
         public static bool Offset { get; set; }
@@ -355,6 +355,8 @@ namespace ICPartners.DevxUI.ViewModels
             DependentJobs = IcPartnersContext.DependentJobs.Local;
             IcPartnersContext.Appointments.Include("Jobs").Load();
             Appointments = IcPartnersContext.Appointments.Local;
+            IcPartnersContext.OffDays.Load();
+            OffDays = IcPartnersContext.OffDays.Local;
         }
 
        

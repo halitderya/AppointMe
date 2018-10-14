@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\App.xaml
-141964891482
+162076782257
 
-291333505962
+321626870362
 65-791182687
-CustomAppointmentWindow.xaml;MainWindow.xaml;UserControls\CustomTile2.xaml;UserControls\UCAppointment.xaml;UserControls\UCCustomer.xaml;UserControls\UCCustomerHistory.xaml;UserControls\UCDependent.xaml;UserControls\UcJob.xaml;UserControls\UCJobSelector.xaml;UserControls\UCReport.xaml;UserControls\UCResource.xaml;UserControls\UCStatusSelector.xaml;UserControls\UCTest.xaml;Windows\Login.xaml;
+CustomAppointmentWindow.xaml;MainWindow.xaml;UserControls\CustomTile2.xaml;UserControls\UCAdmin.xaml;UserControls\UCAppointment.xaml;UserControls\UCCustomer.xaml;UserControls\UCCustomerHistory.xaml;UserControls\UCDependent.xaml;UserControls\UcJob.xaml;UserControls\UCJobSelector.xaml;UserControls\UCReport.xaml;UserControls\UCResource.xaml;UserControls\UCStatusSelector.xaml;UserControls\UCTest.xaml;UserControls\UCWorkDays.xaml;Windows\Login.xaml;
 
 False
 

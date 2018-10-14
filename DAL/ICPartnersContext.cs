@@ -26,6 +26,7 @@ namespace ICPartners.DAL
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<DependentJobs> DependentJobs { get; set; }
+        public DbSet<OffDay> OffDays { get; set; }
 
         public override int SaveChanges()
         {

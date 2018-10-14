@@ -38,6 +38,8 @@ namespace ICPartners.DevxUI
         UnitOfWork UnitOfWork = new UnitOfWork(new ICPartnersContext());
         public IList<string> TitleList;
 
+        public TitleList TheEnumValue { get; set; }
+
 
         public CustomAppointmentWindow() {
             InitializeComponent();

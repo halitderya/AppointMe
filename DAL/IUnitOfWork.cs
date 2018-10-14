@@ -16,6 +16,8 @@ namespace ICPartners.DAL
         ICustomerRepository CustomerRepository { get; }
 
         IDependentRepository DependentRepository { get; }
+        IOffDaysRepository OffDaysRepository { get; }
+
         int Complete();
     }
 }

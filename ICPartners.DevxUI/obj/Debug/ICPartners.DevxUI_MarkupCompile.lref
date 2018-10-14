@@ -1,8 +1,9 @@
-﻿
+﻿C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
 
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\CustomAppointmentWindow.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\MainWindow.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\CustomTile2.xaml;;
+FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCAdmin.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCAppointment.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCCustomer.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCCustomerHistory.xaml;;
@@ -13,5 +14,6 @@ FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCReport.
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCResource.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCStatusSelector.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCTest.xaml;;
+FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCWorkDays.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\Windows\Login.xaml;;
 

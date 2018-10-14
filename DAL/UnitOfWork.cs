@@ -22,6 +22,7 @@ namespace ICPartners.DAL
             CustomerRepository = new CustomerRepository(_context);
             jobRepository = new JobRepository(_context);
             DependentRepository = new DependentRepository(_context);
+            OffDaysRepository = new OffDayRepository(_context);
         }
         public IAppointmentRepository appointmentRepository { get; private set; }
 
@@ -35,6 +36,8 @@ namespace ICPartners.DAL
         public ICustomerRepository CustomerRepository { get; private set; }
 
         public IDependentRepository DependentRepository { get; private set; }
+
+        public IOffDaysRepository OffDaysRepository { get; private set; }
 
         public int Complete()
         {
