@@ -36,18 +36,16 @@ namespace ICPartners.DAL
             return base.SaveChanges();
         }
 
-     
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Appointment>()
-        //        .HasOptional(a => a.UserDetail)
-        //        .WithOptionalDependent()
-        //        .WillCascadeOnDelete(true);
-        //}
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+  
+        }
 
 
 
     }
-    }
+}
 
