@@ -71,14 +71,8 @@ namespace ICPartners.DevxUI.UserControls
         private void TableView_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
         {
             SaveButton.IsEnabled = true;
-            RevertButton.IsEnabled = true;
         }
 
-        private void RevertButton_Click(object sender, RoutedEventArgs e)
-        {
-
-
-        }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -87,7 +81,6 @@ namespace ICPartners.DevxUI.UserControls
                 AffectedRows = context.SaveChanges();
                 DXMessageBox.Show(AffectedRows.ToString() + " Record(s) updated.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 SaveButton.IsEnabled = false;
-                RevertButton.IsEnabled = false;
             }
             catch(Exception ex)
             {
@@ -117,7 +110,17 @@ namespace ICPartners.DevxUI.UserControls
             }
         }
 
+        private void tableview_ValidateRow(object sender, GridRowValidationEventArgs e)
+        {
+            var commited = e.Row as Domains.Resource;
+            if (commited.ResourceName == null)
+                e.IsValid = false;
+            if (commited.ResourceSurname==null)
+                e.IsValid = false;
+            if (commited.Role == 0)
+                e.IsValid = false;
+            e.ErrorContent = "Required Fields:\n *Name \n *Surname \n *Role" ;
 
-
+        }
     }
 }

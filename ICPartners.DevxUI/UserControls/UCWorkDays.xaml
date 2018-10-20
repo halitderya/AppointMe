@@ -11,24 +11,30 @@
     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
      xmlns:ViewModels="clr-namespace:ICPartners.DevxUI.ViewModels"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:Domains="clr-namespace:ICPartners.Domains;assembly=ICPartners.Domains"
     x:Class="ICPartners.DevxUI.UserControls.UCWorkDays"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-        <UserControl.Resources>
+    <UserControl.Resources>
 
-            <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource" ContextType="{x:Type DAL:ICPartnersContext}" Path="OffDays">
+        <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource" ContextType="{x:Type DAL:ICPartnersContext}" Path="OffDays">
             <dx:DesignDataManager.DesignData>
                 <dx:DesignDataSettings RowCount="5"/>
             </dx:DesignDataManager.DesignData>
         </dx:EntitySimpleDataSource>
-        
+
         <dx:EntitySimpleDataSource x:Key="EntityResourceSource" ContextType="{x:Type DAL:ICPartnersContext}" Path="Resources">
             <dx:DesignDataManager.DesignData>
                 <dx:DesignDataSettings RowCount="5"/>
             </dx:DesignDataManager.DesignData>
         </dx:EntitySimpleDataSource>
-        <dxe:EnumItemsSource x:Key="EnumItemsSource" EnumType="{x:Type local:Days}"/>
+
+        <dx:IEnumerableDataSource x:Key="IEnumerableDataSource">
+            <dx:DesignDataManager.DesignData>
+                <dx:DesignDataSettings DataObjectType="{x:Type Domains:OffDay}" RowCount="5"/>
+            </dx:DesignDataManager.DesignData>
+        </dx:IEnumerableDataSource>
 
     </UserControl.Resources>
     <Grid>
@@ -53,53 +59,31 @@
                     </dxg:TableView.RowCellMenuCustomizations>
                 </dxg:TableView>
             </dxg:GridControl.View>
-            
+
             <dxg:GridColumn FieldName="ResourceRefID" IsSmart="True" Header="Resource">
                 <dxg:GridColumn.EditSettings>
                     <dxe:ComboBoxEditSettings ItemsSource="{Binding Data, Source={StaticResource EntityResourceSource}}" DisplayMember="ResourceName" ValueMember="ResourceID"  />
                 </dxg:GridColumn.EditSettings>
             </dxg:GridColumn>
-            
-            
-            
+
+
+
             <dxg:GridColumn FieldName="OffDaysType" IsSmart="True">
                 <dxg:GridColumn.EditSettings >
-                    <dxe:ComboBoxEditSettings DisplayMember="Text" ValueMember="Value">
-
-                        <dxe:ComboBoxEditSettings.Items>
-             
-
-
-                        </dxe:ComboBoxEditSettings.Items>
-
-                    </dxe:ComboBoxEditSettings>
+                    <dxe:ComboBoxEditSettings DisplayMember="Text" ValueMember="Value"/>
                 </dxg:GridColumn.EditSettings>
 
             </dxg:GridColumn>
-            <dxg:GridColumn FieldName="OffWeekDay" IsSmart="True">
-                <dxg:GridColumn.EditSettings >
-                    <dxe:ComboBoxEditSettings ItemsSource="{Binding Source={StaticResource EnumItemsSource}}">
-
-                        <dxe:ComboBoxEditSettings.Items>
-
-
-
-
-                            
-
-
-
-
-                        </dxe:ComboBoxEditSettings.Items>
-
-                    </dxe:ComboBoxEditSettings>
+            <dxg:GridColumn FieldName="OffWeekDay"  IsSmart="True">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:ComboBoxEditSettings DisplayMember="Text" ValueMember="Value"  />
                 </dxg:GridColumn.EditSettings>
 
             </dxg:GridColumn>
             <dxg:GridColumn FieldName="OffDaysStart" IsSmart="True">
 
                 <dxg:GridColumn.EditSettings>
-                    <dxe:DateEditSettings/>
+                    <dxe:DateEditSettings />
                 </dxg:GridColumn.EditSettings>
 
             </dxg:GridColumn>

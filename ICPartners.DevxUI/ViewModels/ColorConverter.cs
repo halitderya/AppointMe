@@ -23,6 +23,7 @@ namespace ICPartners.DevxUI.ViewModels
 
                 if (list.Count>0)
                 {
+                    list.Reverse();
                     string oldcolor = list.FirstOrDefault().Color;
                     if (oldcolor.ToString().StartsWith("0x"))
                         return String.Concat("#", oldcolor.ToString().Remove(0, 1));

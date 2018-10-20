@@ -42,7 +42,6 @@ namespace ICPartners.DevxUI.UserControls
         private void TableView_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
         {
             SaveButton.IsEnabled = true;
-            RevertButton.IsEnabled = true;
         }
 
         private void RevertButton_Click(object sender, RoutedEventArgs e)
@@ -57,7 +56,6 @@ namespace ICPartners.DevxUI.UserControls
                 AffectedRows = context.SaveChanges();
                 DXMessageBox.Show(AffectedRows.ToString() + " Record(s) updated.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 SaveButton.IsEnabled = false;
-                RevertButton.IsEnabled = false;
             }
             catch(Exception exception)
             {

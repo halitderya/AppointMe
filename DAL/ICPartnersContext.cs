@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ICPartners.Domains;
 
 
+
 namespace ICPartners.DAL
 {
     public class ICPartnersContext:DbContext

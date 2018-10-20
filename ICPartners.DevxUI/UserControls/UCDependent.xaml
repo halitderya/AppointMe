@@ -66,28 +66,7 @@
             </Grid>
 
         </Button>
-        <Button x:Name="RevertButton" Grid.Row="2" IsEnabled="False" Grid.Column="1" Click="RevertButton_Click" FontSize="20">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid.Resources>
-                    <Style TargetType="{x:Type TextBlock}" >
-                        <Setter Property="Margin" Value="5" />
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                    </Style>
-                </Grid.Resources>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="10*"/>
-                </Grid.ColumnDefinitions>
-
-                <Image Source="../Source/if_Block_381636.png" Margin="2" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-                <TextBlock Grid.Column="1" ><Run Text="Revert"/></TextBlock>
-
-
-
-            </Grid>
-
-        </Button>
         <dxg:GridControl x:Name="TableViewDependent"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Row" FontWeight="Bold"   ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}"   >
 
             <dxg:GridControl.View>

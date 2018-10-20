@@ -25,7 +25,7 @@ namespace ICPartners.Domains
         public string ResourceAddress { get; set; }
         public string ResourcePostcode { get; set; }
         public string ResourceCity { get; set; }
-
+        public bool ResourceVisibility { get; set; }
         public string Password { get; set; }
         public int Role { get; set; }
 

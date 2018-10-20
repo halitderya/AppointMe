@@ -7,7 +7,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
 
+            <RowDefinition/>
 
+        </Grid.RowDefinitions>
+
+        <Button HorizontalAlignment="Stretch" Click="Button_Click" VerticalAlignment="Stretch" FontSize="24">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/ICPartners.DevxUI;component/Source/UIMisc/profit.png" Width="60"  ></Image>
+
+                <TextBlock Text="Day End Report" VerticalAlignment="Center"/>
+            </StackPanel>
+            
+        </Button>
     </Grid>
 </UserControl>

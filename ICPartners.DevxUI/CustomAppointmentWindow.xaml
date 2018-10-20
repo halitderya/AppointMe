@@ -19,16 +19,14 @@
 
                  xmlns:converter="clr-namespace:ICPartners.DevxUI.ViewModels"
 
+                    xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+
                     x:Class="ICPartners.DevxUI.CustomAppointmentWindow"
                     mc:Ignorable="d"
                     Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Window}}"
                     x:Name="window" Title="New Window"  Loaded="window_Loaded" Closed="window_Closed" WindowStyle="None" MinWidth="1024" MinHeight="600" Activated="window_Activated"  Initialized="window_Initialized" Closing="window_Closing" >
 
-        
-    <dxmvvm:Interaction.Behaviors>
-        <dxmvvm:CurrentWindowService ClosingCommand="{Binding WindowClosingCommand}"/>
-        <dxmvvm:KeyToCommand KeyGesture="Esc" EventName="KeyDown" MarkRoutedEventsAsHandled="True" Command="{DXCommand Execute=@e(window).Close()}"/>
-    </dxmvvm:Interaction.Behaviors>
+
     <Window.Resources>
         <dx:EntityServerModeDataSource x:Key="EntityServerModeDataSource" ContextType="{x:Type DAL:ICPartnersContext}" DefaultSorting="CustomerName DESC" KeyExpression="CustomerID" Path="Customers">
             <dx:DesignDataManager.DesignData>
@@ -36,10 +34,25 @@
             </dx:DesignDataManager.DesignData>
         </dx:EntityServerModeDataSource>
         <dxe:EnumItemsSource x:Key="EnumItemsSource" EnumType="{x:Type local1:TitleList}"/>
+        <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource" ContextType="{x:Type DAL:ICPartnersContext}" Path="Appointments">
+            <dx:DesignDataManager.DesignData>
+                <dx:DesignDataSettings RowCount="5"/>
+            </dx:DesignDataManager.DesignData>
+        </dx:EntitySimpleDataSource>
+
+
+
+
 
 
     </Window.Resources>
-    
+
+
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:CurrentWindowService ClosingCommand="{Binding WindowClosingCommand}"/>
+        <dxmvvm:KeyToCommand KeyGesture="Esc" EventName="KeyDown" MarkRoutedEventsAsHandled="True" Command="{DXCommand Execute=@e(window).Close()}"/>
+    </dxmvvm:Interaction.Behaviors>
+
     <DockPanel>
 
 
@@ -49,52 +62,44 @@
                     <dxe:DateEdit x:Name="editorStartDate" DockPanel.Dock="Left" Width="150" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_StartDate}}"/>
                     <dxe:TextEdit x:Name="editorStartTime" DockPanel.Dock="Left" Width="150" Margin="4,0,0,0" Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Editor_StartTime}}" Mask="t" />
                     <!--<dxe:TextEdit Name="fefe" Margin="10,0,0,0" DataContext="{Binding Appointment.CustomFields[Jobs]}" EditValue="{Binding JobName}" BorderBrush="Black" BorderThickness="2" Foreground="Black" Width="55"></dxe:TextEdit>-->
-                    <dxe:TextEdit x:Name="updatetime" DockPanel.Dock="Left" Width="150" Margin="4,0,0,0" EditValue="{Binding Appointment.CustomFields[UpdateDate] }" Mask="t" />
+                    <!--<dxe:TextEdit x:Name="updatetime" DockPanel.Dock="Left" Width="150" Margin="4,0,0,0" EditValue="{Binding Appointment.CustomFields[UpdateDate]}" Mask="t" />-->
 
                 </DockPanel>
             </dxlc:LayoutItem>
 
 
             <dxlc:LayoutItem Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=LayoutItem_Description}}">
-                <Grid Name="AppointmentWindowMainGrid" >
+                <Grid x:Name="AppointmentWindowMainGrid" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Name="colu" Width="3*"/>
+                        <ColumnDefinition x:Name="colu" Width="3*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="4*"/>
                         <RowDefinition Height="2*"/>
-                        <RowDefinition Height="3*"/>
+
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="4*"/>
 
                     </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" Grid.Column="1" Name="TotalPriceGrid" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="14" >Total Price:</Label>
+                        <Label Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="14" >Charged Amount:</Label>
 
-                    <!--<dxlc:TileLayoutControl  Orientation="Horizontal"  DataContext="{Binding Appointment.[Jobs],Mode=TwoWay}" x:Name="spmainservice1" Visibility="Hidden"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />-->
+                        <TextBlock Grid.Row="0" Grid.Column="1" Name="TotalPriceTxt"  Text="{Binding Appointment.CustomFields[Jobs],Converter={converter:AppointmentPriceConverter}}" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" ></TextBlock>
+                        <dxe:TextEdit MaskType="Numeric" EditValue="{Binding Appointment.CustomFields[ChargedAmount]}" FontSize="14"  Grid.Row="1" Grid.Column="1" Name="ChargedAmountTxt" />
+                    </Grid>
 
-
-                    <!--<Button Name="btn" Grid.Row="1" Content="Click" Click="btn_Click" Tag="{Binding Appointment.CustomFields[Jobs],Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
-                    <!--<dxg:GridControl Name="gridcontroljob" Visibility="Visible" Grid.Row="1" SelectionMode="Cell"  AutoGenerateColumns="RemoveOld" ShowBorder="False" ItemsSourceChanged="GridControl_ItemsSourceChanged"  ItemsSource="{Binding Appointment.CustomFields[Jobs],Mode=TwoWay,NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True,UpdateSourceTrigger=PropertyChanged}">
-                        <dxg:GridControl.View>
-                            <dxg:TableView Name="tableview" AutoWidth="False" NewItemRowPosition="Bottom" AllowChangeBandParent="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" ShowGroupPanel="False">
-                                <dxg:TableView.RowCellMenuCustomizations>
-                                    <dxb:BarButtonItem Name="deleteRowItem" Content="Delete"  ItemClick="deleteRowItem_ItemClick"/>
-                               
-                                </dxg:TableView.RowCellMenuCustomizations>
-                            </dxg:TableView>
-                        </dxg:GridControl.View>
-                    </dxg:GridControl>-->
-                    <!--<DataGrid Name="gridcontroljob" Visibility="Visible" Grid.Row="1"  ItemsSource="{Binding Appointment.CustomFields[Jobs],Mode=TwoWay,NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True,UpdateSourceTrigger=PropertyChanged}">
-                        <DataGrid.Columns>
-                            <DataGridTemplateColumn>
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Click="Button_Click_1">Delete</Button>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>-->
-                    <usercontrols:UCJobselector Width="450" Height="230" ReceivedJobs="{Binding Appointment.CustomFields[Jobs],Mode=TwoWay}" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></usercontrols:UCJobselector>
-                    <Grid Grid.Row="1" Grid.Column="0">
+                    <usercontrols:UCJobselector Padding="10,10,10,10" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ReceivedJobs="{Binding Appointment.CustomFields[Jobs], Mode=TwoWay}" Grid.Row="0" Grid.Column="0"  />
+                    <Grid Grid.Row="2" Grid.Column="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -106,55 +111,80 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <dxe:TextEdit Grid.Row="1" Grid.Column="0"  EditValue="{Binding Appointment.CustomFields[Remarks] }" ></dxe:TextEdit>
-                        <dxe:TextEdit Grid.Row="1" Grid.Column="1"  EditValue="{Binding Appointment.CustomFields[ColorBrand] }" ></dxe:TextEdit>
-                        <dxe:TextEdit Grid.Row="1" Grid.Column="2"  EditValue="{Binding Appointment.CustomFields[ColorCode] }" ></dxe:TextEdit>
-                        <dxe:TextEdit Grid.Row="1" Grid.Column="3"  EditValue="{Binding Appointment.CustomFields[ColorQuantity] }" ></dxe:TextEdit>
-                        <dxe:TextEdit Grid.Row="1" Grid.Column="4"  EditValue="{Binding Appointment.CustomFields[ColorActivator] }" ></dxe:TextEdit>
-                        <Label Grid.Row="0" Grid.Column="0">Remarks</Label>
-                        <Label Grid.Row="0" Grid.Column="1">Color Brand</Label>
-                        <Label Grid.Row="0" Grid.Column="2">Color Code</Label>
-                        <Label Grid.Row="0" Grid.Column="3">Color Quantity</Label>
-                        <Label Grid.Row="0" Grid.Column="4">Color Activator</Label>
+                        <dxe:TextEdit Grid.Row="1" Grid.Column="0"  EditValue="{Binding Appointment.CustomFields[Remarks]}" />
+                        <dxe:TextEdit Grid.Row="1" Grid.Column="1"  EditValue="{Binding Appointment.CustomFields[ColorBrand]}" />
+                        <dxe:TextEdit Grid.Row="1" Grid.Column="2"  EditValue="{Binding Appointment.CustomFields[ColorCode]}" />
+                        <dxe:TextEdit Grid.Row="1" Grid.Column="3"  EditValue="{Binding Appointment.CustomFields[ColorQuantity]}" />
+                        <dxe:TextEdit Grid.Row="1" Grid.Column="4"  EditValue="{Binding Appointment.CustomFields[ColorActivator]}" />
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="Remarks" VerticalContentAlignment="Bottom" />
+                        <Label Grid.Row="0" VerticalContentAlignment="Bottom" Grid.Column="1" Content="Color Brand"/>
+                        <Label Grid.Row="0" Grid.Column="2" Content="Color Code" VerticalContentAlignment="Bottom"/>
+                        <Label Grid.Row="0" Grid.Column="3" Content="Color Quantity" VerticalContentAlignment="Bottom"/>
+                        <Label Grid.Row="0" Grid.Column="4" Content="Color Activator" VerticalContentAlignment="Bottom"/>
 
 
 
 
                     </Grid>
 
-                    <usercontrols:UCStatusSelector Margin="0,5,0,5" Grid.Row="1" Grid.Column="1" Status="{Binding Appointment.StatusId,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></usercontrols:UCStatusSelector>
+                    <usercontrols:UCStatusSelector Margin="20,10,0,10" Grid.Row="2" Grid.Column="1" Status="{Binding Appointment.StatusId, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
-                    <!--<usercontrols:UCCustomerSelector x:Name="CSelector" Grid.Column="1"/>-->
+
+                    <dxg:GridControl Grid.Row="3"  Grid.Column="0" Name="GridHistory" Grid.ColumnSpan="2" >
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False"/>
+                        </dxg:GridControl.View>
+                        <dxg:GridColumn FieldName="StartDate" Header="Date" IsSmart="True"/>
+                        <dxg:GridColumn FieldName="Resource.ResourceName" IsSmart="True"/>
+                        <dxg:GridColumn FieldName="Jobs" IsSmart="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings Name="jobnamecolumn" DisplayTextConverter="{converter:JobNameConverter}" />
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="ChargedAmount" IsSmart="True"/>
+                        <dxg:GridColumn FieldName="UpdatedBy" IsSmart="True"/>
+
+                        <dxg:GridColumn FieldName="Remarks" IsSmart="True"/>
+                        <dxg:GridColumn FieldName="ColorBrand" IsSmart="True"/>
+                        <dxg:GridColumn FieldName="ColorCode" IsSmart="True"/>
+                        <dxg:GridColumn FieldName="ColorQuantity" IsSmart="True"/>
+                        <dxg:GridColumn FieldName="ColorActivator" IsSmart="True"/>
+
+
+                    </dxg:GridControl>
 
                     <!--<usercontrols:UCCustomerHistory Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>-->
+
+                    <!--customer selector ends here-->
 
                     <!--Customer Selector Starts Here-->
 
                     <Grid x:Name="CustomerMainGrid" Grid.Column="1" >
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
 
                             <RowDefinition Height="6*"/>
 
                         </Grid.RowDefinitions>
-
-                        <dxe:ComboBoxEdit Grid.Row="0" x:Name="CustomerList" DisplayTextConverter="{converter:DisplayConverter}" EditValue="{Binding Appointment.CustomFields[CustomerRefId]}" EditValueChanged="CustomerList_EditValueChanged" SelectedIndexChanged="CustomerList_SelectedIndexChanged" AddNewButtonPlacement="EditBox"  AutoComplete="True" FilterCondition="Contains" FindButtonPlacement="Popup"  FindMode="FindClick" IsTextEditable="False" FontSize="14"   DisplayMember="CustomerName"  ItemsSource="{Binding Data, Source={StaticResource EntityServerModeDataSource}}" ValueMember="CustomerID" >
+                        <Button Grid.Row="0" Background="GreenYellow" Name="AddNewCustomerBtn" Click="AddNewCustomerBtn_Click"  Foreground="Black">Create New Customer</Button>
+                        <dxe:ComboBoxEdit Grid.Row="1" x:Name="CustomerList" ProcessNewValue="CustomerList_ProcessNewValue" DisplayTextConverter="{converter:DisplayConverter}" EditValue="{Binding Appointment.CustomFields[CustomerRefId]}" EditValueChanged="CustomerList_EditValueChanged" SelectedIndexChanged="CustomerList_SelectedIndexChanged"  AutoComplete="True" FilterCondition="Contains" FindButtonPlacement="Popup"  FindMode="Always" IsTextEditable="False" FontSize="14"   DisplayMember="CustomerName"  ItemsSource="{Binding Data, Source={StaticResource EntityServerModeDataSource}}" ValueMember="CustomerID" >
                             <dxe:ComboBoxEdit.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding CustomerID , Converter={converter:DisplayConverter}}"/>
+                                        <TextBlock Text="{Binding CustomerID, Converter={converter:DisplayConverter}}"/>
                                     </StackPanel>
-                                    
+
                                 </DataTemplate>
                             </dxe:ComboBoxEdit.ItemTemplate>
                         </dxe:ComboBoxEdit>
 
-                        <Grid x:Name="CustomerDetailGrid" IsEnabled="True" Grid.Row="1" Grid.ColumnSpan="2" >
+                        <Grid x:Name="CustomerDetailGrid" IsEnabled="True" Grid.Row="2" Grid.ColumnSpan="2" >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*" />
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="5*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="2*" />
+                                <RowDefinition Height="2*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -166,14 +196,14 @@
                                     <ColumnDefinition Width="3*"/>
                                     <ColumnDefinition Width="3*"/>
                                 </Grid.ColumnDefinitions>
-                                <dxe:ComboBoxEdit x:Name="CustomerTitle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"  ItemsSource="{Binding Source={StaticResource EnumItemsSource}}"  />
-                                <dxe:TextEdit x:Name="CustomerName" EditValue="{Binding CustomerID,Converter={converter:CustomerNameConverter},ConverterParameter=Name}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="1" />
-                                <dxe:TextEdit x:Name="CustomerSurname"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" />
+                                <dxe:ComboBoxEdit x:Name="CustomerTitle" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"  ItemsSource="{Binding Source={StaticResource EnumItemsSource}}"  />
+                                <dxe:TextEdit x:Name="CustomerName" EditValueChanged="CustomerName_EditValueChanged" IsEnabled="False" EditValue="{Binding CustomerID, ConverterParameter=Name, Converter={converter:CustomerNameConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="1" />
+                                <dxe:TextEdit x:Name="CustomerSurname" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" />
                             </Grid>
-                            <dxe:TextEdit x:Name="CustomerPhone"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"  Grid.Column="0" />
-                            <dxe:TextEdit x:Name="CustomerEMail"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" />
-                            <dxe:TextEdit x:Name="CustomerAddress" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="0" />
-                            <dxe:TextEdit x:Name="CustomerCity"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="1" />
+                            <dxe:TextEdit x:Name="CustomerPhone" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"  Grid.Column="0" />
+                            <dxe:TextEdit x:Name="CustomerEMail" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" />
+                            <dxe:TextEdit x:Name="CustomerAddress" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="0" />
+                            <dxe:TextEdit x:Name="CustomerCity" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="1" />
 
 
 
@@ -181,15 +211,27 @@
                         </Grid>
                     </Grid>
 
-                    <!--customer selector ends here-->
-
                 </Grid>
             </dxlc:LayoutItem>
 
 
-            <dx:SimpleButton x:Name="SaveButton"  Tag="{Binding Appointment}" Content="save" Click="SaveButton_Click" Command="{Binding SaveAndCloseAppointmentCommand}"   HorizontalAlignment="Right"  Height="26" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Glyph="{dx:DXImage Image=Save_16x16.png}" />
-            <dx:SimpleButton x:Name="CancelButton" Content="close" Click="simpleButton2_Click" HorizontalAlignment="Right" Height="26" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Glyph="{dx:DXImage Image=Close_16x16.png}" />
+            <!--<dx:SimpleButton x:Name="SaveButton"   Tag="{Binding Appointment}" Content="save" Click="SaveButton_Click" Command="{Binding SaveAndCloseAppointmentCommand}"   HorizontalAlignment="Right"  Height="26" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Glyph="{dx:DXImage Image=Save_16x16.png}" />
+            <dx:SimpleButton x:Name="CancelButton" Content="close" Click="simpleButton2_Click" HorizontalAlignment="Right" Height="26" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Glyph="{dx:DXImage Image=Close_16x16.png}" />-->
 
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" Height="40">
+                <Button Width="200" Margin="0,0,5,0" Name="BtnCancel" Click="simpleButton2_Click" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/ICPartners.DevxUI;component/Source/UIMisc/cancel.png" Margin="2"/>
+                    <TextBlock Text="Cancel" FontSize="14" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                </StackPanel>
+            </Button>
+                <Button IsEnabled="False" Width="200" Height="40" Name="BtnSave" MouseLeftButtonDown="BtnSave_MouseLeftButtonDown" IsDefault="True" Margin="5,0,0,0" Tag="{Binding Appointment}" Click="SaveButton_Click" Command="{Binding SaveAppointmentCommand}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/ICPartners.DevxUI;component/Source/UIMisc/save.png" Margin="2"/>
+                    <TextBlock Text="Save" FontSize="14" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                </StackPanel>
+            </Button>
+            </StackPanel>
 
         </dxlc:LayoutControl>
 

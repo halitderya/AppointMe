@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ICPartners.DevxUI.Reporting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,15 @@ namespace ICPartners.DevxUI.UserControls
         public UCReport()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DayEndReport report = new DayEndReport();
+
+
+            report.ShowDialog();
+
         }
     }
 }

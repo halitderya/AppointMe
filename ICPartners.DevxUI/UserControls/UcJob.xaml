@@ -54,32 +54,11 @@
             </Grid>
 
         </Button>
-        <Button x:Name="RevertButton" Grid.Row="2" IsEnabled="False" Grid.Column="1" Click="Revert_Clicked" FontSize="20">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid.Resources>
-                    <Style TargetType="{x:Type TextBlock}" >
-                        <Setter Property="Margin" Value="5" />
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                    </Style>
-                </Grid.Resources>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="10*"/>
-                </Grid.ColumnDefinitions>
-
-                <Image Source="../Source/if_Block_381636.png" Margin="2" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-                <TextBlock Grid.Column="1" ><Run Text="Revert"/></TextBlock>
-
-
-
-            </Grid>
-
-        </Button>
         <dxg:GridControl x:Name="TableViewJob"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}"   >
 
             <dxg:GridControl.View>
-                <dxg:TableView AutoWidth="False" Name="tableview" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" >
+                <dxg:TableView AutoWidth="False" Name="tableview"  ValidateRow="tableview_ValidateRow" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" >
                 <dxg:TableView.RowCellMenuCustomizations>
         <dxb:BarButtonItem Name="deleteRowItem" Content="Delete" 
                            ItemClick="deleteRowItem_ItemClick"/>
@@ -89,11 +68,9 @@
                     </dxg:TableView.RowCellMenuCustomizations>
                 </dxg:TableView>
             </dxg:GridControl.View>
-            <dxg:GridColumn FieldName="JobName" IsSmart="True"/>
-            <dxg:GridColumn FieldName="JobDescription" IsSmart="True"/>
-            <dxg:GridColumn FieldName="JobPrice" IsSmart="True"/>
-            <dxg:GridColumn FieldName="JobMode" IsSmart="True"/>
-            <dxg:GridColumn FieldName="JobOwner" IsSmart="True">
+            <dxg:GridColumn FieldName="JobName" Header="Name" IsSmart="True" />
+            <dxg:GridColumn FieldName="JobPrice" Header="Price" IsSmart="True"/>
+            <dxg:GridColumn FieldName="JobOwner" Header="Owner" IsSmart="True">
                 <dxg:GridColumn.EditSettings>
                     <dxe:ComboBoxEditSettings x:Name="JobOwnerColumn" DisplayMember="Text" ValueMember="Value">
                         <dxe:ComboBoxEditSettings.Items>
@@ -107,10 +84,10 @@
 
             </dxg:GridColumn>
 
-            <dxg:GridColumn FieldName="JobTimeSpan" IsSmart="True"/>
-            <dxg:GridColumn FieldName="JobOffsetTime" IsSmart="True"/>
+            <dxg:GridColumn FieldName="JobTimeSpan" Header="Duration" IsSmart="True"/>
+            <dxg:GridColumn FieldName="JobOffsetTime" Header="Offset" IsSmart="True"/>
 
-            <dxg:GridColumn Header="Job Color" Binding="{Binding Path=Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={ViewModels:HtmlColorCodeToHexConverter}}"
+            <dxg:GridColumn Header="Colour" Binding="{Binding Path=Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,Converter={ViewModels:HtmlColorCodeToHexConverter}}"
 >
                 <dxg:GridColumn.EditSettings>
                     <dxe:PopupColorEditSettings/>

@@ -31,10 +31,11 @@ namespace ICPartners.DevxUI.UserControls
     {
         Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
     }
-
+    
 
     public partial class UCWorkDays : UserControl
     {
+        
         public IList<string> Days;
         public Days TheEnumValue { get; set; }
 
@@ -45,15 +46,15 @@ namespace ICPartners.DevxUI.UserControls
         ComboBoxClass Holiday = new ComboBoxClass() { Text = "Holiday", Value = 2 };
         ObservableCollection<ComboBoxClass> OffDaysType = new ObservableCollection<ComboBoxClass>();
 
-        //ComboBoxClass Monday = new ComboBoxClass() { Text = "Monday", Value = "Monday" };
-        //ComboBoxClass Tuesday = new ComboBoxClass() { Text = "Tuesday", Value = 2 };
-        //ComboBoxClass Wednesday = new ComboBoxClass() { Text = "Wednesday", Value = 3 };
-        //ComboBoxClass Thursday = new ComboBoxClass() { Text = "Thursday", Value = 4 };
-        //ComboBoxClass Friday = new ComboBoxClass() { Text = "Friday", Value = 5 };
-        //ComboBoxClass Saturday = new ComboBoxClass() { Text = "Saturday", Value = 6 };
-        //ComboBoxClass Sunday = new ComboBoxClass() { Text = "Sunday", Value = 7 };
+        ComboBoxClass Monday = new ComboBoxClass() { Text = "Monday", Value = 1 };
+        ComboBoxClass Tuesday = new ComboBoxClass() { Text = "Tuesday", Value = 2 };
+        ComboBoxClass Wednesday = new ComboBoxClass() { Text = "Wednesday", Value = 3 };
+        ComboBoxClass Thursday = new ComboBoxClass() { Text = "Thursday", Value = 4 };
+        ComboBoxClass Friday = new ComboBoxClass() { Text = "Friday", Value = 5 };
+        ComboBoxClass Saturday = new ComboBoxClass() { Text = "Saturday", Value = 6 };
+        ComboBoxClass Sunday = new ComboBoxClass() { Text = "Sunday", Value = 7 };
 
-        //ObservableCollection<ComboBoxClass> WeekDays = new ObservableCollection<ComboBoxClass>();
+        ObservableCollection<ComboBoxClass> WeekDays = new ObservableCollection<ComboBoxClass>();
 
 
 
@@ -67,14 +68,14 @@ namespace ICPartners.DevxUI.UserControls
             OffDaysType.Add(Weekly);
             OffDaysType.Add(Holiday);
             ((ComboBoxEditSettings)gridworkdays.Columns["OffDaysType"].EditSettings).ItemsSource = OffDaysType;
-            //WeekDays.Add(Monday);
-            //WeekDays.Add(Tuesday);
-            //WeekDays.Add(Wednesday);
-            //WeekDays.Add(Thursday);
-            //WeekDays.Add(Friday);
-            //WeekDays.Add(Saturday);
-            //WeekDays.Add(Sunday);
-            //((ComboBoxEditSettings)gridworkdays.Columns["OffWeekDay"].EditSettings).ItemsSource = WeekDays;
+            WeekDays.Add(Monday);
+            WeekDays.Add(Tuesday);
+            WeekDays.Add(Wednesday);
+            WeekDays.Add(Thursday);
+            WeekDays.Add(Friday);
+            WeekDays.Add(Saturday);
+            WeekDays.Add(Sunday);
+            ((ComboBoxEditSettings)gridworkdays.Columns["OffWeekDay"].EditSettings).ItemsSource = WeekDays;
 
         }
 

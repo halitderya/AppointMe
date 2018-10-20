@@ -150,7 +150,7 @@
             <RowDefinition Height="4*"/>
 
         </Grid.RowDefinitions>
-        <dxsch:SchedulerControl Grid.Row="0" SizeChanged="MainScheduler_SizeChanged"  AllowAppointmentDragBetweenResources="True" x:Name="MainScheduler" FlyoutContentTemplate="{StaticResource appointmentFlyoutContentTemplate}"  AppointmentWindowShowing="MainScheduler_AppointmentWindowShowing" ItemPropertyChanged="MainScheduler_ItemPropertyChanged" InitNewAppointment="MainScheduler_InitNewAppointment"  HorizontalAlignment="Left" Grid.Column="0"  VerticalAlignment="Top" GroupType="Resource"  BeforeAppointmentItemDelete="SchedulerControl_BeforeAppointmentItemDelete"  AppointmentDrop="MainScheduler_AppointmentDrop" AppointmentsUpdated="MainScheduler_AppointmentsUpdated" ItemsCollectionChanged="MainScheduler_ItemsCollectionChanged" AllowInplaceEditor="False" MouseDoubleClick="MainScheduler_MouseDoubleClick" FirstDayOfWeek="Monday" WorkDays="EveryDay"   >
+        <dxsch:SchedulerControl Grid.Row="0" SizeChanged="MainScheduler_SizeChanged"  AllowAppointmentDragBetweenResources="True" x:Name="MainScheduler" FlyoutContentTemplate="{StaticResource appointmentFlyoutContentTemplate}"  AppointmentWindowShowing="MainScheduler_AppointmentWindowShowing" ItemPropertyChanged="MainScheduler_ItemPropertyChanged" InitNewAppointment="MainScheduler_InitNewAppointment"  HorizontalAlignment="Left" Grid.Column="0"  VerticalAlignment="Top" GroupType="Resource"  BeforeAppointmentItemDelete="SchedulerControl_BeforeAppointmentItemDelete"  AppointmentDrop="MainScheduler_AppointmentDrop" AppointmentsUpdated="MainScheduler_AppointmentsUpdated" ItemsCollectionChanged="MainScheduler_ItemsCollectionChanged" AllowInplaceEditor="False" MouseDoubleClick="MainScheduler_MouseDoubleClick" FirstDayOfWeek="Monday" WorkDays="EveryDay" ContextMenuOpening="MainScheduler_ContextMenuOpening"   >
 
 
 
@@ -195,6 +195,7 @@
                             <dxsch:CustomFieldMapping Mapping="CustomerRefId" Name="CustomerRefId"/>
                             <dxsch:CustomFieldMapping Mapping="UpdateDate" Name="UpdateDate"/>
                             <dxsch:CustomFieldMapping Mapping="ParentID" Name="ParentID"/>
+                            <dxsch:CustomFieldMapping Mapping="ChargedAmount" Name="ChargedAmount"/>
 
                             <dxsch:CustomFieldMapping Mapping="Remarks" Name="Remarks"/>
                             <dxsch:CustomFieldMapping Mapping="ColorBrand" Name="ColorBrand"/>
@@ -209,11 +210,12 @@
 
                     <dxsch:DataSource.ResourceMappings>
                         <dxsch:ResourceMappings 
-                                    Caption="ResourceName" Id="ResourceID">
+                                    Caption="ResourceName" Id="ResourceID" Visible="ResourceVisibility" >
                             <dxsch:CustomFieldMapping 
                             Mapping="ResourceImage" 
                             Name="Photo"/>
 
+                            
 
                         </dxsch:ResourceMappings>
                     </dxsch:DataSource.ResourceMappings>
@@ -230,7 +232,7 @@
                             AppointmentContentTemplate="{StaticResource appointmentContentTemplate}"
                            
                 TimeScale="00:15:00"
-                           ResourceHeaderContentTemplate="{StaticResource resourceHeaderContentTemplate}" ShowResourceNavigator="False"
+                           ResourceHeaderContentTemplate="{StaticResource resourceHeaderContentTemplate}" ShowResourceNavigator="False" ShowTimeIndicatorOverAppointment="True"
                            
                            />
         </dxsch:SchedulerControl>

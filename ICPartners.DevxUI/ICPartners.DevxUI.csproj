@@ -54,6 +54,9 @@
     <ApplicationIcon>app_logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoUpdater.NET, Version=1.4.11.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autoupdater.NET.Official.1.4.11\lib\net40\AutoUpdater.NET.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Charts.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.CodeParser.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -104,6 +107,10 @@
     <Reference Include="EPPlus, Version=4.5.2.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.4.5.2.1\lib\net40\EPPlus.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -125,6 +132,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Words.NET, Version=1.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocX.1.2.1\lib\Xceed.Words.NET.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -135,6 +145,12 @@
       <DependentUpon>CustomAppointmentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\StatusesState.cs" />
+    <Compile Include="Reporting\DayEndReport.xaml.cs">
+      <DependentUpon>DayEndReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting\DayEndReportPage.xaml.cs">
+      <DependentUpon>DayEndReportPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ComboBoxClass.cs" />
     <Compile Include="UserControls\CustomTile.cs" />
     <Compile Include="Preferences\ApplyThemeSettings.cs" />
@@ -149,9 +165,6 @@
     </Compile>
     <Compile Include="UserControls\UCCustomer.xaml.cs">
       <DependentUpon>UCCustomer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\UCCustomerHistory.xaml.cs">
-      <DependentUpon>UCCustomerHistory.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UCDependent.xaml.cs">
       <DependentUpon>UCDependent.xaml</DependentUpon>
@@ -178,6 +191,7 @@
       <DependentUpon>UCWorkDays.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AppointmentParentImageConverter.cs" />
+    <Compile Include="ViewModels\AppointmentPriceConverter.cs" />
     <Compile Include="ViewModels\AppointmentViewModel.cs" />
     <Compile Include="ViewModels\ColorConverter.cs" />
     <Compile Include="ViewModels\CustomerNameConverter.cs" />
@@ -185,6 +199,12 @@
     <Compile Include="ViewModels\HtmlColorCodeToColorConverter.cs" />
     <Compile Include="ViewModels\JobNameConverter.cs" />
     <Compile Include="ViewModels\ResourceNameConverter.cs" />
+    <Compile Include="Windows\ChangePassword.xaml.cs">
+      <DependentUpon>ChangePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CreateNewCustomer.xaml.cs">
+      <DependentUpon>CreateNewCustomer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -204,6 +224,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Reporting\DayEndReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reporting\DayEndReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\CustomTile2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -217,10 +245,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\UCCustomer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\UCCustomerHistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,6 +277,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\UCWorkDays.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CreateNewCustomer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -305,7 +337,6 @@
   <ItemGroup>
     <Folder Include="Garbage\" />
     <Folder Include="Pages\" />
-    <Folder Include="Reporting\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Source\if_Block_381636.png" />
@@ -410,6 +441,27 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\UIMisc\profit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\UIMisc\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\UIMisc\create.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\UIMisc\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\UIMisc\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\HamburgerMenu\password.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -47,7 +47,6 @@ namespace ICPartners.DevxUI.UserControls
             if(row.MainJob!=0 && row.DependentJob!=0)
             {
                 SaveButton.IsEnabled = true;
-                RevertButton.IsEnabled = true;
             }
             
         }
@@ -64,7 +63,6 @@ namespace ICPartners.DevxUI.UserControls
                 AffectedRows = context.SaveChanges();
                 DXMessageBox.Show(AffectedRows.ToString() + " Record(s) updated.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 SaveButton.IsEnabled = false;
-                RevertButton.IsEnabled = false;
             }
            catch(Exception exception)
             {

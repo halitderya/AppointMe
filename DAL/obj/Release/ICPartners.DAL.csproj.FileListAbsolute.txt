@@ -63,6 +63,10 @@ C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.Offdaysadded.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.offday2.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.offday3.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.workdays3.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.workdays4.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.workdays.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.resourcevisibility.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.csproj.GenerateResource.cache
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.csproj.CoreCompileInputs.cache
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.csproj.CopyComplete

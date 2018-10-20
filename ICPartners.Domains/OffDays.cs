@@ -15,7 +15,7 @@ namespace ICPartners.Domains
         [DatabaseGenerated (DatabaseGeneratedOption.Identity)]
         public int OffDaysID { get; set; }
         public int OffDaysType { get; set; }
-        public string OffWeekDay { get; set; }
+        public int OffWeekDay { get; set; }
         public DateTime? OffDaysStart { get; set; }
         public DateTime? OffDaysEnd { get; set; }
         [ForeignKey("Resource")]

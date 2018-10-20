@@ -29,8 +29,10 @@ namespace ICPartners.DevxUI.ViewModels
                 else
                 {
                     string Jobname = "";
-                    foreach (var item in list)
+                    
+                    foreach (var item in list.Reverse())
                     {
+
                         Jobname += item.JobName + " ";
                     }
                     return Jobname;

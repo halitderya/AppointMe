@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("app_logo.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("source/hamburgermenu/password.png")]
 
 

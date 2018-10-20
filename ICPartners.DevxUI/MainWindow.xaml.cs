@@ -9,14 +9,19 @@ using ICPartners.Domains;
 using System.Data.Entity;
 using System.Windows.Media.Imaging;
 using System;
+using ICPartners.DAL;
+using ICPartners.DevxUI.Windows;
 
 namespace ICPartners.DevxUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+    
     public partial class MainWindow : Window
     {
+        UnitOfWork work = new UnitOfWork(new ICPartnersContext());
         public MainWindow()
         {
            
@@ -67,14 +72,20 @@ namespace ICPartners.DevxUI
 
         private void ThemedWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //if (ICPartners.Logic.UserManagement.CurrentUser.LoggedUser.Role < 2)
-            //{
-            //    btnresources.Visibility = Visibility.Hidden;
-            //    btnconnected.Visibility = Visibility.Hidden;
-            //    BtnMaintainence.Visibility = Visibility.Hidden;
-            //    btnreports.Visibility = Visibility.Hidden;
-            //}
 
+            if (ICPartners.Logic.UserManagement.CurrentUser.LoggedUser.Role < 3)
+            {
+                btnresources.Visibility = Visibility.Hidden;
+                btnconnected.Visibility = Visibility.Hidden;
+                btnreports.Visibility = Visibility.Hidden;
+                BtnMaintainence.Visibility = Visibility.Hidden;
+                btnjobs.Visibility = Visibility.Hidden;
+            }
+            if (ICPartners.Logic.UserManagement.CurrentUser.LoggedUser.Role < 2)
+            {
+                
+                BtnCustomers.Visibility = Visibility.Hidden;
+            }
         }
 
         private void ThemeDropDown_Click(object sender, RoutedEventArgs e)
@@ -106,19 +117,32 @@ namespace ICPartners.DevxUI
 
         private void Resize_Click(object sender, RoutedEventArgs e)
         {
-            if (this.WindowState == WindowState.Maximized)
-            {
-                this.WindowState = WindowState.Normal;
-                Resize.IsChecked = false;
+            //if (this.WindowState == WindowState.Maximized)
+            //{
+            //    this.WindowState = WindowState.Normal;
+            //    Resize.IsChecked = false;
                 
-            }
-            else if(this.WindowState== WindowState.Normal){
-                this.WindowState = WindowState.Maximized;
+            //}
+            //else if(this.WindowState== WindowState.Normal){
+            //    this.WindowState = WindowState.Maximized;
                 
-            }
+            //}
                
 
 
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Close();
+        }
+
+        private void Password_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePassword password = new ChangePassword();
+            password.ShowDialog();
         }
     }
 }

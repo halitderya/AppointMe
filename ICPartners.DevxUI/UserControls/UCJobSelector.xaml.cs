@@ -17,6 +17,7 @@ namespace ICPartners.DevxUI.UserControls
     public partial class UCJobselector : UserControl
     {
 
+        ICPartnersContext context = new ICPartnersContext();
         public static readonly DependencyProperty ReceivedJobsProperty =
        DependencyProperty.Register("ReceivedJobs", typeof(HashSet<Job>), typeof(UCJobselector));
 
@@ -65,9 +66,11 @@ namespace ICPartners.DevxUI.UserControls
                         CustomTile2 tile = new CustomTile2();
 
                         tile.Content = item.JobName;
-                        tile.Size = TileSize.ExtraSmall;
                         tile.VerticalContentAlignment = VerticalAlignment.Center;
                         tile.HorizontalContentAlignment = HorizontalAlignment.Center;
+                        tile.Width = AllJoblist.Where(x => x.JobOwner == Logic.Resource.ResourceSelector.SelectedResource.ResourceDuty).Count() > 18 ? 67 : 84;
+                        
+                        tile.Height = tile.Width;
                         tile.JobID = item.JobId;
                         Color backtile = (Color)ColorConverter.ConvertFromString(item.Color.ToString());
                         tile.Background = new SolidColorBrush(backtile);
@@ -76,7 +79,9 @@ namespace ICPartners.DevxUI.UserControls
                         tile.Click += new EventHandler(button_click);
                         MainButtonList.Add(tile);
                         spmainservice1.Children.Add(tile);
-                        JobSelector.JobtoCreate = tile.JobID;
+                       
+
+                                JobSelector.JobtoCreate = tile.JobID;
                     }
                 }
 
@@ -84,6 +89,18 @@ namespace ICPartners.DevxUI.UserControls
             if (MainButtonList.Count != 0)
             {
                 OrginalTileColor = (Color)ColorConverter.ConvertFromString(MainButtonList[0].Background.ToString());
+            }
+        }
+        void TriggerEvent(CustomTile2 tile)
+        {
+            foreach (var Window in App.Current.Windows)
+
+            {
+
+                if (Window is ICPartners.DevxUI.CustomAppointmentWindow)
+                {
+                    (Window as ICPartners.DevxUI.CustomAppointmentWindow).CustomerName_EditValueChanged(tile, null);
+                }
             }
         }
         int PerceivedBrightness(Color c)
@@ -102,18 +119,47 @@ namespace ICPartners.DevxUI.UserControls
             {
                 UnMarkMainButtons();
                 JobSelector.JobtoCreate = AllJoblist.Find(x => x.JobId == button.JobID).JobId;
-                button.Background = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                button.Width = button.Width - 10;
+                button.Height = button.Width;
                 button.IsClicked = true;
-              
-                
-                
+                foreach (var Window in App.Current.Windows)
+
+                {
+
+                    if (Window is ICPartners.DevxUI.CustomAppointmentWindow)
+                    {
+                        double Price = 0;
+                        List<Job> AllJobs = new List<Job>();
+                        AllJobs = context.Jobs.ToList();
+                        List<DependentJobs> DependentList = new List<DependentJobs>();
+                        DependentList= context.DependentJobs.Where(x => x.MainJob == JobSelector.JobtoCreate).ToList();
+                        if (DependentList.Count == 0)
+                        {
+                            Price = context.Jobs.Find(JobSelector.JobtoCreate).JobPrice;
+                        }
+                            
+                        foreach (var item in DependentList)
+                        {
+                            Price=Price+  AllJobs.Where(x => x.JobId == item.MainJob).Sum(c => c.JobPrice);
+
+                        }
+                        (Window as ICPartners.DevxUI.CustomAppointmentWindow).TotalPriceTxt.Text = Price.ToString();
+                    }
+
+
+                }
+                TriggerEvent(button);
+
+
             }
             else
             {
-                button.Background = new SolidColorBrush(OrginalTileColor);
+                button.Width = button.Width + 10;
+                button.Height = button.Width;
+                ICPartners.Logic.Appointment.JobSelector.JobtoCreate = 0;
                 button.IsClicked = false;
                 UnMarkMainButtons();
-
+                TriggerEvent(button);
             }
 
         }
@@ -125,6 +171,7 @@ namespace ICPartners.DevxUI.UserControls
                 item.IsClicked = false;
                 RedrawButtons();
             }
+            JobSelector.JobtoCreate = 0;
         }
         void RedrawButtons()
         {
@@ -132,10 +179,12 @@ namespace ICPartners.DevxUI.UserControls
             {
                 try
                 {
-                    item.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(unitOfWork.jobRepository.GetByID(item.JobID).Color.ToString()));
-             
+                    //item.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(unitOfWork.jobRepository.GetByID(item.JobID).Color.ToString()));
+
+                    item.Width = AllJoblist.Where(x => x.JobOwner == Logic.Resource.ResourceSelector.SelectedResource.ResourceDuty).Count() > 18 ? 67 : 84;
+                    item.Height = item.Width;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
                 }

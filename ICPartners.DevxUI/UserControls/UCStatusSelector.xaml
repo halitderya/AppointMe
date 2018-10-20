@@ -28,17 +28,20 @@
                 <local:CustomTile2.Content>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Padding="3"  FontSize="12" Text="Completed" FontWeight="Black" Foreground="Black"/>
-                        <TextBlock Padding="3" FontSize="12" Text="(Waiting" Foreground="Black"/>
-                        <TextBlock Padding="3" FontSize="12" Text="Payment)"  Foreground="Black"/>
+                        <TextBlock Padding="3" FontSize="12" Text="(Unpaid)" Foreground="Black"/>
 
                     </StackPanel>
                     
                 </local:CustomTile2.Content>
                 
             </local:CustomTile2>
-            <local:CustomTile2 Click="Button_Click" x:Name="ButtonCompleted" Size="ExtraSmall" Margin="1"  FontWeight="Black" Background="ForestGreen" Foreground="Black" FontSize="12" >
+            <local:CustomTile2 Click="Button_Click" x:Name="ButtonCompleted" Size="ExtraSmall" Margin="1"  Background="ForestGreen" Foreground="Black" FontSize="12" >
                 <local:CustomTile2.Content>
-                    <TextBlock Padding="3" Text="Complete"/>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Padding="3" Text="Complete" FontWeight="Black"/>
+                        <TextBlock Padding="3" Text="(Paid)"/>
+                    </StackPanel>
+                    
                 </local:CustomTile2.Content>
 
             </local:CustomTile2>

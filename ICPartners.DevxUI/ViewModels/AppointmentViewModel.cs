@@ -25,7 +25,7 @@ namespace ICPartners.DevxUI.ViewModels
     {
         UnitOfWork unitOfWork = new UnitOfWork(new ICPartnersContext());
         public static string[] StatusLabels = { "Open",  "Cancelled", "Completed - Waiting Payment", "Completed - Payment Made" };
-        public static Brush[] StatusBrushes = { new SolidColorBrush(Colors.Green), new SolidColorBrush(Colors.Red), new SolidColorBrush(Colors.Orange), new SolidColorBrush(Colors.Green) };
+        public static Brush[] StatusBrushes = { new SolidColorBrush(Colors.Yellow), new SolidColorBrush(Colors.Red), new SolidColorBrush(Colors.Orange), new SolidColorBrush(Colors.Green) };
         public int JobSeq { get; set; }
         public virtual ObservableCollection<Resource> Resources { get; set; }
         private ObservableCollection<Appointment> _Appointment;
@@ -131,14 +131,14 @@ namespace ICPartners.DevxUI.ViewModels
                                     AppointmentStatus = Logic.Appointment.AppointmentSelector.SelectedStatus,
                                     StartDate = oldAppointment.StartDate,
                                     EndDate = oldAppointment.StartDate + item.JobTimeSpan,
-                                    CustomerRefId = oldAppointment.CustomerRefId,
                                     UpdateDate=oldAppointment.UpdateDate,
-                                    UpdatedBy=oldAppointment.UpdatedBy
 
 
                                 };
                                 NewAppointment.CreateDate = oldAppointment.CreateDate != default(DateTime) ? oldAppointment.CreateDate : NewAppointment.CreateDate = DateTime.Now;
                                 NewAppointment.UpdateDate = oldAppointment.UpdateDate != default(DateTime) ? oldAppointment.UpdateDate : NewAppointment.UpdateDate = DateTime.Now;
+                                NewAppointment.CustomerRefId = Logic.Customer.CustomerSelector.CreateCustomerWithAppointment==true ? NewAppointment.CustomerRefId= Logic.Customer.CustomerSelector.CustomerToSelect : NewAppointment.CustomerRefId = oldAppointment.CustomerRefId;
+                                NewAppointment.UpdatedBy = Logic.UserManagement.CurrentUser.LoggedUser != null ? NewAppointment.UpdatedBy = Logic.UserManagement.CurrentUser.LoggedUser.ResourceName : NewAppointment.UpdatedBy = "N/A";
 
                                 Offset = true;
                                 if (MasterAppointment != 0 )
@@ -180,16 +180,16 @@ namespace ICPartners.DevxUI.ViewModels
                                 CreateDate = oldAppointment.CreateDate,
                                 AppointmentStatus = Logic.Appointment.AppointmentSelector.SelectedStatus,
                                 StartDate = oldAppointment.StartDate,
-                                CustomerRefId = oldAppointment.CustomerRefId,
                                 UpdateDate = oldAppointment.UpdateDate,
-                                UpdatedBy = oldAppointment.UpdatedBy
 
 
                             };
 
 
+                            NewAppointment.CustomerRefId = Logic.Customer.CustomerSelector.CreateCustomerWithAppointment == true ? NewAppointment.CustomerRefId = Logic.Customer.CustomerSelector.CustomerToSelect : NewAppointment.CustomerRefId = oldAppointment.CustomerRefId;
 
                             NewAppointment.CreateDate = oldAppointment.CreateDate != default(DateTime) ? oldAppointment.CreateDate : NewAppointment.CreateDate = DateTime.Now;
+                            NewAppointment.UpdatedBy = Logic.UserManagement.CurrentUser.LoggedUser != null ? NewAppointment.UpdatedBy = Logic.UserManagement.CurrentUser.LoggedUser.ResourceName : NewAppointment.UpdatedBy = "N/A";
 
                             if (JobToRemove.Any(x => x.JobOffsetTime.TotalMinutes > 0))
                             {
@@ -230,7 +230,6 @@ namespace ICPartners.DevxUI.ViewModels
                             CreateDate = oldAppointment.CreateDate,
                             AppointmentStatus = Logic.Appointment.AppointmentSelector.SelectedStatus,
                             StartDate = oldAppointment.StartDate,
-                            CustomerRefId = oldAppointment.CustomerRefId,
                             UpdateDate = oldAppointment.UpdateDate,
                             UpdatedBy = oldAppointment.UpdatedBy
                             
@@ -238,6 +237,9 @@ namespace ICPartners.DevxUI.ViewModels
 
 
                         };
+                        NewAppointment.CustomerRefId = Logic.Customer.CustomerSelector.CreateCustomerWithAppointment == true ? NewAppointment.CustomerRefId = Logic.Customer.CustomerSelector.CustomerToSelect : NewAppointment.CustomerRefId = oldAppointment.CustomerRefId;
+                        NewAppointment.UpdatedBy = Logic.UserManagement.CurrentUser.LoggedUser != null ? NewAppointment.UpdatedBy = Logic.UserManagement.CurrentUser.LoggedUser.ResourceName : NewAppointment.UpdatedBy = "N/A";
+
                         NewAppointment.CreateDate = oldAppointment.CreateDate != default(DateTime) ? oldAppointment.CreateDate : NewAppointment.CreateDate = DateTime.Now;
                         NewAppointment.EndDate = NewAppointment.StartDate + JobWillCreate.JobTimeSpan;
                         CreateMultiOffset(NewAppointment, oldAppointment, JobWillCreate, null,false);
@@ -290,7 +292,7 @@ namespace ICPartners.DevxUI.ViewModels
 
 
                 this.Appointments.Add(NewAppointment);
-
+                Logic.Appointment.AppointmentSelector.AppointmentToEdit = null;
                 IcPartnersContext.SaveChanges();
                
 

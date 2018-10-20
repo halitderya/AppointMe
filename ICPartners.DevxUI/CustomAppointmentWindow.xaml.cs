@@ -4,20 +4,19 @@ using System.Windows;
 using System.Windows.Controls;
 using DevExpress.Xpf.Core;
 using ICPartners.DAL;
-using ICPartners.DevxUI.UserControls;
 using ICPartners.Logic.Appointment;
 using ICPartners.Logic.CustomerFactory;
 using DevExpress.Xpf.Scheduling;
-using System.Data.Entity;
 using System.Collections.Generic;
-using DevExpress.XtraScheduler;
 using ICPartners.Domains;
-using DevExpress.Xpf.LayoutControl;
-using System.Windows.Media;
-using System.Diagnostics;
-using System.Windows.Data;
 using DevExpress.Xpf.Grid;
 using ICPartners.DevxUI.ViewModels;
+using System.Data;
+using System.Collections.ObjectModel;
+using DevExpress.Xpf.Editors;
+using ICPartners.Logic.Customer;
+using ICPartners.DevxUI.Windows;
+using ICPartners.DevxUI.UserControls;
 
 namespace ICPartners.DevxUI
 {
@@ -33,39 +32,27 @@ namespace ICPartners.DevxUI
     public partial class CustomAppointmentWindow  {
 
 
-
         ICPartnersContext context = new ICPartnersContext();
         UnitOfWork UnitOfWork = new UnitOfWork(new ICPartnersContext());
         public IList<string> TitleList;
-
+        public ObservableCollection<Domains.Appointment> AppEnumerable= new ObservableCollection<Domains.Appointment>();
         public TitleList TheEnumValue { get; set; }
 
 
         public CustomAppointmentWindow() {
             InitializeComponent();
-            UCCustomerHistory history = new UCCustomerHistory(0);
-            AppointmentWindowMainGrid.Children.Add(history);
-            Grid.SetRow(history, 2);
-            Grid.SetColumnSpan(history, 2);
-            //GenerateMainButtons();
-            //CustomBind();
+            GridHistory.ItemsSource =AppEnumerable;
 
         }
 
         private void simpleButton2_Click(object sender, RoutedEventArgs e)
         {
+            Logic.Appointment.AppointmentSelector.AppointmentToEdit = null;
             this.Close();
         }
         
         public void GenerateNewHistory(int customer)
         {
-
-            UCCustomerHistory history = new UCCustomerHistory(customer);
-            AppointmentWindowMainGrid.Children.Add(history);
-            Grid.SetRow(history, 2);
-            Grid.SetColumnSpan(history, 2);
-
-
 
 
         }
@@ -113,17 +100,16 @@ namespace ICPartners.DevxUI
         //Create new customer when needed with text fields
         private int CreateCustomerWithID()
         {
-            //Domains.Customer customerwithappointment = new Domains.Customer();
-            //customerwithappointment.CustomerName = CSelector.CustomerName.Text;
-            //customerwithappointment.CustomerAddress = CSelector.CustomerAddress.Text;
-            //customerwithappointment.CustomerEmail = CSelector.CustomerEMail.Text;
-            //customerwithappointment.CustomerSurname = CSelector.CustomerSurname.Text;
-            //customerwithappointment.CustomerTitle = CSelector.CustomerTitle.Text;
-            //customerwithappointment.CustomerPhone = CSelector.CustomerPhone.Text;
-            //customerwithappointment.CustomerCity = CSelector.CustomerCity.Text;
-            //CustomerFactory factory = new CustomerFactory();
-            //return factory.CreateCustomerForAppointment(customerwithappointment);
-            return 0;
+            Domains.Customer customerwithappointment = new Domains.Customer();
+            customerwithappointment.CustomerName = CustomerName.Text;
+            customerwithappointment.CustomerAddress = CustomerAddress.Text;
+            customerwithappointment.CustomerEmail = CustomerEMail.Text;
+            customerwithappointment.CustomerSurname = CustomerSurname.Text;
+            customerwithappointment.CustomerTitle = CustomerTitle.Text;
+            customerwithappointment.CustomerPhone = CustomerPhone.Text;
+            customerwithappointment.CustomerCity = CustomerCity.Text;
+            CustomerFactory factory = new CustomerFactory();
+            return factory.CreateCustomerForAppointment(customerwithappointment);
         }
 
         //edits existing appointment 
@@ -135,17 +121,17 @@ namespace ICPartners.DevxUI
             //CreateCustomerWithAppointment() method.
             if (Logic.Customer.CustomerSelector.CreateCustomerWithAppointment == true)
             {
-               
-                //appointmenttoedit.CustomerRefId = CreateCustomerWithID();
-                //Logic.Customer.CustomerSelector.CreateCustomerWithAppointment = false;
-                //CSelector.CustomerList.SelectedItem = UnitOfWork.CustomerRepository.GetByID(appointmenttoedit.CustomerRefId);
+
+                appointmenttoedit.CustomerRefId = CreateCustomerWithID();
+                Logic.Customer.CustomerSelector.CreateCustomerWithAppointment = false;
+                CustomerList.SelectedItem = UnitOfWork.CustomerRepository.GetByID(appointmenttoedit.CustomerRefId);
 
             }
             else
             {
-               //var selectedCustomer = CSelector.CustomerList.SelectedItem as Domains.Customer;
-               // appointmenttoedit.CustomerRefId = selectedCustomer.CustomerID;
-                
+                var selectedCustomer = CustomerList.SelectedItem as Domains.Customer;
+                appointmenttoedit.CustomerRefId = selectedCustomer.CustomerID;
+
             }
 
 
@@ -156,15 +142,14 @@ namespace ICPartners.DevxUI
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
-
-
-
         {
+
+            
 
 
 
             AppointmentViewModel model = new AppointmentViewModel();
-            var buttontag = ((sender as SimpleButton).Tag as AppointmentItem);
+            var buttontag = ((sender as Button).Tag as AppointmentItem);
             var buttontagApp = buttontag.SourceObject as Domains.Appointment;
 
             if (buttontagApp != null&& buttontagApp!=null)
@@ -174,7 +159,7 @@ namespace ICPartners.DevxUI
                 buttontagApp.UpdateDate = DateTime.Now;
                 buttontag.End = buttontag.End.AddMilliseconds(-1);
                 buttontag.End = buttontag.End.AddMilliseconds(1);
-
+               
                 foreach (var item in buttontag.CustomFields)
                 {
                     var converted = (item as DevExpress.XtraScheduler.Native.CustomField);
@@ -321,7 +306,7 @@ namespace ICPartners.DevxUI
 
         private void CustomerList_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
         {
-            int SelectedValue = (int)(sender as DevExpress.Xpf.Editors.ComboBoxEdit).EditValue;
+            int SelectedValue = (sender as ComboBoxEdit).EditValue== null ? 0 : (int)(sender as DevExpress.Xpf.Editors.ComboBoxEdit).EditValue;
             if (SelectedValue>0)
             {
                Domains.Customer Customer=  UnitOfWork.CustomerRepository.GetByID(SelectedValue);
@@ -332,9 +317,12 @@ namespace ICPartners.DevxUI
                 CustomerAddress.Text = Customer.CustomerAddress;
                 CustomerCity.Text = Customer.CustomerPostCode + " - " + Customer.CustomerCity;
                 CustomerEMail.Text = Customer.CustomerEmail;
-
-
-
+                DataTable table = new DataTable();
+                AppEnumerable.ToList().ForEach(x => AppEnumerable.Remove(x));
+                //UnitOfWork.appointmentRepository.GetAppointmentByCustomer(SelectedValue).ToList().ForEach(x=> AppEnumerable.Add(x));
+                 context.Appointments.Include("Resource").Include("Jobs").Where(x => x.CustomerRefId == SelectedValue).ToList().ForEach(c => AppEnumerable.Add(c));
+                jobnamecolumn.DisplayTextConverter = new JobNameConverter();
+                var sa = AppEnumerable;
             }
 
 
@@ -556,6 +544,98 @@ namespace ICPartners.DevxUI
         private void window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //ICPartners.Logic.Appointment.AppointmentSelector.AppointmentToEdit = null;
+        }
+
+        private void CustomerList_ProcessNewValue(DependencyObject sender, DevExpress.Xpf.Editors.ProcessNewValueEventArgs e)
+        {
+            
+
+            
+
+        }
+        void CleanFields()
+        {
+            if (CustomerList.SelectedIndex > -1)
+            {
+                CustomerList.SelectedIndex = -1;
+                CustomerDetailGrid.IsEnabled = true;
+                foreach (DependencyObject c in CustomerDetailGrid.Children)
+                {
+                    if (c.GetType().ToString() == "DevExpress.Xpf.Editors.TextEdit")
+                    {
+                        ((TextEdit)c).Text = "";
+                    }
+                }
+                foreach (DependencyObject c in CustomerNameGrid.Children)
+                {
+                    if (c.GetType().ToString() == "DevExpress.Xpf.Editors.TextEdit")
+                    {
+                        ((TextEdit)c).Text = "";
+                    }
+                }
+                CustomerTitle.SelectedIndex = -1;
+            }
+        }
+
+        private void AddNewCustomerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CleanFields();
+
+            CreateNewCustomer createNewCustomer = new CreateNewCustomer();
+            createNewCustomer.ShowDialog();
+
+            if (Logic.Customer.CustomerSelector.CreateCustomerWithAppointment == true)
+            {
+                var cuscurrent = UnitOfWork.CustomerRepository.GetByID(Logic.Customer.CustomerSelector.CustomerToSelect);
+                CustomerName.Text = cuscurrent.CustomerName;
+                CustomerSurname.Text = cuscurrent.CustomerSurname;
+                CustomerEMail.Text = cuscurrent.CustomerEmail;
+                CustomerAddress.Text = cuscurrent.CustomerAddress;
+                CustomerPhone.Text = cuscurrent.CustomerPhone;
+                CustomerCity.Text = cuscurrent.CustomerCity;
+                CustomerTitle.Text = cuscurrent.CustomerTitle;
+
+
+
+
+            }
+
+        }
+
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+           
+        }
+
+        private void BtnSave_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            e.Handled = false;
+        }
+
+        internal void CustomerName_EditValueChanged(object sender, EditValueChangedEventArgs e)
+        {
+            if(sender is CustomTile2)
+            {
+                if (CustomerName.Text != "" &&JobSelector.JobtoCreate!=0)
+                {
+                    BtnSave.IsEnabled = true;
+                }
+                else { BtnSave.IsEnabled = false; }
+            }
+            if(sender is TextEdit)
+            {
+                if ((sender as TextEdit).Text != "" && JobSelector.JobtoCreate!=0)
+                {
+                    BtnSave.IsEnabled = true;
+                }
+                else
+                {
+                    BtnSave.IsEnabled = false;
+                }
+            }
+            
+                
         }
     }
 

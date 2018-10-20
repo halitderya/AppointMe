@@ -52,7 +52,6 @@ namespace ICPartners.DevxUI.UserControls
         private void TableView_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
         {
             SaveButton.IsEnabled = true;
-            RevertButton.IsEnabled = true;
         }
 
         private void Save_Clicked(object sender, RoutedEventArgs e)
@@ -62,7 +61,6 @@ namespace ICPartners.DevxUI.UserControls
                 AffectedRows = context.SaveChanges();
                 DXMessageBox.Show(AffectedRows.ToString() + " Record(s) updated.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 SaveButton.IsEnabled = false;
-                RevertButton.IsEnabled = false;
             }
             catch(Exception exception)
             {
@@ -113,6 +111,19 @@ namespace ICPartners.DevxUI.UserControls
             }
         }
 
-    
+        private void tableview_ValidateRow(object sender, GridRowValidationEventArgs e)
+        {
+            var commited = e.Row as Domains.Job;
+            if (commited.Color == null)
+            e.IsValid = false;
+            if (commited.JobTimeSpan < new TimeSpan(00, 05, 00))
+                e.IsValid = false;
+            if (commited.JobName == null || commited.JobName == "")
+                e.IsValid = false;
+            if (commited.JobPrice < 1)
+                e.IsValid = false;
+            e.ErrorContent = "Required Fields: \n *Name \n *Duration \n *Price \n *Color";
+
+        }
     }
 }

@@ -42,8 +42,7 @@ namespace ICPartners.DevxUI.UserControls
 
 
             dayView1.ResourcesPerPage = unitOfWork.resourceRepository.GetAll().Count();
-
-         
+           (dayView1.TimeRulers.FirstOrDefault() as DevExpress.Xpf.Scheduling.TimeRuler).ShowMinutes=true;
 
 
         }
@@ -52,19 +51,27 @@ namespace ICPartners.DevxUI.UserControls
 
         private void SchedulerControl_BeforeAppointmentItemDelete(object sender, DevExpress.Xpf.Scheduling.AppointmentItemCancelEventArgs e)
         {
-            MessageBoxResult dialog = DXMessageBox.Show("Are you sure delete appointment?\n"+"This process isn't reversible!" , "", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (dialog == MessageBoxResult.No)
+            if (Logic.UserManagement.CurrentUser.LoggedUser.Role > 1)
             {
-                e.Cancel = true;
+                MessageBoxResult dialog = DXMessageBox.Show("Are you sure delete appointment?\n" + "This process isn't reversible!", "", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (dialog == MessageBoxResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+
+                    unitOfWork.Complete();
+                }
+
+                Logic.Appointment.AppointmentSelector.AppointmentToDelete = (int)e.Appointment.Id;
+
             }
             else
             {
-
-                unitOfWork.Complete();
+                DXMessageBox.Show("You don't have permission to delete appointment","Insufficient Authority", MessageBoxButton.OK, MessageBoxImage.Stop);
+                e.Cancel = true;
             }
-
-            Logic.Appointment.AppointmentSelector.AppointmentToDelete = (int)e.Appointment.Id;
-
 
 
         }
@@ -142,41 +149,48 @@ namespace ICPartners.DevxUI.UserControls
         private void MainScheduler_AppointmentWindowShowing(object sender, AppointmentWindowShowingEventArgs e)
         {
 
+            if (Logic.UserManagement.CurrentUser.LoggedUser.Role > 1)
+            {
 
 
-            if (e.Appointment != null && e.Appointment.Id != null)
-            {
-                ICPartners.Logic.Appointment.AppointmentSelector.AppointmentToEdit = unitOfWork.appointmentRepository.GetByID((int)e.Appointment.Id);
-            }
-          
-            else
-            {
-                if((sender as DevExpress.Xpf.Scheduling.SchedulerControl).SelectedResource.Id != null)
+                if (e.Appointment != null && e.Appointment.Id != null)
                 {
-                    int id = Convert.ToInt16((sender as DevExpress.Xpf.Scheduling.SchedulerControl).SelectedResource.Id);
-                    List<OffDay> offdaylist = new List<OffDay>();
-                    offdaylist= unitOfWork.OffDaysRepository.GetAll().ToList().Where(x => x.ResourceRefID == id).ToList();
-                    bool WeekEnd = offdaylist.Any(x => x.OffWeekDay == e.Appointment.Start.DayOfWeek.ToString());
-                    bool Holiday= offdaylist.Any(x => x.OffDaysStart <= e.Appointment.Start && e.Appointment.Start < x.OffDaysEnd);
+                    ICPartners.Logic.Appointment.AppointmentSelector.AppointmentToEdit = unitOfWork.appointmentRepository.GetByID((int)e.Appointment.Id);
+                }
 
-                    if (WeekEnd == true || Holiday==true)
+                else
+                {
+                    if ((sender as DevExpress.Xpf.Scheduling.SchedulerControl).SelectedResource.Id != null)
                     {
-                        MessageBoxResult result = DXMessageBox.Show("The resource you have selected out of work hours selected interval. Do you want to proceed anyway?", "Off-Day Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                        if (result == MessageBoxResult.No)
+                        int id = Convert.ToInt16((sender as DevExpress.Xpf.Scheduling.SchedulerControl).SelectedResource.Id);
+                        List<OffDay> offdaylist = new List<OffDay>();
+                        offdaylist = unitOfWork.OffDaysRepository.GetAll().ToList().Where(x => x.ResourceRefID == id).ToList();
+                        bool WeekEnd = offdaylist.Any(x => x.OffWeekDay == (int)e.Appointment.Start.DayOfWeek);
+                        bool Holiday = offdaylist.Any(x => x.OffDaysStart <= e.Appointment.Start && e.Appointment.Start < x.OffDaysEnd);
+
+                        if (WeekEnd == true || Holiday == true)
                         {
-                            e.Cancel = true;
+                            MessageBoxResult result = DXMessageBox.Show("The resource you have selected out of work hours selected interval. Do you want to proceed anyway?", "Off-Day Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                            if (result == MessageBoxResult.No)
+                            {
+                                e.Cancel = true;
+                            }
+
                         }
-                           
+
                     }
+
 
                 }
 
-
+                ViewModels.AppointmentViewModel model = new ViewModels.AppointmentViewModel();
+                ICPartners.Logic.Resource.ResourceSelector.SelectedResource = unitOfWork.resourceRepository.GetByID((int)((e.Appointment as AppointmentItem).ResourceId));
             }
-
-            ViewModels.AppointmentViewModel model = new ViewModels.AppointmentViewModel();
-            ICPartners.Logic.Resource.ResourceSelector.SelectedResource = unitOfWork.resourceRepository.GetByID((int)((e.Appointment as AppointmentItem).ResourceId));
-
+            else
+            {
+                DXMessageBox.Show("You don't have permission to create or change an appointment", "Insufficient Authority", MessageBoxButton.OK, MessageBoxImage.Stop);
+                e.Cancel = true;
+            }
         }
 
 
@@ -224,6 +238,11 @@ namespace ICPartners.DevxUI.UserControls
 
         private void MainScheduler_CustomWorkTime(object sender, CustomWorkTimeEventArgs e)
         {
+        }
+
+        private void MainScheduler_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+
         }
     }
 }

@@ -276,6 +276,14 @@
     <Compile Include="Migrations\201810141641188_workdays-4.Designer.cs">
       <DependentUpon>201810141641188_workdays-4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810170938084_workdays.cs" />
+    <Compile Include="Migrations\201810170938084_workdays.Designer.cs">
+      <DependentUpon>201810170938084_workdays.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810191723289_resourcevisibility.cs" />
+    <Compile Include="Migrations\201810191723289_resourcevisibility.Designer.cs">
+      <DependentUpon>201810191723289_resourcevisibility.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ICPartnersContext.cs" />
@@ -479,6 +487,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810141641188_workdays-4.resx">
       <DependentUpon>201810141641188_workdays-4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810170938084_workdays.resx">
+      <DependentUpon>201810170938084_workdays.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810191723289_resourcevisibility.resx">
+      <DependentUpon>201810191723289_resourcevisibility.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

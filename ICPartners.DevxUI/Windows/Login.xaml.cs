@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AutoUpdaterDotNET;
+
 
 namespace ICPartners.DevxUI.Windows
 {
@@ -25,7 +27,8 @@ namespace ICPartners.DevxUI.Windows
         {
             InitializeComponent();
         }
-
+        UnitOfWork work = new UnitOfWork(new ICPartnersContext());
+        ICPartnersContext context = new ICPartnersContext();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -33,10 +36,21 @@ namespace ICPartners.DevxUI.Windows
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (!context.Resources.Any(x => x.Role == 3))
+            {
+                context.Resources.Add(new Domains.Resource()
+                {
+                    ResourceName = "admin",
+                    ResourceSurname = "",
+                    Password = "1234",
+                    Role=3
+                });
+                context.SaveChanges();
+            }
+
             if(tbName.Text!=""&& tbPassword.Password!="")
             {
 
-                UnitOfWork work = new UnitOfWork(new ICPartnersContext());
 
                 var sfdfs = work.resourceRepository.GetAll().FirstOrDefault();
                 Domains.Resource Login = work.resourceRepository.GetAll().FirstOrDefault(x => x.ResourceName.ToLower() + x.ResourceSurname.ToLower() == tbName.Text.ToLower() && x.Password == tbPassword.Password);
@@ -61,6 +75,18 @@ namespace ICPartners.DevxUI.Windows
             }
             else
             { InfoBox.Text = "*All fields must be completed."; }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+               AutoUpdater.Start("http://update.anislon.co.uk/ICPartners.xml");
+            }
+            catch
+            {
+
+            }
         }
     }
 }

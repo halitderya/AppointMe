@@ -63,32 +63,11 @@
             </Grid>
 
         </Button>
-        <Button x:Name="RevertButton" Grid.Row="2" IsEnabled="False" Grid.Column="1"  FontSize="20" Click="RevertButton_Click" >
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid.Resources>
-                    <Style TargetType="{x:Type TextBlock}" >
-                        <Setter Property="Margin" Value="5" />
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                    </Style>
-                </Grid.Resources>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="10*"/>
-                </Grid.ColumnDefinitions>
-
-                <Image Source="../Source/if_Block_381636.png" Margin="2" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-                <TextBlock Grid.Column="1" ><Run Text="Revert"/></TextBlock>
-
-
-
-            </Grid>
-
-        </Button>
         <dxg:GridControl x:Name="TableViewResource"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}"  >
 
             <dxg:GridControl.View>
-                <dxg:TableView AutoWidth="False" Name="tableview" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" >
+                <dxg:TableView AutoWidth="False" Name="tableview" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" ValidateRow="tableview_ValidateRow" >
                     <dxg:TableView.RowCellMenuCustomizations>
                         <dxb:BarButtonItem Name="deleteRowItem" Content="Delete" 
                            ItemClick="deleteRowItem_ItemClick"/>
@@ -103,8 +82,15 @@
                 </dxg:TableView>
 
             </dxg:GridControl.View>
-            <dxg:GridColumn FieldName="ResourceName" Header="Name" IsSmart="True" />
-            <dxg:GridColumn FieldName="ResourceSurname" IsSmart="True" Header="Surname"/>
+                    <dxg:GridColumn FieldName="ResourceVisibility" Header="Visible" IsSmart="True" >
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:CheckEditSettings/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="ResourceName" Header="Name" IsSmart="True" Fixed="Left" />
+
+                   
+                    <dxg:GridColumn FieldName="ResourceSurname" IsSmart="True" Header="Surname"/>
             <dxg:GridColumn FieldName="ResourceStartDate" IsSmart="True" Header="Start Date"/>
             <dxg:GridColumn FieldName="ResourcePhone" IsSmart="True" Header="Phone" />
             <dxg:GridColumn FieldName="ResourceEmerphone" IsSmart="True" Header="Emergency Phone" />
@@ -117,8 +103,12 @@
             <dxg:GridColumn FieldName="ResourceAddress" IsSmart="True" Header="Address"/>
             <dxg:GridColumn FieldName="ResourcePostcode" IsSmart="True" Header="Post Code"/>
             <dxg:GridColumn FieldName="ResourceCity" IsSmart="True" Header="City"/>
-            <dxg:GridColumn FieldName="Password" IsSmart="True"/>
-            <dxg:GridColumn FieldName="Role" IsSmart="True">
+                    <dxg:GridColumn FieldName="Password" IsSmart="True">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:PasswordBoxEditSettings/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="Role" IsSmart="True">
                 <dxg:GridColumn.EditSettings>
                     <dxe:ComboBoxEditSettings x:Name="RoleColumn" DisplayMember="Text" ValueMember="Value">
                         <dxe:ComboBoxEditSettings.Items>

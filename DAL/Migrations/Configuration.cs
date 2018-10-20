@@ -1,5 +1,6 @@
 namespace ICPartners.DAL.Migrations
 {
+    using ICPartners.Domains;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -14,6 +15,7 @@ namespace ICPartners.DAL.Migrations
 
         protected override void Seed(ICPartnersContext context)
         {
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
