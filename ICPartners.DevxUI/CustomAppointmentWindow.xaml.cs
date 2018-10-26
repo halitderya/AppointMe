@@ -66,6 +66,10 @@ namespace ICPartners.DevxUI
 
         private void window_Loaded(object sender, RoutedEventArgs e)
         {
+            if (CustomerName.Text != "" && JobSelector.JobsToSelect.Count!=0)
+            {
+                BtnSave.IsEnabled = true;
+            }
             ICPartnersContext context = new ICPartnersContext();
             if ((this.DataContext as AppointmentWindowViewModel).Appointment.Id !=null )
             {
@@ -181,9 +185,9 @@ namespace ICPartners.DevxUI
 
             }
 
-    
 
-            
+
+
             //SimpleButton button = (SimpleButton)sender;
             //AppointmentItem appointmentItem = button.Tag as AppointmentItem;
             //int id = Convert.ToInt16(appointmentItem.Id);
@@ -286,7 +290,7 @@ namespace ICPartners.DevxUI
             //    //}
             //    ////saveandclose
             //    //UnitOfWork.Complete();
-            //    //this.Close();
+            this.Close();
         }
 
         private void Buttontag_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -617,15 +621,16 @@ namespace ICPartners.DevxUI
         {
             if(sender is CustomTile2)
             {
-                if (CustomerName.Text != "" &&JobSelector.JobtoCreate!=0)
+                if (CustomerName.Text != "" &&JobSelector.JobsToSelect.Count!=0)
                 {
                     BtnSave.IsEnabled = true;
+                    //CustomerSurname.Text = UnitOfWork.CustomerRepository.GetByID(CustomerSelector.CustomerToSelect).CustomerSurname;
                 }
                 else { BtnSave.IsEnabled = false; }
             }
             if(sender is TextEdit)
             {
-                if ((sender as TextEdit).Text != "" && JobSelector.JobtoCreate!=0)
+                if ((sender as TextEdit).Text != "" && JobSelector.JobsToSelect.Count!=0)
                 {
                     BtnSave.IsEnabled = true;
                 }

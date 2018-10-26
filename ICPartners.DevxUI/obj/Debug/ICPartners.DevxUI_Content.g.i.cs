@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("source/hamburgermenu/password.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/anislon-psd%20design%20short-2.jpg")]
 
 

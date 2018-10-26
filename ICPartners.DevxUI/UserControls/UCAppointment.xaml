@@ -144,7 +144,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition MaxWidth="200" MinWidth="200" />
+            <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
@@ -211,6 +211,9 @@
                     <dxsch:DataSource.ResourceMappings>
                         <dxsch:ResourceMappings 
                                     Caption="ResourceName" Id="ResourceID" Visible="ResourceVisibility" >
+                            <dxsch:ResourceMappings.Group>
+                                <dxsch:Mapping ConversionBehavior="BetweenFieldAndMapping" Converter="{x:Null}" FieldName="Index"/>
+                            </dxsch:ResourceMappings.Group>
                             <dxsch:CustomFieldMapping 
                             Mapping="ResourceImage" 
                             Name="Photo"/>

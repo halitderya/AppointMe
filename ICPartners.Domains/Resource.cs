@@ -13,6 +13,7 @@ namespace ICPartners.Domains
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ResourceID { get; set; }
+        public int Index { get; set; }
         public string ResourceName { get; set; }
         public string ResourceSurname { get; set; }
         public DateTime? ResourceStartDate { get; set; }

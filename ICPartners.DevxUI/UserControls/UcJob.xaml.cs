@@ -125,5 +125,49 @@ namespace ICPartners.DevxUI.UserControls
             e.ErrorContent = "Required Fields: \n *Name \n *Duration \n *Price \n *Color";
 
         }
+
+        private void JobOwnerColumn_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void tableview_Unloaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void tableview_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
+        {
+
+        }
+
+        private void GridColumn_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void GridColumn_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void tableview_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void tableview_FocusableChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void TableViewJob_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+
+        }
+
+        private void TableViewJob_Unloaded(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

@@ -37,13 +37,9 @@ namespace ICPartners.DevxUI.UserControls
         
         public UCAppointment()
         {
-
             InitializeComponent();
-
-
             dayView1.ResourcesPerPage = unitOfWork.resourceRepository.GetAll().Count();
            (dayView1.TimeRulers.FirstOrDefault() as DevExpress.Xpf.Scheduling.TimeRuler).ShowMinutes=true;
-
 
         }
 
@@ -158,33 +154,43 @@ namespace ICPartners.DevxUI.UserControls
                     ICPartners.Logic.Appointment.AppointmentSelector.AppointmentToEdit = unitOfWork.appointmentRepository.GetByID((int)e.Appointment.Id);
                 }
 
-                else
-                {
+                
                     if ((sender as DevExpress.Xpf.Scheduling.SchedulerControl).SelectedResource.Id != null)
                     {
-                        int id = Convert.ToInt16((sender as DevExpress.Xpf.Scheduling.SchedulerControl).SelectedResource.Id);
-                        List<OffDay> offdaylist = new List<OffDay>();
-                        offdaylist = unitOfWork.OffDaysRepository.GetAll().ToList().Where(x => x.ResourceRefID == id).ToList();
-                        bool WeekEnd = offdaylist.Any(x => x.OffWeekDay == (int)e.Appointment.Start.DayOfWeek);
-                        bool Holiday = offdaylist.Any(x => x.OffDaysStart <= e.Appointment.Start && e.Appointment.Start < x.OffDaysEnd);
 
-                        if (WeekEnd == true || Holiday == true)
-                        {
-                            MessageBoxResult result = DXMessageBox.Show("The resource you have selected out of work hours selected interval. Do you want to proceed anyway?", "Off-Day Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                            if (result == MessageBoxResult.No)
+                        
+                            if ((sender as DevExpress.Xpf.Scheduling.SchedulerControl).SelectedResource.Id is DevExpress.XtraScheduler.EmptyResourceId)
                             {
-                                e.Cancel = true;
+                            DXMessageBox.Show("There's no active resource. Please activate at least one resource under resources menu", "Error", MessageBoxButton.OK, MessageBoxImage.Stop);
+                            e.Cancel = true;
                             }
+                        else
+                        {
+                            int id = Convert.ToInt16((sender as DevExpress.Xpf.Scheduling.SchedulerControl).SelectedResource.Id);
+                            List<OffDay> offdaylist = new List<OffDay>();
+                            offdaylist = unitOfWork.OffDaysRepository.GetAll().ToList().Where(x => x.ResourceRefID == id).ToList();
+                            bool WeekEnd = offdaylist.Any(x => x.OffWeekDay == (int)e.Appointment.Start.DayOfWeek);
+                            bool Holiday = offdaylist.Any(x => x.OffDaysStart <= e.Appointment.Start && e.Appointment.Start < x.OffDaysEnd);
+
+                            if (WeekEnd == true || Holiday == true)
+                            {
+                                MessageBoxResult result = DXMessageBox.Show("The resource you have selected out of work hours selected interval. Do you want to proceed anyway?", "Off-Day Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                                if (result == MessageBoxResult.No)
+                                {
+                                    e.Cancel = true;
+                                }
+
+                            }
+                            ICPartners.Logic.Resource.ResourceSelector.SelectedResource = unitOfWork.resourceRepository.GetByID((int)((e.Appointment as AppointmentItem).ResourceId));
 
                         }
 
-                    }
+                    
 
 
                 }
 
-                ViewModels.AppointmentViewModel model = new ViewModels.AppointmentViewModel();
-                ICPartners.Logic.Resource.ResourceSelector.SelectedResource = unitOfWork.resourceRepository.GetByID((int)((e.Appointment as AppointmentItem).ResourceId));
+                //ViewModels.AppointmentViewModel model = new ViewModels.AppointmentViewModel();
             }
             else
             {

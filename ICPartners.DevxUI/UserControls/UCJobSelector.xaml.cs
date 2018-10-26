@@ -6,11 +6,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using ICPartners.Domains;
-using System.Windows.Controls.Primitives;
 using DevExpress.Xpf.LayoutControl;
 using ICPartners.Logic.Appointment;
 using System.Diagnostics;
-using System.ComponentModel;
+using DevExpress.Xpf.Core;
 
 namespace ICPartners.DevxUI.UserControls
 {
@@ -35,17 +34,10 @@ namespace ICPartners.DevxUI.UserControls
             }
         }
 
-
-
-
-
         UnitOfWork unitOfWork = new UnitOfWork(new ICPartnersContext());
         Color OrginalTileColor = new Color();
-
         List<Job> AllJoblist= new List<Job>();
-
         List<CustomTile2> MainButtonList = new List<CustomTile2>();
-
 
         public UCJobselector()
         {
@@ -56,6 +48,7 @@ namespace ICPartners.DevxUI.UserControls
 
         private void GenerateMainButtons()
         {
+
             AllJoblist = unitOfWork.jobRepository.GetAll().ToList();
             foreach (var item in AllJoblist)
             {
@@ -64,12 +57,10 @@ namespace ICPartners.DevxUI.UserControls
                     if (item.JobOwner == ICPartners.Logic.Resource.ResourceSelector.SelectedResource.ResourceDuty)
                     {
                         CustomTile2 tile = new CustomTile2();
-
                         tile.Content = item.JobName;
                         tile.VerticalContentAlignment = VerticalAlignment.Center;
                         tile.HorizontalContentAlignment = HorizontalAlignment.Center;
                         tile.Width = AllJoblist.Where(x => x.JobOwner == Logic.Resource.ResourceSelector.SelectedResource.ResourceDuty).Count() > 18 ? 67 : 84;
-                        
                         tile.Height = tile.Width;
                         tile.JobID = item.JobId;
                         Color backtile = (Color)ColorConverter.ConvertFromString(item.Color.ToString());
@@ -79,9 +70,7 @@ namespace ICPartners.DevxUI.UserControls
                         tile.Click += new EventHandler(button_click);
                         MainButtonList.Add(tile);
                         spmainservice1.Children.Add(tile);
-                       
-
-                                JobSelector.JobtoCreate = tile.JobID;
+                        //JobSelector.JobtoCreate = tile.JobID;
                     }
                 }
 
@@ -94,9 +83,7 @@ namespace ICPartners.DevxUI.UserControls
         void TriggerEvent(CustomTile2 tile)
         {
             foreach (var Window in App.Current.Windows)
-
             {
-
                 if (Window is ICPartners.DevxUI.CustomAppointmentWindow)
                 {
                     (Window as ICPartners.DevxUI.CustomAppointmentWindow).CustomerName_EditValueChanged(tile, null);
@@ -113,65 +100,66 @@ namespace ICPartners.DevxUI.UserControls
 
         private void button_click(object sender, EventArgs e)
         {
-            
+
             CustomTile2 button = sender as CustomTile2;
-            if (button.IsClicked == false)
+            if (sender!=null)
             {
-                UnMarkMainButtons();
-                JobSelector.JobtoCreate = AllJoblist.Find(x => x.JobId == button.JobID).JobId;
-                button.Width = button.Width - 10;
-                button.Height = button.Width;
-                button.IsClicked = true;
-                foreach (var Window in App.Current.Windows)
-
+                if (button.IsClicked == false)
                 {
+                    //UnMarkMainButtons();
+                    //JobSelector.JobtoCreate = AllJoblist.Find(x => x.JobId == button.JobID).JobId;
+                    JobSelector.JobsToSelect.Add(AllJoblist.Find(x => x.JobId == button.JobID));
+                    button.Width = button.Width - 10;
+                    button.Height = button.Width;
+                    button.IsClicked = true;
+                    foreach (var Window in App.Current.Windows)
 
-                    if (Window is ICPartners.DevxUI.CustomAppointmentWindow)
                     {
-                        double Price = 0;
-                        List<Job> AllJobs = new List<Job>();
-                        AllJobs = context.Jobs.ToList();
-                        List<DependentJobs> DependentList = new List<DependentJobs>();
-                        DependentList= context.DependentJobs.Where(x => x.MainJob == JobSelector.JobtoCreate).ToList();
-                        if (DependentList.Count == 0)
-                        {
-                            Price = context.Jobs.Find(JobSelector.JobtoCreate).JobPrice;
-                        }
-                            
-                        foreach (var item in DependentList)
-                        {
-                            Price=Price+  AllJobs.Where(x => x.JobId == item.MainJob).Sum(c => c.JobPrice);
 
+                        if (Window is ICPartners.DevxUI.CustomAppointmentWindow)
+                        {
+                            double Price = 0;
+                            List<Job> AllJobs = new List<Job>();
+                            AllJobs = context.Jobs.ToList();
+                            Price= JobSelector.JobsToSelect.Sum(x => x.JobPrice);
+                            (Window as ICPartners.DevxUI.CustomAppointmentWindow).TotalPriceTxt.Text = Price.ToString();
                         }
-                        (Window as ICPartners.DevxUI.CustomAppointmentWindow).TotalPriceTxt.Text = Price.ToString();
+
+
                     }
+                    TriggerEvent(button);
 
 
                 }
-                TriggerEvent(button);
-
-
+                else
+                {
+                    button.Width = button.Width + 10;
+                    button.Height = button.Width;
+                    if (JobSelector.JobsToSelect.Any(x => x.JobId == button.JobID))
+                    {
+                        JobSelector.JobsToSelect.Remove((JobSelector.JobsToSelect.FirstOrDefault(x => x.JobId == button.JobID)));
+                    }
+                    
+                    button.IsClicked = false;
+                    UnMarkMainButtons();
+                    TriggerEvent(button);
+                }
             }
             else
             {
-                button.Width = button.Width + 10;
-                button.Height = button.Width;
-                ICPartners.Logic.Appointment.JobSelector.JobtoCreate = 0;
-                button.IsClicked = false;
-                UnMarkMainButtons();
-                TriggerEvent(button);
+                DXMessageBox.Show("The appointment which is you're trying to edit, assigned to a resource who hasn't have right to do it. Please assign an other resource.", "Wrong resource", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
         }
 
         void UnMarkMainButtons()
         {
-            foreach (var item in MainButtonList)
-            {
-                item.IsClicked = false;
-                RedrawButtons();
-            }
-            JobSelector.JobtoCreate = 0;
+            //foreach (var item in MainButtonList)
+            //{
+            //    item.IsClicked = false;
+            //    RedrawButtons();
+            //}
+            //JobSelector.JobtoCreate = 0;
         }
         void RedrawButtons()
         {
@@ -195,38 +183,34 @@ namespace ICPartners.DevxUI.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            JobSelector.JobsToSelect.Clear();
             GenerateMainButtons();
             if (ReceivedJobs != null && ReceivedJobs.Count > 0)
             {
                 Job job = new Job();
-
                 ICPartnersContext context = new ICPartnersContext();
-                
                 Appointment AppointmentEdit = context.Appointments.Include("Jobs").FirstOrDefault(x => x.AppointmentID == AppointmentSelector.AppointmentToEdit.AppointmentID);
                 if (AppointmentEdit.Jobs.Count > 1)
                 {
-
-
                     foreach (var item in AppointmentEdit.Jobs)
                     {
-                        if (context.DependentJobs.Any(x => x.MainJob == item.JobId))
-                        {
-                         job=  AppointmentEdit.Jobs.FirstOrDefault(j=>j.JobId==(context.DependentJobs.FirstOrDefault(x => x.MainJob == item.JobId).MainJob));
-
-                        }
+                        CustomTile2 ClickedTile = MainButtonList.Find(x => x.JobID == item.JobId);
+                        button_click(ClickedTile, null);
 
                     }
                 }
+
                 else
                 {
-                    job = AppointmentEdit.Jobs.FirstOrDefault();
+                    CustomTile2 ClickedTile = MainButtonList.Find(x => x.JobID == AppointmentEdit.Jobs.FirstOrDefault().JobId);
+
+                    button_click(ClickedTile, null);
 
                 }
-                CustomTile2 ClickedTile = MainButtonList.Find(x => x.JobID == job.JobId);
 
 
 
-                button_click(ClickedTile, null);
+
 
             }
 

@@ -197,8 +197,8 @@
                                     <ColumnDefinition Width="3*"/>
                                 </Grid.ColumnDefinitions>
                                 <dxe:ComboBoxEdit x:Name="CustomerTitle" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"  ItemsSource="{Binding Source={StaticResource EnumItemsSource}}"  />
-                                <dxe:TextEdit x:Name="CustomerName" EditValueChanged="CustomerName_EditValueChanged" IsEnabled="False" EditValue="{Binding CustomerID, ConverterParameter=Name, Converter={converter:CustomerNameConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="1" />
-                                <dxe:TextEdit x:Name="CustomerSurname" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" />
+                                <dxe:TextEdit x:Name="CustomerName" EditValueChanged="CustomerName_EditValueChanged"  IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="1" />
+                                <dxe:TextEdit x:Name="CustomerSurname" IsEnabled="False"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" />
                             </Grid>
                             <dxe:TextEdit x:Name="CustomerPhone" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"  Grid.Column="0" />
                             <dxe:TextEdit x:Name="CustomerEMail" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" />

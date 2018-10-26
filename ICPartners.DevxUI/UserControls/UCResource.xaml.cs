@@ -122,5 +122,38 @@ namespace ICPartners.DevxUI.UserControls
             e.ErrorContent = "Required Fields:\n *Name \n *Surname \n *Role" ;
 
         }
+
+
+
+        private void tableview_CompleteRecordDragDrop(object sender, CompleteRecordDragDropEventArgs e)
+        {
+            var ase = TableViewResource;
+      
+        }
+
+        private void tableview_Drop(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void tableview_DropRecord(object sender, DropRecordEventArgs e)
+        {
+
+        }
+
+        private void TableViewResource_EndSorting(object sender, RoutedEventArgs e)
+        {
+            var ase2 = TableViewResource;
+        }
+
+        private void TableViewResource_ItemsSourceChanged(object sender, ItemsSourceChangedEventArgs e)
+        {
+
+        }
+
+        private void tableview_RowUpdated(object sender, RowEventArgs e)
+        {
+
+        }
     }
 }

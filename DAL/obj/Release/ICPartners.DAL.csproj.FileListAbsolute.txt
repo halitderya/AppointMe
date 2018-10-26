@@ -72,3 +72,4 @@ C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.csproj.Cor
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.csproj.CopyComplete
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.dll
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.pdb
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.resindex.resources

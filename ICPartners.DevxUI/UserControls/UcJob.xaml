@@ -55,10 +55,10 @@
 
         </Button>
 
-        <dxg:GridControl x:Name="TableViewJob"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}"   >
+        <dxg:GridControl x:Name="TableViewJob" SourceUpdated="TableViewJob_SourceUpdated" Unloaded="TableViewJob_Unloaded" Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Row"  FontWeight="Bold" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}"   >
 
             <dxg:GridControl.View>
-                <dxg:TableView AutoWidth="False" Name="tableview"  ValidateRow="tableview_ValidateRow" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" >
+                <dxg:TableView AutoWidth="False" FocusableChanged="tableview_FocusableChanged" Name="tableview" AllowDragDrop="True"  ValidateRow="tableview_ValidateRow" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" Unloaded="tableview_Unloaded" FocusedRowChanged="tableview_FocusedRowChanged" KeyDown="tableview_KeyDown" >
                 <dxg:TableView.RowCellMenuCustomizations>
         <dxb:BarButtonItem Name="deleteRowItem" Content="Delete" 
                            ItemClick="deleteRowItem_ItemClick"/>
@@ -70,15 +70,18 @@
             </dxg:GridControl.View>
             <dxg:GridColumn FieldName="JobName" Header="Name" IsSmart="True" />
             <dxg:GridColumn FieldName="JobPrice" Header="Price" IsSmart="True"/>
-            <dxg:GridColumn FieldName="JobOwner" Header="Owner" IsSmart="True">
+            <dxg:GridColumn FieldName="JobOwner" Header="Owner" IsSmart="True" KeyDown="GridColumn_KeyDown" PreviewKeyDown="GridColumn_PreviewKeyDown">
+                
                 <dxg:GridColumn.EditSettings>
-                    <dxe:ComboBoxEditSettings x:Name="JobOwnerColumn" DisplayMember="Text" ValueMember="Value">
+
+                    <local:ComboBoxEditSettingsEx x:Name="JobOwnerColumn" DisplayMember="Text" ValueMember="Value">
+                      
                         <dxe:ComboBoxEditSettings.Items>
 
 
 
                         </dxe:ComboBoxEditSettings.Items>
-                    </dxe:ComboBoxEditSettings>
+                    </local:ComboBoxEditSettingsEx>
 
                 </dxg:GridColumn.EditSettings>
 

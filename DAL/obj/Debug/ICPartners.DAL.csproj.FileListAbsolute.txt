@@ -66,9 +66,10 @@ C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.o
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.workdays3.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.workdays4.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.workdays.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.resourcevisibility.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.resindex.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.GenerateResource.cache
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.CoreCompileInputs.cache
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.CopyComplete
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.dll
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.pdb
-C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.resourcevisibility.resources

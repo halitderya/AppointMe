@@ -14,7 +14,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AutoUpdaterDotNET;
-
+using DevExpress.Xpf.Core;
+using System.Reflection;
 
 namespace ICPartners.DevxUI.Windows
 {
@@ -26,6 +27,7 @@ namespace ICPartners.DevxUI.Windows
         public Login()
         {
             InitializeComponent();
+          
         }
         UnitOfWork work = new UnitOfWork(new ICPartnersContext());
         ICPartnersContext context = new ICPartnersContext();
@@ -38,43 +40,68 @@ namespace ICPartners.DevxUI.Windows
         {
             if (!context.Resources.Any(x => x.Role == 3))
             {
-                context.Resources.Add(new Domains.Resource()
+                DXMessageBox.Show("Creating Admin");
+                try
                 {
-                    ResourceName = "admin",
-                    ResourceSurname = "",
-                    Password = "1234",
-                    Role=3
-                });
-                context.SaveChanges();
+                    context.Resources.Add(new Domains.Resource()
+                    {
+                        ResourceName = "admin",
+                        ResourceSurname = "",
+                        Password = "1234",
+                        Role = 3
+                    });
+                    context.SaveChanges();
+                    
+                }
+                catch (Exception ex)
+                {
+                    DXMessageBox.Show("Admin Creation Failed: " + ex.Message);
+                }
             }
 
             if(tbName.Text!=""&& tbPassword.Password!="")
             {
 
 
-                var sfdfs = work.resourceRepository.GetAll().FirstOrDefault();
-                Domains.Resource Login = work.resourceRepository.GetAll().FirstOrDefault(x => x.ResourceName.ToLower() + x.ResourceSurname.ToLower() == tbName.Text.ToLower() && x.Password == tbPassword.Password);
-                if (Login != null)
+                try
                 {
-                    Logic.UserManagement.CurrentUser.LoggedUser = Login;
-                    MainWindow main = new MainWindow();
-                    App.Current.MainWindow = main;
-                    this.Close();
-                    main.Show();
+                    var sfdfs = work.resourceRepository.GetAll().FirstOrDefault();
+                    Domains.Resource Login = work.resourceRepository.GetAll().FirstOrDefault(x => x.ResourceName.ToLower() + x.ResourceSurname.ToLower() == tbName.Text.ToLower() && x.Password == tbPassword.Password);
+                    if (Login != null)
+                    {
+                        Logic.UserManagement.CurrentUser.LoggedUser = Login;
+                        MainWindow main = new MainWindow();
+                        App.Current.MainWindow = main;
+                        this.Close();
+                        main.Show();
 
+                    }
+                    else
+                    {
+                        InfoBox.Text = "*Login information is incorrect.";
+                        Storyboard sb = this.FindResource("ShakeScreen") as Storyboard;
+                        Storyboard.SetTarget(sb, this);
+
+                        sb.Begin();
+                        tbPassword.Password = null;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    InfoBox.Text = "*Login information is incorrect.";
-                    Storyboard sb = this.FindResource("ShakeScreen") as Storyboard;
-                    Storyboard.SetTarget(sb, this);
-
-                    sb.Begin();
-                    tbPassword.Password = null;
+                    DXMessageBox.Show(ex.Message);
                 }
             }
+
+
+
+
             else
             { InfoBox.Text = "*All fields must be completed."; }
+
+
+
+
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

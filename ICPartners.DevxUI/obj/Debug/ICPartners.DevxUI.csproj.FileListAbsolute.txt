@@ -1,6 +1,7 @@
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\ICPartners.DevxUI.exe.config
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\ICPartners.DevxUI.exe
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\ICPartners.DevxUI.pdb
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\AutoUpdater.NET.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\DevExpress.Charts.v18.1.Core.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\DevExpress.CodeParser.v18.1.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\DevExpress.Data.v18.1.dll
@@ -37,6 +38,7 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\DevExpress.Xp
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\DevExpress.Xpf.Scheduling.v18.1.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\DevExpress.Xpf.Themes.Office2016White.v18.1.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\DevExpress.Xpf.Themes.Seven.v18.1.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\DevExpress.Xpf.Themes.VS2017Light.v18.1.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\DevExpress.Xpo.v18.1.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\DevExpress.XtraCharts.v18.1.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\DevExpress.XtraGauges.v18.1.Core.dll
@@ -53,6 +55,8 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\ICPartners.DA
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\ICPartners.DAL.dll.config
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\ICPartners.Domains.pdb
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\ICPartners.Logic.pdb
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\AutoUpdater.NET.pdb
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\AutoUpdater.NET.xml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\DevExpress.DataAccess.v18.1.xml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\DevExpress.Diagram.v18.1.Core.xml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\DevExpress.Office.v18.1.Core.xml
@@ -203,6 +207,7 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\MainWindow.g.
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Reporting\DayEndReport.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Reporting\DayEndReportPage.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\CustomTile2.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\GridControl2.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCAdmin.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCAppointment.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCCustomer.g.cs
@@ -214,6 +219,7 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCStatusSelector.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCTest.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCWorkDays.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Windows\ChangePassword.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Windows\CreateNewCustomer.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Windows\Login.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\App.g.cs
@@ -225,6 +231,7 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\MainWindow.ba
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Reporting\DayEndReport.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Reporting\DayEndReportPage.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\CustomTile2.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\GridControl2.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCAdmin.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCAppointment.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCCustomer.baml
@@ -236,6 +243,7 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCStatusSelector.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCTest.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCWorkDays.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Windows\ChangePassword.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Windows\CreateNewCustomer.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Windows\Login.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.g.resources
@@ -246,8 +254,3 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.De
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.csproj.CopyComplete
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.exe
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.pdb
-C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Windows\ChangePassword.g.cs
-C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\Windows\ChangePassword.baml
-C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\AutoUpdater.NET.dll
-C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\AutoUpdater.NET.pdb
-C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Debug\AutoUpdater.NET.xml

@@ -64,10 +64,10 @@
 
         </Button>
 
-        <dxg:GridControl x:Name="TableViewResource"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Cell" FontWeight="Bold" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}"  >
+        <dxg:GridControl x:Name="TableViewResource" DefaultSorting="Name"  Grid.ColumnSpan="3" Grid.Row="0" SelectionMode="Row" FontWeight="Bold" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}" EndSorting="TableViewResource_EndSorting" ItemsSourceChanged="TableViewResource_ItemsSourceChanged"  >
 
             <dxg:GridControl.View>
-                <dxg:TableView AutoWidth="False" Name="tableview" NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" ValidateRow="tableview_ValidateRow" >
+                <dxg:TableView AutoWidth="False" CompleteRecordDragDrop="tableview_CompleteRecordDragDrop"  Name="tableview" NewItemRowPosition="Bottom"  ShowGroupPanel="False"  CellValueChanged="TableView_CellValueChanged" ValidateRow="tableview_ValidateRow" AllowDragDrop="True" Drop="tableview_Drop" DropRecord="tableview_DropRecord" RowUpdated="tableview_RowUpdated" >
                     <dxg:TableView.RowCellMenuCustomizations>
                         <dxb:BarButtonItem Name="deleteRowItem" Content="Delete" 
                            ItemClick="deleteRowItem_ItemClick"/>
@@ -82,19 +82,26 @@
                 </dxg:TableView>
 
             </dxg:GridControl.View>
+
+                    <dxg:GridColumn FieldName="ResourceName" Header="Name" IsSmart="True" Fixed="Left" />
+
+                   
+                    <dxg:GridColumn FieldName="ResourceSurname" IsSmart="True" Header="Surname"/>
                     <dxg:GridColumn FieldName="ResourceVisibility" Header="Visible" IsSmart="True" >
                         <dxg:GridColumn.EditSettings>
                             <dxe:CheckEditSettings/>
                         </dxg:GridColumn.EditSettings>
                     </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="ResourceName" Header="Name" IsSmart="True" Fixed="Left" />
-
-                   
-                    <dxg:GridColumn FieldName="ResourceSurname" IsSmart="True" Header="Surname"/>
-            <dxg:GridColumn FieldName="ResourceStartDate" IsSmart="True" Header="Start Date"/>
-            <dxg:GridColumn FieldName="ResourcePhone" IsSmart="True" Header="Phone" />
+                    <dxg:GridColumn FieldName="ResourceStartDate" IsSmart="True" Header="Start Date">
+                        <dxg:GridColumn.EditSettings>
+                            <local:DateEditSettingsex>
+                                
+                            </local:DateEditSettingsex>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="ResourcePhone" IsSmart="True" Header="Phone" />
             <dxg:GridColumn FieldName="ResourceEmerphone" IsSmart="True" Header="Emergency Phone" />
-            <dxg:GridColumn FieldName="EMail" IsSmart="True" SortOrder="Ascending" SortIndex="0"/>
+            <dxg:GridColumn FieldName="EMail" IsSmart="True"/>
             <dxg:GridColumn FieldName="ResourceImage" Header="Image" IsSmart="True">
                 <dxg:GridColumn.EditSettings>
                     <dxe:ImageEditSettings/>
@@ -110,13 +117,13 @@
                     </dxg:GridColumn>
                     <dxg:GridColumn FieldName="Role" IsSmart="True">
                 <dxg:GridColumn.EditSettings>
-                    <dxe:ComboBoxEditSettings x:Name="RoleColumn" DisplayMember="Text" ValueMember="Value">
+                            <local:ComboBoxEditSettingsEx x:Name="RoleColumn" DisplayMember="Text" ValueMember="Value">
                         <dxe:ComboBoxEditSettings.Items>
 
 
 
                         </dxe:ComboBoxEditSettings.Items>
-                    </dxe:ComboBoxEditSettings>
+                    </local:ComboBoxEditSettingsEx>
 
                 </dxg:GridColumn.EditSettings>
             </dxg:GridColumn>
@@ -124,13 +131,13 @@
 
 
                 <dxg:GridColumn.EditSettings>
-                    <dxe:ComboBoxEditSettings x:Name="DutyColumn" DisplayMember="Text" ValueMember="Value">
+                            <local:ComboBoxEditSettingsEx x:Name="DutyColumn" DisplayMember="Text" ValueMember="Value">
                         <dxe:ComboBoxEditSettings.Items>
 
 
 
                         </dxe:ComboBoxEditSettings.Items>
-                    </dxe:ComboBoxEditSettings>
+                    </local:ComboBoxEditSettingsEx>
 
                 </dxg:GridColumn.EditSettings>
             </dxg:GridColumn>

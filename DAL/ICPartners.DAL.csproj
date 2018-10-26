@@ -284,6 +284,10 @@
     <Compile Include="Migrations\201810191723289_resourcevisibility.Designer.cs">
       <DependentUpon>201810191723289_resourcevisibility.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810211328153_resindex.cs" />
+    <Compile Include="Migrations\201810211328153_resindex.Designer.cs">
+      <DependentUpon>201810211328153_resindex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ICPartnersContext.cs" />
@@ -493,6 +497,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810191723289_resourcevisibility.resx">
       <DependentUpon>201810191723289_resourcevisibility.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810211328153_resindex.resx">
+      <DependentUpon>201810211328153_resindex.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

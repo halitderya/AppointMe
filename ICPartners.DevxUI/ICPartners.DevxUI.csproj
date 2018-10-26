@@ -93,6 +93,10 @@
     <Reference Include="DevExpress.Xpf.Scheduling.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Themes.Office2016White.v18.1" />
     <Reference Include="DevExpress.Xpf.Themes.Seven.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Themes.VS2017Light.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 18.1\Components\Bin\Framework\DevExpress.Xpf.Themes.VS2017Light.v18.1.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Xpo.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraCharts.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGauges.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -152,10 +156,15 @@
       <DependentUpon>DayEndReportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ComboBoxClass.cs" />
+    <Compile Include="UserControls\ComboboxEditSettings2.cs" />
     <Compile Include="UserControls\CustomTile.cs" />
     <Compile Include="Preferences\ApplyThemeSettings.cs" />
     <Compile Include="UserControls\CustomTile2.xaml.cs">
       <DependentUpon>CustomTile2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DateEditSettings.cs" />
+    <Compile Include="UserControls\GridControl2.xaml.cs">
+      <DependentUpon>GridControl2.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UCAdmin.xaml.cs">
       <DependentUpon>UCAdmin.xaml</DependentUpon>
@@ -233,6 +242,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\CustomTile2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GridControl2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -462,6 +475,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Source\HamburgerMenu\password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\anislon-psd design short-2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

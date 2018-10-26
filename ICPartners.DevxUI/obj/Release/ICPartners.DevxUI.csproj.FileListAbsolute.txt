@@ -38,6 +38,7 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Release\DevExpress.
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Release\DevExpress.Xpf.Scheduling.v18.1.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Release\DevExpress.Xpf.Themes.Office2016White.v18.1.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Release\DevExpress.Xpf.Themes.Seven.v18.1.dll
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Release\DevExpress.Xpf.Themes.VS2017Light.v18.1.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Release\DevExpress.Xpo.v18.1.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Release\DevExpress.XtraCharts.v18.1.dll
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\bin\Release\DevExpress.XtraGauges.v18.1.Core.dll
@@ -251,3 +252,5 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\ICPartners.
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\ICPartners.DevxUI.csproj.CopyComplete
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\ICPartners.DevxUI.exe
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\ICPartners.DevxUI.pdb
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\GridControl2.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\GridControl2.baml
