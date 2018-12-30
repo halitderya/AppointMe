@@ -254,3 +254,7 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.De
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.csproj.CopyComplete
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.exe
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\ICPartners.DevxUI.pdb
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCCustomerPropertyGrid.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCCustomerPropertyGrid.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCCustomer2.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\UserControls\UCCustomer2.baml

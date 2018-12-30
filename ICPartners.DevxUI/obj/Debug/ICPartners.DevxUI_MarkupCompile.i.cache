@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\App.xaml
-20-182082655
+23-1330183638
 
-431823094697
+46-1142373814
 74866672171
-CustomAppointmentWindow.xaml;MainWindow.xaml;Reporting\DayEndReport.xaml;Reporting\DayEndReportPage.xaml;UserControls\CustomTile2.xaml;UserControls\GridControl2.xaml;UserControls\UCAdmin.xaml;UserControls\UCAppointment.xaml;UserControls\UCCustomer.xaml;UserControls\UCDependent.xaml;UserControls\UcJob.xaml;UserControls\UCJobSelector.xaml;UserControls\UCReport.xaml;UserControls\UCResource.xaml;UserControls\UCStatusSelector.xaml;UserControls\UCTest.xaml;UserControls\UCWorkDays.xaml;Windows\ChangePassword.xaml;Windows\CreateNewCustomer.xaml;Windows\Login.xaml;
+CustomAppointmentWindow.xaml;MainWindow.xaml;Reporting\DayEndReport.xaml;Reporting\DayEndReportPage.xaml;UserControls\CustomTile2.xaml;UserControls\GridControl2.xaml;UserControls\UCAdmin.xaml;UserControls\UCAppointment.xaml;UserControls\UCCustomer.xaml;UserControls\UCCustomer2.xaml;UserControls\UCCustomerPropertyGrid.xaml;UserControls\UCDependent.xaml;UserControls\UcJob.xaml;UserControls\UCJobSelector.xaml;UserControls\UCReport.xaml;UserControls\UCResource.xaml;UserControls\UCStatusSelector.xaml;UserControls\UCTest.xaml;UserControls\UCWorkDays.xaml;Windows\ChangePassword.xaml;Windows\CreateNewCustomer.xaml;Windows\CustomerHistory.xaml;Windows\Login.xaml;
 
 False
 

@@ -31,7 +31,7 @@ MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
                     </dxwui:HamburgerMenu.Content>
                     
                     <dxwui:HamburgerMenuNavigationButton Glyph="Source/HamburgerMenu/scheduler_white.png" Content="Scheduler" NavigationTargetType="{x:Type UserControls:UCAppointment}"/>
-                     <dxwui:HamburgerMenuNavigationButton Glyph="Source/HamburgerMenu/people_white.png" Name="BtnCustomers" NavigationTargetType="{x:Type UserControls:UCCustomer}" Content="Customers" Placement="Top" />
+                     <dxwui:HamburgerMenuNavigationButton Glyph="Source/HamburgerMenu/people_white.png" Name="BtnCustomers" NavigationTargetType="{x:Type UserControls:UCCustomer2}" Content="Customers" Placement="Top" />
             <dxwui:HamburgerMenuItemSeparator/>
             <dxwui:HamburgerMenuNavigationButton Name="btnjobs" Glyph="Source/HamburgerMenu/task_white.png" Content="Jobs" NavigationTargetType="{x:Type UserControls:UcJob}" />
             <dxwui:HamburgerMenuNavigationButton Name="btnconnected" Glyph="source/HamburgerMenu/taskchain_white.png" Content="Connected Jobs" NavigationTargetType="{x:Type UserControls:UCDependent}"/>

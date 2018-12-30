@@ -1,0 +1,78 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ICPartners.DevxUI.UserControls"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:DAL="clr-namespace:ICPartners.DAL;assembly=ICPartners.DAL"
+             xmlns:ViewModel="clr-namespace:ICPartners.DevxUI.ViewModels"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dxrudi="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesigner/internal"  x:Class="ICPartners.DevxUI.UserControls.UCCustomer2"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate x:Key="CardViewTemplate">
+            <Button Name="History" Click="History_Click"></Button>
+        </DataTemplate>
+        <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource" ContextType="{x:Type ViewModel:AppointmentViewModel}" Path="Customers"  >
+            <dx:DesignDataManager.DesignData>
+                <dx:DesignDataSettings RowCount="5"/>
+            </dx:DesignDataManager.DesignData>
+        </dx:EntitySimpleDataSource>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        
+            <Button Name="NewCard" Click="NewCard_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="24px" Height="25px" Source="/ICPartners.DevxUI;component/Source/UIMisc/create.png"></Image>
+                <Label Background="Transparent" FontSize="12px" FontWeight="Bold" x:Name="CreateTextBox">Create New Customer</Label>
+            </StackPanel>
+            </Button>
+        
+        <dxg:GridControl ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}"  Grid.ColumnSpan="2" Grid.Row="1">
+        
+            <dxg:GridControl.View>
+                <dxg:CardView FontSize="12px"  x:Name="CardView" ShowCardExpandButton="False" ShowSearchPanelMode="Always" SearchPanelFindMode="Always" UseLegacyColumnVisibleIndexes="False" CardHeaderBinding="{DXBinding RowData.Row.CustomerName + ` ` + RowData.Row.CustomerSurname}"  UseLightweightTemplates="None" AllowCardResizing="False" CardLayout="Rows" ShowGroupPanel="False"  SearchDelay="300" PropertyChanged="CardView_PropertyChanged" RowUpdated="CardView_RowUpdated">
+                    <dxg:CardView.CardHeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Height="auto" Width="auto" Orientation="Horizontal">
+                                <TextBlock Margin="0,0,5,0" FontSize="16px" Foreground="IndianRed" FontWeight="Bold" Text="{DXBinding RowData.Row.CustomerName + ` ` + RowData.Row.CustomerSurname}"/>
+                                <Button Name="ButtonHistory" Background="Transparent" Margin="0,0,5,0" >
+                                    <StackPanel>
+                                        <Image Width="16px"  Height="auto" Source="/ICPartners.DevxUI;component/Source/UIMisc/history.png"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Name="ButtonDelete" Tag="{DXBinding RowData.Row.CustomerID}" Click="ButtonDelete_Click" >
+                                    <StackPanel>
+                                        <Image Width="16px"  Height="auto" Source="/ICPartners.DevxUI;component/Source/UIMisc/cancel.png" />
+                                    </StackPanel>
+
+                                </Button>
+                            </StackPanel>
+                            
+                        </DataTemplate>
+                    </dxg:CardView.CardHeaderTemplate>
+                    </dxg:CardView>
+            </dxg:GridControl.View>
+            <dxg:GridColumn FieldName="CustomerID"  Visible="False" IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerTitle" Header="Title"  IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerName" Binding="{Binding CustomerName,Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" Header="Name" IsSmart="True" />
+            <dxg:GridColumn FieldName="CustomerSurname" Binding="{Binding CustomerSurname,Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" Header="Surname" IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerEmail" Binding="{Binding CustomerEmail,Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" Header="E-Mail" IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerPhone" Binding="{Binding CustomerPhone,Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" Header="Phone(s)" IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerAddress" Binding="{Binding CustomerAddress,Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" Header="Address" IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerPostCode" Binding="{Binding CustomerPostCode,Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" Header="Postcode" IsSmart="True"/>
+            <dxg:GridColumn FieldName="CustomerCity" Binding="{Binding CustomerCity,Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}" Header="City" IsSmart="True"/>
+            
+        
+        </dxg:GridControl>
+    </Grid>
+</UserControl>

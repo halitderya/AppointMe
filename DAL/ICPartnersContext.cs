@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using ICPartners.Domains;
 
 
-
 namespace ICPartners.DAL
 {
     public class ICPartnersContext:DbContext
@@ -24,6 +23,7 @@ namespace ICPartners.DAL
         public DbSet<Resource> Resources { get; set; }
 
         public DbSet<Appointment> Appointments { get; set; }
+
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<DependentJobs> DependentJobs { get; set; }

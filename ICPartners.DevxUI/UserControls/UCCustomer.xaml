@@ -46,20 +46,20 @@
             </Grid>
 
         </Button>
-       
+
         <TextBlock Text="Customer Table" FontSize="20"></TextBlock>
         <dxg:GridControl x:Name="TableViewCustomer"  Grid.ColumnSpan="3" Grid.Row="1" SelectionMode="Cell" FontWeight="Bold"   >
 
             <dxg:GridControl.View>
                 <dxg:TableView AutoWidth="False" Name="tableview"  NewItemRowPosition="Bottom" AllowChangeBandParent="False" ShowGroupPanel="False" AllowMoveColumnToDropArea="False" AllowBandMoving="False" CellValueChanged="TableView_CellValueChanged" >
-                        <dxg:TableView.RowCellMenuCustomizations>
-                            <dxb:BarButtonItem Name="deleteRowItem" Content="Delete" 
+                    <dxg:TableView.RowCellMenuCustomizations>
+                        <dxb:BarButtonItem Name="deleteRowItem" Content="Delete" 
                            ItemClick="deleteRowItem_ItemClick"/>
-                            <dxb:BarButtonItem Name="copyCellDataItem" Content="Copy Cell Data" 
+                        <dxb:BarButtonItem Name="copyCellDataItem" Content="Copy Cell Data" 
                            ItemClick="copyCellDataItem_ItemClick" />
 
-                        </dxg:TableView.RowCellMenuCustomizations>
-                    </dxg:TableView>
+                    </dxg:TableView.RowCellMenuCustomizations>
+                </dxg:TableView>
 
             </dxg:GridControl.View>
             <dxg:GridColumn FieldName="CustomerTitle" Header="Title" IsSmart="True"/>
@@ -73,7 +73,7 @@
 
 
         </dxg:GridControl>
-    
+
     </Grid>
-    
+
 </UserControl>

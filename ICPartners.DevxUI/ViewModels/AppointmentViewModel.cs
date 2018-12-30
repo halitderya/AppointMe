@@ -23,6 +23,7 @@ namespace ICPartners.DevxUI.ViewModels
     #region declarations
     public class AppointmentViewModel
     {
+     
         UnitOfWork unitOfWork = new UnitOfWork(new ICPartnersContext());
         public static string[] StatusLabels = { "Open",  "Cancelled", "Completed - Waiting Payment", "Completed - Payment Made" };
         public static Brush[] StatusBrushes = { new SolidColorBrush(Colors.Yellow), new SolidColorBrush(Colors.Red), new SolidColorBrush(Colors.Orange), new SolidColorBrush(Colors.Green) };
@@ -40,7 +41,7 @@ namespace ICPartners.DevxUI.ViewModels
         public virtual ObservableCollection<Appointment> Appointments
         { get { return _Appointment; } set { _Appointment = value;}}
         public virtual ObservableCollection<DependentJobs> DependentJobs { get; set; }
-        public virtual ObservableCollection<Customer> Customers
+        public static ObservableCollection<Customer> Customers
         {
             get;
             set;
@@ -380,7 +381,8 @@ namespace ICPartners.DevxUI.ViewModels
         {
             return ViewModelSource.Create(() => new AppointmentViewModel());
         }
-        
+
+
     }
     
 }

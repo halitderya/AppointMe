@@ -175,6 +175,12 @@
     <Compile Include="UserControls\UCCustomer.xaml.cs">
       <DependentUpon>UCCustomer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCCustomer2.xaml.cs">
+      <DependentUpon>UCCustomer2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCCustomerPropertyGrid.xaml.cs">
+      <DependentUpon>UCCustomerPropertyGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCDependent.xaml.cs">
       <DependentUpon>UCDependent.xaml</DependentUpon>
     </Compile>
@@ -213,6 +219,9 @@
     </Compile>
     <Compile Include="Windows\CreateNewCustomer.xaml.cs">
       <DependentUpon>CreateNewCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CustomerHistory.xaml.cs">
+      <DependentUpon>CustomerHistory.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -261,6 +270,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\UCCustomer2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UCCustomerPropertyGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\UCDependent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -298,6 +315,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\CreateNewCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CustomerHistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -478,6 +499,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\anislon-psd design short-2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\UIMisc\history.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
