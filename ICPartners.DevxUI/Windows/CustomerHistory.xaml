@@ -1,13 +1,35 @@
-﻿<Window x:Class="ICPartners.DevxUI.Windows.CustomerHistory"
+﻿<Window xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  x:Class="ICPartners.DevxUI.Windows.CustomerHistory"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ICPartners.DevxUI.Windows"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:converter="clr-namespace:ICPartners.DevxUI.ViewModels"
         mc:Ignorable="d" WindowStyle="None" 
-        Title="CustomerHistory" Height="450" Width="800">
+        Title="CustomerHistory" Height="450" Deactivated="Window_Deactivated" Loaded="Window_Loaded" Width="800">
     <Grid>
-        <DataGrid HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" />
+        <dxg:GridControl Name="GridHistory"    >
+            <dxg:GridControl.View>
+                <dxg:TableView ShowGroupPanel="False"/>
+            </dxg:GridControl.View>
+            <dxg:GridColumn FieldName="StartDate"  Header="Date" IsSmart="True"/>
+            <dxg:GridColumn FieldName="Resource.ResourceName" IsSmart="True"/>
+            <dxg:GridColumn FieldName="Jobs" IsSmart="True">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:TextEditSettings Name="jobnamecolumn" DisplayTextConverter="{converter:JobNameConverter}" />
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
 
+            <dxg:GridColumn FieldName="ChargedAmount" IsSmart="True"/>
+            <dxg:GridColumn FieldName="UpdatedBy" IsSmart="True"/>
+
+            <dxg:GridColumn FieldName="Remarks" IsSmart="True"/>
+            <dxg:GridColumn FieldName="ColorBrand" IsSmart="True"/>
+            <dxg:GridColumn FieldName="ColorCode" IsSmart="True"/>
+            <dxg:GridColumn FieldName="ColorQuantity" IsSmart="True"/>
+            <dxg:GridColumn FieldName="ColorActivator" IsSmart="True"/>
+
+        </dxg:GridControl>
     </Grid>
 </Window>

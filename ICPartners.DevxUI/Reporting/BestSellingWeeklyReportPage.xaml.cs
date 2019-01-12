@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ICPartners.DevxUI.UserControls
+namespace ICPartners.DevxUI.Reporting
 {
     /// <summary>
-    /// Interaction logic for UCCustomerPropertyGrid.xaml
+    /// Interaction logic for BestSellingWeeklyReportPage.xaml
     /// </summary>
-    public partial class UCCustomerPropertyGrid : UserControl
+    public partial class BestSellingWeeklyReportPage : Page
     {
-        public UCCustomerPropertyGrid()
+        public BestSellingWeeklyReportPage()
         {
             InitializeComponent();
         }

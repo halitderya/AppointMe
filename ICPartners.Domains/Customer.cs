@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ICPartners.Domains
 {
@@ -13,8 +14,11 @@ namespace ICPartners.Domains
         private string _title;
         private string _name;
         private string _surname;
+        private string _remarks;
         private string _email;
         private string _phone;
+        private string _secondphone;
+        private string _thirdphone;
         private string _address;
         private string _postcode;
         private string _city;
@@ -40,6 +44,37 @@ namespace ICPartners.Domains
                 OnPropertyChanged("CustomerTitle");
             }
         }
+        
+
+        public string Remarks
+        {
+            get { return _remarks; }
+            set {
+                _remarks = value;
+                OnPropertyChanged("Remarks");
+            }
+        }
+
+        public string SecondPhone
+        {
+            get { return _secondphone; }
+            set
+            {
+                _secondphone = value;
+                OnPropertyChanged("SecondPhone");
+            }
+        }
+
+        public string ThirdPhone
+        {
+            get { return _thirdphone; }
+            set
+            {
+                _thirdphone = value;
+                OnPropertyChanged("ThirdPhone");
+            }
+        }
+
         public string CustomerName {
             get { return _name; }
 

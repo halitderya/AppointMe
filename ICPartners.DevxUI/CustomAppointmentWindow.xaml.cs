@@ -321,6 +321,7 @@ namespace ICPartners.DevxUI
                 CustomerAddress.Text = Customer.CustomerAddress;
                 CustomerCity.Text = Customer.CustomerPostCode + " - " + Customer.CustomerCity;
                 CustomerEMail.Text = Customer.CustomerEmail;
+                //Remarks.Text = Customer.Remarks;
                 DataTable table = new DataTable();
                 AppEnumerable.ToList().ForEach(x => AppEnumerable.Remove(x));
                 //UnitOfWork.appointmentRepository.GetAppointmentByCustomer(SelectedValue).ToList().ForEach(x=> AppEnumerable.Add(x));
@@ -641,6 +642,21 @@ namespace ICPartners.DevxUI
             }
             
                 
+        }
+
+        private void Remarks_DefaultButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Remarks_ContextMenuClosing(object sender, ContextMenuEventArgs e)
+        {
+
+        }
+
+        private void Remarks_EditValueChanged(object sender, EditValueChangedEventArgs e)
+        {
+            var temp = Logic.Customer.CustomerSelector.CustomerToSelect;
         }
     }
 

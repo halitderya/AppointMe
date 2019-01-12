@@ -290,6 +290,14 @@
     <Compile Include="Migrations\201810211328153_resindex.Designer.cs">
       <DependentUpon>201810211328153_resindex.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901051224260_RemarksAdded.cs" />
+    <Compile Include="Migrations\201901051224260_RemarksAdded.Designer.cs">
+      <DependentUpon>201901051224260_RemarksAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901051246353_SecondThirdPhoneAdded.cs" />
+    <Compile Include="Migrations\201901051246353_SecondThirdPhoneAdded.Designer.cs">
+      <DependentUpon>201901051246353_SecondThirdPhoneAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ICPartnersContext.cs" />
@@ -502,6 +510,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810211328153_resindex.resx">
       <DependentUpon>201810211328153_resindex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901051224260_RemarksAdded.resx">
+      <DependentUpon>201901051224260_RemarksAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901051246353_SecondThirdPhoneAdded.resx">
+      <DependentUpon>201901051246353_SecondThirdPhoneAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

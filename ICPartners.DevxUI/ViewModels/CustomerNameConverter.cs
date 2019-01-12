@@ -20,9 +20,16 @@ namespace ICPartners.DevxUI.ViewModels
                 ICPartnersContext context = new ICPartnersContext();
                 var repo2 = context.Customers.FirstOrDefault(x => x.CustomerID == (int)value);
                 //var repo = unitOfWork.CustomerRepository.GetByID((int)value);
+                if (repo2.CustomerSurname!=null)
+                {
 
-                string CustomerFullName = repo2.CustomerName.ToUpper() +" "+ repo2.CustomerSurname.ToUpper();
-                return CustomerFullName;
+                    return repo2.CustomerName.ToUpper() + " " + repo2.CustomerSurname.ToUpper();
+
+                }
+                else
+                {
+                    return repo2.CustomerName.ToUpper();
+                }
 
 
             }

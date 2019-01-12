@@ -1,7 +1,9 @@
-﻿
+﻿C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
 
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\CustomAppointmentWindow.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\MainWindow.xaml;;
+FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\Reporting\BestSellingWeekly.xaml;;
+FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\Reporting\BestSellingWeeklyReportPage.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\Reporting\DayEndReport.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\Reporting\DayEndReportPage.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\CustomTile2.xaml;;
@@ -10,7 +12,6 @@ FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCAdmin.x
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCAppointment.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCCustomer.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCCustomer2.xaml;;
-FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCCustomerPropertyGrid.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCDependent.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UcJob.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCJobSelector.xaml;;
@@ -21,5 +22,6 @@ FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCTest.xa
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\UserControls\UCWorkDays.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\Windows\ChangePassword.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\Windows\CreateNewCustomer.xaml;;
+FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\Windows\CustomerHistory.xaml;;
 FC:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\Windows\Login.xaml;;
 

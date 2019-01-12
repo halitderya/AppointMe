@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("source/uimisc/history.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("source/uimisc/icons8-bar-chart-24.png")]
 
 

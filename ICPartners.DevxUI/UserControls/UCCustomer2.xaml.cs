@@ -1,6 +1,7 @@
 ﻿using DevExpress.Xpf.Core;
 using ICPartners.DAL;
 using ICPartners.DevxUI.ViewModels;
+using ICPartners.DevxUI.Windows;
 using ICPartners.Domains;
 using System;
 using System.Collections.Generic;
@@ -69,10 +70,12 @@ namespace ICPartners.DevxUI.UserControls
                     currentcustomer.CustomerEmail = selectedCustomer.CustomerEmail;
                     currentcustomer.CustomerName = selectedCustomer.CustomerName;
                     currentcustomer.CustomerPhone = selectedCustomer.CustomerPhone;
+                    currentcustomer.SecondPhone = selectedCustomer.SecondPhone;
+                    currentcustomer.ThirdPhone = selectedCustomer.ThirdPhone;
                     currentcustomer.CustomerPostCode = selectedCustomer.CustomerPostCode;
                     currentcustomer.CustomerSurname = selectedCustomer.CustomerSurname;
                     currentcustomer.CustomerTitle = selectedCustomer.CustomerTitle;
-                    
+                    currentcustomer.Remarks = selectedCustomer.Remarks;
                 }
                 context.SaveChanges();
             }
@@ -128,8 +131,18 @@ namespace ICPartners.DevxUI.UserControls
 
         private void History_Click(object sender, RoutedEventArgs e)
         {
-            DXWindow window = new DXWindow();
-            
+            CustomerHistory history = new CustomerHistory((Int32)(sender as Button).Tag);
+        }
+
+        private void CardView_ValidateRow(object sender, DevExpress.Xpf.Grid.GridRowValidationEventArgs e)
+        {
+            var commited = e.Row as Domains.Customer;
+            if (String.IsNullOrWhiteSpace(commited.CustomerName))
+            {
+                e.IsValid = false;
+                e.ErrorContent = "Name field is mandatory";
+            }
+                
         }
     }
 }

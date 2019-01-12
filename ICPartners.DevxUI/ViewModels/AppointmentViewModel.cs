@@ -143,12 +143,13 @@ namespace ICPartners.DevxUI.ViewModels
                                 NewAppointment.UpdatedBy = Logic.UserManagement.CurrentUser.LoggedUser != null ? NewAppointment.UpdatedBy = Logic.UserManagement.CurrentUser.LoggedUser.ResourceName : NewAppointment.UpdatedBy = "N/A";
 
                                 Offset = true;
+                            
                                 if (MasterAppointment != 0 )
-                                {
-                                    var OffSet = JobToRemove.Sum(x => x.JobOffsetTime.TotalMinutes);
-
-                                    //NewAppointment.StartDate = NewAppointment.StartDate.AddMinutes(OffSet);
-                                }
+                            {
+                                double OffSet = JobToRemove.Sum(x => x.JobOffsetTime.TotalMinutes);
+                                DateTime AppointmentTime = NewAppointment.StartDate.AddMinutes(OffSet);
+                                NewAppointment.StartDate = AppointmentTime;
+                            }
 
                                 JobToRemove.Add(item);
                                 CreateMultiOffset(NewAppointment, oldAppointment, item, null,true);
@@ -194,7 +195,7 @@ namespace ICPartners.DevxUI.ViewModels
                                 var OffSet = JobToRemove.Sum(x => x.JobOffsetTime.TotalMinutes);
                                 NewAppointment.StartDate = this.Appointments.LastOrDefault().EndDate.AddMinutes(OffSet);
                             }
-                            NewAppointment.EndDate = NewAppointment.StartDate.AddMinutes(JobSelector.JobsToSelect.Sum(x => x.JobTimeSpan.Minutes));
+                            NewAppointment.EndDate = NewAppointment.StartDate.AddMinutes(JobSelector.JobsToSelect.Sum(x => x.JobTimeSpan.TotalMinutes));
 
                             //JobSelector.JobtoCreate = 0;
                             //JobWillCreate = null;
@@ -239,7 +240,7 @@ namespace ICPartners.DevxUI.ViewModels
 
                         NewAppointment.CreateDate = oldAppointment.CreateDate != default(DateTime) ? oldAppointment.CreateDate : NewAppointment.CreateDate = DateTime.Now;
                         NewAppointment.StartDate = oldAppointment.StartDate.AddMinutes(JobToRemove.Sum(x => x.JobOffsetTime.Minutes));
-                        NewAppointment.EndDate = NewAppointment.StartDate.AddMinutes(JobSelector.JobsToSelect.FirstOrDefault().JobTimeSpan.Minutes);
+                        NewAppointment.EndDate = NewAppointment.StartDate.AddMinutes(JobSelector.JobsToSelect.FirstOrDefault().JobTimeSpan.TotalMinutes);
                         CreateMultiOffset(NewAppointment, oldAppointment, JobSelector.JobsToSelect.FirstOrDefault(), null,false);
 
                     }
@@ -282,12 +283,26 @@ namespace ICPartners.DevxUI.ViewModels
 
                 decimal lastid = IcPartnersContext.Database.SqlQuery<decimal>("SELECT IDENT_CURRENT ('Appointments') AS Current_Identity").FirstOrDefault();
                 NewAppointment.AppointmentID = (int)lastid+1;
-
+                //buraya parent ıd konulacak
                 if (Offset==true)
                 {
                     MasterAppointment = NewAppointment.AppointmentID;
+                    Offset = false;
                 }
-
+                else
+                {
+                    DateTime newstarttime = NewAppointment.StartDate;
+                    Appointment parent = Appointments.FirstOrDefault(x => x.AppointmentID == MasterAppointment);
+                    if (parent != null)
+                    {
+                        NewAppointment.ParentID = MasterAppointment;
+                        double offsettimes = parent.Jobs.Sum(p => p.JobOffsetTime.TotalMinutes);
+                        NewAppointment.StartDate = parent.EndDate.AddMinutes(parent.Jobs.Sum(s => s.JobOffsetTime.TotalMinutes));
+                    }
+                    
+                    
+                }
+                //burada else ile offset verilemeli
 
                 this.Appointments.Add(NewAppointment);
                 Logic.Appointment.AppointmentSelector.AppointmentToEdit = null;
@@ -374,6 +389,7 @@ namespace ICPartners.DevxUI.ViewModels
                 result.Add(statuses);
             }
             return result;
+
         }
         #endregion #filldata
 
@@ -382,7 +398,7 @@ namespace ICPartners.DevxUI.ViewModels
             return ViewModelSource.Create(() => new AppointmentViewModel());
         }
 
-
+        
     }
     
 }

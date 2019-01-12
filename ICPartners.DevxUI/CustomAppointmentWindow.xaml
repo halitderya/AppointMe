@@ -24,11 +24,11 @@
                     x:Class="ICPartners.DevxUI.CustomAppointmentWindow"
                     mc:Ignorable="d"
                     Style="{DynamicResource {dxscht:AppointmentWindowThemeKey ResourceKey=Window}}"
-                    x:Name="window" Title="New Window"  Loaded="window_Loaded" Closed="window_Closed" WindowStyle="None" MinWidth="1024" MinHeight="600" Activated="window_Activated"  Initialized="window_Initialized" Closing="window_Closing" >
+                    x:Name="window" Title="New Window"  Loaded="window_Loaded" Closed="window_Closed" WindowStyle="None" MinWidth="1024" MinHeight="700" Activated="window_Activated"  Initialized="window_Initialized" Closing="window_Closing" >
 
 
     <Window.Resources>
-        <dx:EntityServerModeDataSource x:Key="EntityServerModeDataSource" ContextType="{x:Type DAL:ICPartnersContext}" DefaultSorting="CustomerName DESC" KeyExpression="CustomerID" Path="Customers">
+        <dx:EntityServerModeDataSource x:Key="EntityServerModeDataSource" ContextType="{x:Type DAL:ICPartnersContext}" DefaultSorting="CustomerName ASC" KeyExpression="CustomerID" Path="Customers">
             <dx:DesignDataManager.DesignData>
                 <dx:DesignDataSettings RowCount="5"/>
             </dx:DesignDataManager.DesignData>
@@ -39,6 +39,7 @@
                 <dx:DesignDataSettings RowCount="5"/>
             </dx:DesignDataManager.DesignData>
         </dx:EntitySimpleDataSource>
+        
 
 
 
@@ -180,10 +181,11 @@
                             </dxe:ComboBoxEdit.ItemTemplate>
                         </dxe:ComboBoxEdit>
 
-                        <Grid x:Name="CustomerDetailGrid" IsEnabled="True" Grid.Row="2" Grid.ColumnSpan="2" >
+                        <Grid x:Name="CustomerDetailGrid" IsEnabled="True" Tag="{Binding Customers, Mode=TwoWay}" Grid.Row="2" Grid.ColumnSpan="2" >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="2*"/>
                                 <RowDefinition Height="2*" />
+                                <RowDefinition Height="2*"/>
                                 <RowDefinition Height="2*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
@@ -204,7 +206,7 @@
                             <dxe:TextEdit x:Name="CustomerEMail" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" />
                             <dxe:TextEdit x:Name="CustomerAddress" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="0" />
                             <dxe:TextEdit x:Name="CustomerCity" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="1" />
-
+                            <dxe:MemoEdit x:Name="Remarks"  IsEnabled="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" DefaultButtonClick="Remarks_DefaultButtonClick" ContextMenuClosing="Remarks_ContextMenuClosing" EditValueChanged="Remarks_EditValueChanged" />
 
 
 
