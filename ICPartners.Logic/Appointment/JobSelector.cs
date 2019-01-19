@@ -14,13 +14,13 @@ namespace ICPartners.Logic.Appointment
         static JobSelector()
         {
             if (JobsToSelect == null)
-                JobsToSelect = new HashSet<Job>();
+                JobsToSelect = new Queue<Job>();
         }
         public static int JobtoCreate { get; set; }
         public static List<DependentJobs> DependentJobs;
-        private static HashSet<Job> _JobToSelect;
+        private static Queue<Job> _JobToSelect;
         public static bool IsJobEdited { get; set; }
-        public static HashSet<Job> JobsToSelect
+        public static Queue<Job> JobsToSelect
         {
             get { return _JobToSelect; }
             set { _JobToSelect = value; }

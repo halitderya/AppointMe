@@ -321,6 +321,7 @@ namespace ICPartners.DevxUI
                 CustomerAddress.Text = Customer.CustomerAddress;
                 CustomerCity.Text = Customer.CustomerPostCode + " - " + Customer.CustomerCity;
                 CustomerEMail.Text = Customer.CustomerEmail;
+                Remarks.EditValue = Customer.Remarks.ToString();
                 //Remarks.Text = Customer.Remarks;
                 DataTable table = new DataTable();
                 AppEnumerable.ToList().ForEach(x => AppEnumerable.Remove(x));
@@ -328,6 +329,7 @@ namespace ICPartners.DevxUI
                  context.Appointments.Include("Resource").Include("Jobs").Where(x => x.CustomerRefId == SelectedValue).ToList().ForEach(c => AppEnumerable.Add(c));
                 jobnamecolumn.DisplayTextConverter = new JobNameConverter();
                 var sa = AppEnumerable;
+                Logic.Customer.CustomerSelector.CustomerToSelect = Customer.CustomerID;
             }
 
 
@@ -656,7 +658,15 @@ namespace ICPartners.DevxUI
 
         private void Remarks_EditValueChanged(object sender, EditValueChangedEventArgs e)
         {
-            var temp = Logic.Customer.CustomerSelector.CustomerToSelect;
+            if (Logic.Customer.CustomerSelector.CustomerToSelect != 0)
+            {
+                Customer temp = context.Customers.FirstOrDefault(x => x.CustomerID == Logic.Customer.CustomerSelector.CustomerToSelect);
+                temp.Remarks = Remarks.EditValue.ToString();
+                context.SaveChanges();
+
+
+            }
+
         }
     }
 

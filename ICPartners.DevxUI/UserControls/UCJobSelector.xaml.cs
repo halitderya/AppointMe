@@ -108,7 +108,7 @@ namespace ICPartners.DevxUI.UserControls
                 {
                     //UnMarkMainButtons();
                     //JobSelector.JobtoCreate = AllJoblist.Find(x => x.JobId == button.JobID).JobId;
-                    JobSelector.JobsToSelect.Add(AllJoblist.Find(x => x.JobId == button.JobID));
+                    JobSelector.JobsToSelect.Enqueue(AllJoblist.Find(x => x.JobId == button.JobID));
                     button.Width = button.Width - 10;
                     button.Height = button.Width;
                     button.IsClicked = true;
@@ -137,7 +137,32 @@ namespace ICPartners.DevxUI.UserControls
                     button.Height = button.Width;
                     if (JobSelector.JobsToSelect.Any(x => x.JobId == button.JobID))
                     {
-                        JobSelector.JobsToSelect.Remove((JobSelector.JobsToSelect.FirstOrDefault(x => x.JobId == button.JobID)));
+                        HashSet<Job> temp = new HashSet<Job>(JobSelector.JobsToSelect.ToList());
+                        HashSet<Job> jobtoremovetemp = new HashSet<Job>();
+                        JobSelector.JobsToSelect.Clear();
+                        foreach (var item2 in temp.Where(x=>x.JobId==button.JobID))
+                        {
+                            jobtoremovetemp.Add(item2);
+                        }
+                        foreach (var item in jobtoremovetemp)
+                        {
+                            temp.Remove(item);
+                        }
+                        if (temp.Count > 0)
+                        {
+                            foreach (var item in temp)
+                            {
+                                JobSelector.JobsToSelect.Enqueue(item);
+                            }
+                        }
+                        
+                        temp.Clear();
+                        
+
+
+
+
+
                     }
                     
                     button.IsClicked = false;

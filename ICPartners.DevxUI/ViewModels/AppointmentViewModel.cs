@@ -105,15 +105,23 @@ namespace ICPartners.DevxUI.ViewModels
                     //Job JobWillCreate = unitOfWork.jobRepository.GetByID(JobSelector.JobtoCreate);
                     //if (unitOfWork.DependentRepository.GetAll().Any(x => x.MainJob == JobSelector.JobsToSelect.JobId))
                     //{
-                        //Multi-Job
+                    //Multi-Job
 
-                        //List<DependentJobs> DependentJobs = new List<DependentJobs>(unitOfWork.DependentRepository.GetAll().Where(x => x.MainJob == JobWillCreate.JobId).OrderBy(x => x.Sequence).ToList());
-                        //List<Job> JobList = new List<Job>();
-                        //JobList.Add(JobWillCreate);
-                        //foreach (var item in DependentJobs)
+                    //List<DependentJobs> DependentJobs = new List<DependentJobs>(unitOfWork.DependentRepository.GetAll().Where(x => x.MainJob == JobWillCreate.JobId).OrderBy(x => x.Sequence).ToList());
+                    //List<Job> JobList = new List<Job>();
+                    //JobList.Add(JobWillCreate);
+                    //foreach (var item in DependentJobs)
+                    //{
+                    //    JobList.Add(unitOfWork.jobRepository.GetByID(item.DependentJob));
+                    //}
+                    if (JobSelector.JobsToSelect.Count > 1)
+                    {
+                        //if (MasterAppointment==0)
                         //{
-                        //    JobList.Add(unitOfWork.jobRepository.GetByID(item.DependentJob));
+                        //    MasterAppointment = (int)IcPartnersContext.Database.SqlQuery<decimal>("SELECT IDENT_CURRENT ('Appointments') AS Current_Identity").FirstOrDefault()+1;
+
                         //}
+                    }
                         if (JobSelector.JobsToSelect.Any(x => x.JobOffsetTime.TotalMinutes > 0))
 
                         {
@@ -146,23 +154,37 @@ namespace ICPartners.DevxUI.ViewModels
                             
                                 if (MasterAppointment != 0 )
                             {
-                                double OffSet = JobToRemove.Sum(x => x.JobOffsetTime.TotalMinutes);
-                                DateTime AppointmentTime = NewAppointment.StartDate.AddMinutes(OffSet);
-                                NewAppointment.StartDate = AppointmentTime;
+                                double OffSet = new double();
+                                OffSet=  Appointments.LastOrDefault().Jobs.Sum(x=>x.JobOffsetTime.TotalMinutes);
+                                
+                                NewAppointment.StartDate = Appointments.LastOrDefault().EndDate.AddMinutes(OffSet);
+                                NewAppointment.EndDate = NewAppointment.StartDate.AddMinutes(OffSet);
                             }
 
                                 JobToRemove.Add(item);
                                 CreateMultiOffset(NewAppointment, oldAppointment, item, null,true);
-
+                            
 
                             }
 
 
 
-                            foreach (var item in JobToRemove)
+                            if (JobToRemove.Count>0)
                             {
 
-                                JobSelector.JobsToSelect.Remove(item);
+                              HashSet<Job> temp= new HashSet<Job>(JobSelector.JobsToSelect.ToList());
+
+                            JobSelector.JobsToSelect.Clear();
+                            foreach (var item2 in JobToRemove)
+                            {
+                                temp.Remove(item2);
+                            }
+                            foreach (var item3 in temp)
+                            {
+                                JobSelector.JobsToSelect.Enqueue(item3);
+                            }
+                            temp.Clear();
+
                             }
 
                         }
@@ -192,7 +214,7 @@ namespace ICPartners.DevxUI.ViewModels
                             NewAppointment.UpdatedBy = Logic.UserManagement.CurrentUser.LoggedUser != null ? NewAppointment.UpdatedBy = Logic.UserManagement.CurrentUser.LoggedUser.ResourceName : NewAppointment.UpdatedBy = "N/A";
                             if (JobToRemove.Any(x => x.JobOffsetTime.TotalMinutes > 0))
                             {
-                                var OffSet = JobToRemove.Sum(x => x.JobOffsetTime.TotalMinutes);
+                                var OffSet = Appointments.LastOrDefault().Jobs.Sum(x => x.JobOffsetTime.TotalMinutes);
                                 NewAppointment.StartDate = this.Appointments.LastOrDefault().EndDate.AddMinutes(OffSet);
                             }
                             NewAppointment.EndDate = NewAppointment.StartDate.AddMinutes(JobSelector.JobsToSelect.Sum(x => x.JobTimeSpan.TotalMinutes));
@@ -239,14 +261,18 @@ namespace ICPartners.DevxUI.ViewModels
                         NewAppointment.UpdatedBy = Logic.UserManagement.CurrentUser.LoggedUser != null ? NewAppointment.UpdatedBy = Logic.UserManagement.CurrentUser.LoggedUser.ResourceName : NewAppointment.UpdatedBy = "N/A";
 
                         NewAppointment.CreateDate = oldAppointment.CreateDate != default(DateTime) ? oldAppointment.CreateDate : NewAppointment.CreateDate = DateTime.Now;
-                        NewAppointment.StartDate = oldAppointment.StartDate.AddMinutes(JobToRemove.Sum(x => x.JobOffsetTime.Minutes));
+                        NewAppointment.StartDate = oldAppointment.StartDate.AddMinutes(Appointments.LastOrDefault().Jobs.Sum(x => x.JobOffsetTime.Minutes));
                         NewAppointment.EndDate = NewAppointment.StartDate.AddMinutes(JobSelector.JobsToSelect.FirstOrDefault().JobTimeSpan.TotalMinutes);
                         CreateMultiOffset(NewAppointment, oldAppointment, JobSelector.JobsToSelect.FirstOrDefault(), null,false);
-
+                        MasterAppointment = 0;
                     }
-                    
 
 
+                    if (JobSelector.JobsToSelect.Count == 0)
+                    {
+                        MasterAppointment = 0;
+                        JobToRemove.Clear();
+                    }
 
 
 
@@ -336,6 +362,9 @@ namespace ICPartners.DevxUI.ViewModels
                 this.Appointments.Add(NewAppointment);
                 IcPartnersContext.SaveChanges();
                 MasterAppointment = 0;
+                JobSelector.JobsToSelect.Clear();
+                JobToRemove.Clear();
+                
 
             }
 
