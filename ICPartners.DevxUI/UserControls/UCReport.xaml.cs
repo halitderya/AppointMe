@@ -34,5 +34,11 @@ namespace ICPartners.DevxUI.UserControls
             report.ShowDialog();
 
         }
+
+        private void Weekly_Click(object sender, RoutedEventArgs e)
+        {
+            WeekEndReport report = new WeekEndReport();
+            report.ShowDialog();
+        }
     }
 }

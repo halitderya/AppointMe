@@ -321,7 +321,7 @@ namespace ICPartners.DevxUI
                 CustomerAddress.Text = Customer.CustomerAddress;
                 CustomerCity.Text = Customer.CustomerPostCode + " - " + Customer.CustomerCity;
                 CustomerEMail.Text = Customer.CustomerEmail;
-                Remarks.EditValue = Customer.Remarks.ToString();
+                Remarks.Text = Customer.Remarks;
                 //Remarks.Text = Customer.Remarks;
                 DataTable table = new DataTable();
                 AppEnumerable.ToList().ForEach(x => AppEnumerable.Remove(x));
@@ -661,7 +661,7 @@ namespace ICPartners.DevxUI
             if (Logic.Customer.CustomerSelector.CustomerToSelect != 0)
             {
                 Customer temp = context.Customers.FirstOrDefault(x => x.CustomerID == Logic.Customer.CustomerSelector.CustomerToSelect);
-                temp.Remarks = Remarks.EditValue.ToString();
+                temp.Remarks = Remarks.Text;
                 context.SaveChanges();
 
 

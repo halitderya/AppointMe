@@ -28,11 +28,11 @@
             </StackPanel>
             
         </Button>
-        <Button Grid.Column="1" HorizontalAlignment="Stretch" Click="Button_Click" VerticalAlignment="Stretch" FontSize="24">
+        <Button Grid.Column="1" HorizontalAlignment="Stretch" Click="Weekly_Click" Name="Weekly" VerticalAlignment="Stretch" FontSize="24">
             <StackPanel Orientation="Horizontal">
                 <Image Source="/ICPartners.DevxUI;component/Source/UIMisc/icons8-bar-chart-24.png" Width="60"  ></Image>
 
-                <TextBlock Text="Best Seller (Weekly)" VerticalAlignment="Center"/>
+                <TextBlock Text="Weekly Report" VerticalAlignment="Center"/>
             </StackPanel>
 
         </Button>

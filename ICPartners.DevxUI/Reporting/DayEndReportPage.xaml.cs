@@ -102,8 +102,8 @@ namespace ICPartners.DevxUI.Reporting
                 // Fill cells by adding text.  
                 // First row
                 t.Rows[0].Cells[0].Paragraphs.First().Append("Name");
-                t.Rows[0].Cells[1].Paragraphs.First().Append("Job Done");
                 t.Rows[0].Cells[2].Paragraphs.First().Append("Appointment Done");
+                t.Rows[0].Cells[1].Paragraphs.First().Append("Job Done");
                 t.Rows[0].Cells[3].Paragraphs.First().Append("Total Charged");
 
                 int i = 1;
@@ -111,8 +111,8 @@ namespace ICPartners.DevxUI.Reporting
                 foreach (var item in DistinctResRefID)
                 {
                     t.Rows[i].Cells[0].Paragraphs.First().Append(AllJobsWithResources.Where(x=>x.ResourceRefID==item).FirstOrDefault().Resource.ResourceName);
-                    t.Rows[i].Cells[1].Paragraphs.First().Append(AllJobsWithResources.Where(x => x.ResourceRefID == item).FirstOrDefault().Jobs.Count().ToString());
                     t.Rows[i].Cells[2].Paragraphs.First().Append(AllJobsWithResources.Where(x => x.ResourceRefID == item).Count().ToString());
+                    t.Rows[i].Cells[1].Paragraphs.First().Append(AllJobsWithResources.Where(x => x.ResourceRefID == item).ToList().Sum(y=>y.Jobs.Count()).ToString());
                     t.Rows[i].Cells[3].Paragraphs.First().Append(AllJobsWithResources.Where(x => x.ResourceRefID == item).Sum(c => c.ChargedAmount).ToString()+ "£");
                     i++;
 

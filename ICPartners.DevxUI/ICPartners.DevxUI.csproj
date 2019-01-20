@@ -149,14 +149,14 @@
       <DependentUpon>CustomAppointmentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\StatusesState.cs" />
-    <Compile Include="Reporting\BestSellingWeekly.xaml.cs">
-      <DependentUpon>BestSellingWeekly.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Reporting\BestSellingWeeklyReportPage.xaml.cs">
-      <DependentUpon>BestSellingWeeklyReportPage.xaml</DependentUpon>
+    <Compile Include="Reporting\WeekEndReport.xaml.cs">
+      <DependentUpon>WeekEndReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reporting\DayEndReport.xaml.cs">
       <DependentUpon>DayEndReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting\WeekEndReportPage.xaml.cs">
+      <DependentUpon>WeekEndReportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reporting\DayEndReportPage.xaml.cs">
       <DependentUpon>DayEndReportPage.xaml</DependentUpon>
@@ -245,17 +245,17 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Reporting\BestSellingWeekly.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Reporting\WeekEndReport.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Reporting\BestSellingWeeklyReportPage.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Reporting\DayEndReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reporting\WeekEndReportPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Reporting\DayEndReportPage.xaml">
       <SubType>Designer</SubType>

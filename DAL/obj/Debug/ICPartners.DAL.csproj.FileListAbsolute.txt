@@ -68,10 +68,10 @@ C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.w
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.workdays.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.resourcevisibility.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.resindex.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.RemarksAdded.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.SecondThirdPhoneAdded.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.GenerateResource.cache
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.CoreCompileInputs.cache
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.csproj.CopyComplete
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.dll
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.pdb
-C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.RemarksAdded.resources
-C:\Users\Halit\source\repos\ICPartners\DAL\obj\Debug\ICPartners.DAL.Migrations.SecondThirdPhoneAdded.resources
