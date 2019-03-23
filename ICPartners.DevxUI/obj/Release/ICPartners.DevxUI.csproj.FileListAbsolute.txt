@@ -204,12 +204,16 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\ICPartners.
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\ICPartners.DevxUI.csproj.ResolveComReference.cache
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\CustomAppointmentWindow.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\MainWindow.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Reporting\WeekEndReport.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Reporting\DayEndReport.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Reporting\WeekEndReportPage.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Reporting\DayEndReportPage.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\CustomTile2.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\GridControl2.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UCAdmin.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UCAppointment.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UCCustomer.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UCCustomer2.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UCDependent.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UcJob.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UCJobSelector.g.cs
@@ -220,6 +224,7 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControl
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UCWorkDays.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Windows\ChangePassword.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Windows\CreateNewCustomer.g.cs
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Windows\CustomerHistory.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Windows\Login.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\App.g.cs
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\GeneratedInternalTypeHelper.g.cs
@@ -227,12 +232,16 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\ICPartners.
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\ICPartners.DevxUI_MarkupCompile.lref
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\CustomAppointmentWindow.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\MainWindow.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Reporting\WeekEndReport.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Reporting\DayEndReport.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Reporting\WeekEndReportPage.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Reporting\DayEndReportPage.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\CustomTile2.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\GridControl2.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UCAdmin.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UCAppointment.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UCCustomer.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UCCustomer2.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UCDependent.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UcJob.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UCJobSelector.baml
@@ -243,6 +252,7 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControl
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\UCWorkDays.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Windows\ChangePassword.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Windows\CreateNewCustomer.baml
+C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Windows\CustomerHistory.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\Windows\Login.baml
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\ICPartners.DevxUI.g.resources
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\ICPartners.DevxUI.Properties.Resources.resources
@@ -252,5 +262,3 @@ C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\ICPartners.
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\ICPartners.DevxUI.csproj.CopyComplete
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\ICPartners.DevxUI.exe
 C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\ICPartners.DevxUI.pdb
-C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\GridControl2.g.cs
-C:\Users\Halit\source\repos\ICPartners\ICPartners.DevxUI\obj\Release\UserControls\GridControl2.baml

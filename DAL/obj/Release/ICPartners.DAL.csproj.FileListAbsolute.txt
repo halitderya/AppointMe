@@ -67,9 +67,11 @@ C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.workdays4.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.workdays.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.resourcevisibility.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.resindex.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.RemarksAdded.resources
+C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.SecondThirdPhoneAdded.resources
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.csproj.GenerateResource.cache
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.csproj.CoreCompileInputs.cache
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.csproj.CopyComplete
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.dll
 C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.pdb
-C:\Users\Halit\source\repos\ICPartners\DAL\obj\Release\ICPartners.DAL.Migrations.resindex.resources

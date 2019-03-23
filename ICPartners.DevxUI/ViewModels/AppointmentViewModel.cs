@@ -261,7 +261,17 @@ namespace ICPartners.DevxUI.ViewModels
                         NewAppointment.UpdatedBy = Logic.UserManagement.CurrentUser.LoggedUser != null ? NewAppointment.UpdatedBy = Logic.UserManagement.CurrentUser.LoggedUser.ResourceName : NewAppointment.UpdatedBy = "N/A";
 
                         NewAppointment.CreateDate = oldAppointment.CreateDate != default(DateTime) ? oldAppointment.CreateDate : NewAppointment.CreateDate = DateTime.Now;
-                        NewAppointment.StartDate = oldAppointment.StartDate.AddMinutes(Appointments.LastOrDefault().Jobs.Sum(x => x.JobOffsetTime.Minutes));
+                        if (Appointments.LastOrDefault().Jobs != null)
+                        {
+                            if (Appointments.LastOrDefault().Jobs.Sum(x => x.JobOffsetTime.Minutes) != 0)
+                            {
+                                NewAppointment.StartDate = oldAppointment.StartDate.AddMinutes(Appointments.LastOrDefault().Jobs.Sum(x => x.JobOffsetTime.Minutes));
+                            }
+                        }
+                        else
+                        {
+                            NewAppointment.StartDate = oldAppointment.StartDate;
+                        }
                         NewAppointment.EndDate = NewAppointment.StartDate.AddMinutes(JobSelector.JobsToSelect.FirstOrDefault().JobTimeSpan.TotalMinutes);
                         CreateMultiOffset(NewAppointment, oldAppointment, JobSelector.JobsToSelect.FirstOrDefault(), null,false);
                         MasterAppointment = 0;

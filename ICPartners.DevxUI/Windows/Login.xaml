@@ -82,6 +82,8 @@
 
 
 
-    </Grid>
+        <Image Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" Source="/ICPartners.DevxUI;component/Resources/anislon-psd-design-2.png" />
+            <Label Content="Developed for ICPartners (2018)" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"  FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Left" />
+        </Grid>
     </Border>
 </Window>

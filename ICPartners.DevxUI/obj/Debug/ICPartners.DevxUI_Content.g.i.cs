@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("source/uimisc/icons8-bar-chart-24.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/anislon-psd-design-2.png")]
 
 
